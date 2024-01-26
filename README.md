@@ -1,2 +1,2 @@
 # ggj-2024
-Elephancing - a game about elephant jousting techniques
+Elephencing - a game about elephant jousting techniques
