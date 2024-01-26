@@ -3,18 +3,6 @@ using System;
 
 public partial class ProtectController : LocationController
 {
-	private Vector2 m_vVelocity = new();
-	private Vector2 m_vAcceleration = new();
-	
-	[Export]
-	private float MovementStrength = 1.0f;
-
-	[Export]
-	private float Mass = 5.0f;
-
-	[Export]
-	private float Friction = 0.02f;
-
 	public override void Process(Minigame.Stage eStage, double dTimeLeft)
 	{
 		
@@ -22,7 +10,7 @@ public partial class ProtectController : LocationController
 		{
 			case Minigame.Stage.LineUp:
 			{
-				StageLineUp();
+				StageLineUp(eStage, dTimeLeft);
 				break;
 			}
 			case Minigame.Stage.Engage:
@@ -32,7 +20,7 @@ public partial class ProtectController : LocationController
 		}
 	}
 
-	private void StageLineUp()
+	private void StageLineUp(Minigame.Stage eStage, double dTimeLeft)
 	{
 		Vector2 vInput = new();
 
@@ -57,60 +45,10 @@ public partial class ProtectController : LocationController
 
 		ApplyForce(vInput);
 
-		ApplyAcceleration();
-		ApplyFriction();
-
-		ProcessKeepInBounds();
+		base.Process(eStage, dTimeLeft);
 	}
 
-	private void ApplyForce(Vector2 v)
-	{
-		Vector2 vForce = v / Mass;
-		m_vAcceleration += vForce;
-	}
+	
 
-	private void ApplyAcceleration()
-	{
-		m_vVelocity += m_vAcceleration;
-		Position += m_vVelocity;
-
-		m_vAcceleration = Vector2.Zero;
-	}
-
-	private void ApplyFriction()
-	{
-		//float coefficient = 0.05f;
-		Vector2 vFriction = m_vVelocity;
-
-		vFriction *= -1.0f;
-		vFriction = vFriction.Normalized();
-		vFriction *= Friction;
-
-		ApplyForce(vFriction);
-	}
-
-	private void ProcessKeepInBounds()
-	{
-		if(Position.X < 0)
-		{
-			Position = new Vector2(0, Position.Y);
-			m_vVelocity.X = -m_vVelocity.X;
-		}
-		else if(Position.X > m_vBoundsSize.X)
-		{
-			Position = new Vector2(m_vBoundsSize.X, Position.Y);
-			m_vVelocity.X = -m_vVelocity.X;
-		}
-
-		if(Position.Y < 0)
-		{
-			Position = new Vector2(Position.X, 0);
-			m_vVelocity.Y = -m_vVelocity.Y;
-		}
-		else if(Position.Y > m_vBoundsSize.Y)
-		{
-			Position = new Vector2(Position.X, m_vBoundsSize.Y);
-			m_vVelocity.Y = -m_vVelocity.Y;
-		}
-	}
+	
 }

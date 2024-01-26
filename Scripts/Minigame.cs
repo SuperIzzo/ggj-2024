@@ -115,6 +115,23 @@ public partial class Minigame : Node2D
 		}
 	}
 
+	public override void _Input(InputEvent @event)
+	{
+		// Mouse in viewport coordinates.
+		if (@event is InputEventMouseButton eventMouseButton)
+		{
+			//GD.Print("Mouse Click/Unclick at: ", eventMouseButton.Position);
+		}
+		else if (@event is InputEventMouseMotion eventMouseMotion)
+		{
+			AttackLocation.UpdateMouseInput(eventMouseMotion.Relative);
+			GD.Print("Mouse Motion at: ", eventMouseMotion.Relative);
+		}
+
+		// Print the size of the viewport.
+		//GD.Print("Viewport Resolution is: ", GetViewport().GetVisibleRect().Size);
+	}
+
 	private void Stage_Init()
 	{
 		int iSpawnPaddingX = 20;
@@ -130,9 +147,12 @@ public partial class Minigame : Node2D
 
 		AttackLocation.Position = GetRandomSpawnPos();
 		ProtectLocation.Position = GetRandomSpawnPos();
-		
+
 		AttackLocation.SetBounds(m_vAreaSize);
 		ProtectLocation.SetBounds(m_vAreaSize);
+
+		Input.MouseMode = Input.MouseModeEnum.Captured;
+		//Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN);
 	}
 
 	private void Stage_LineUp()
