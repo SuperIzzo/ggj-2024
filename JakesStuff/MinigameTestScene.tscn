@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dr16xdtnwat14"]
+
+[ext_resource type="PackedScene" uid="uid://8e7nvk6clrwg" path="res://JakesStuff/MinigameController.tscn" id="2_s1ci0"]
+
+[node name="Base" type="Node2D"]
+
+[node name="Minigame" parent="." instance=ExtResource("2_s1ci0")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(320, 240)

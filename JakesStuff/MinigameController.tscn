@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://8e7nvk6clrwg"]
+
+[ext_resource type="Script" path="res://Scripts/Minigame.cs" id="1_jcakm"]
+[ext_resource type="Texture2D" uid="uid://cvxb3mf04gupy" path="res://Assets/Sword.png" id="2_oelte"]
+[ext_resource type="Script" path="res://Scripts/AttackController.cs" id="3_m78mq"]
+[ext_resource type="Texture2D" uid="uid://do8fjux2wqcjy" path="res://Assets/Shield.png" id="4_n5mht"]
+[ext_resource type="Script" path="res://Scripts/ProtectController.cs" id="5_tf3pd"]
+
+[node name="Minigame" type="Node2D" node_paths=PackedStringArray("PlayAreaNode", "AttackLocation", "ProtectLocation")]
+script = ExtResource("1_jcakm")
+PlayAreaNode = NodePath("PlayArea")
+AttackLocation = NodePath("PlayArea/AttackLocation")
+ProtectLocation = NodePath("PlayArea/ProtectLocation")
+
+[node name="PlayArea" type="Polygon2D" parent="."]
+position = Vector2(440, 280)
+color = Color(1, 1, 1, 0.117647)
+polygon = PackedVector2Array(0, 0, 400, 0, 400, 400, 0, 400)
+metadata/_edit_lock_ = true
+
+[node name="AttackLocation" type="Sprite2D" parent="PlayArea"]
+texture_filter = 1
+texture = ExtResource("2_oelte")
+script = ExtResource("3_m78mq")
+
+[node name="ProtectLocation" type="Sprite2D" parent="PlayArea"]
+texture_filter = 1
+texture = ExtResource("4_n5mht")
+script = ExtResource("5_tf3pd")
+Mass = 1.0
+Friction = 0.03
