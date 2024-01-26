@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwj0xva4bgiey"]
+
+[ext_resource type="Texture2D" uid="uid://b5iq1mljflfb" path="res://IzzoStuff/UIBox.png" id="1_irkeq"]
+[ext_resource type="Script" path="res://IzzoStuff/TextBox.cs" id="1_uarxy"]
+[ext_resource type="FontFile" uid="uid://cqjxj24m8js2g" path="res://IzzoStuff/sportsjersey.ttf" id="3_m6b3l"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 504.0
+offset_right = 1132.0
+offset_bottom = 637.0
+script = ExtResource("1_uarxy")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_irkeq")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 36
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 0
+
+[node name="Text" type="Label" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_m6b3l")
+theme_override_font_sizes/font_size = 32
+text = "dhasjk daj dkaj djahjdhaskjhd ahskjdh akjshdkajh dkja dada sdas ddas das dasda sdas das dasd asd asd asdas"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
