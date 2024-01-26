@@ -23,9 +23,25 @@ public partial class Minigame : Node2D
 	[Export]
 	public ProtectController ProtectLocation;
 
+	[Export]
+	public AttackController EnemyAttackLocation;
+
+	[Export]
+	public ProtectController EnemyProtectLocation;
+
+	[Export]
+	int SpawnPaddingX = 50;
+
+	[Export]
+	int SpawnPaddingY = 50;
+
+	[Export]
+	float LocationRadius = 20.0f;
+
 	private Stage m_eStage = new();
 	private Vector2 m_vAreaSize = new();
 	private double m_dStageTimeLeft;
+	private EnemyController m_enemy = new();
 
 	public Minigame GetMinigame() => this;
 
@@ -88,7 +104,7 @@ public partial class Minigame : Node2D
 			}
 			case Stage.LineUp:
 			{
-				Stage_LineUp();
+				Stage_LineUp(delta);
 				break;
 			}
 			case Stage.Engage:
@@ -118,50 +134,66 @@ public partial class Minigame : Node2D
 
 	public override void _Input(InputEvent @event)
 	{
-		if (@event is InputEventMouseButton eventMouseButton)
+		if (@event is InputEventMouseMotion eventMouseMotion)
 		{
-			//GD.Print("Mouse Click/Unclick at: ", eventMouseButton.Position);
+			AttackLocation.AddInput(eventMouseMotion.Relative);
 		}
-		else if (@event is InputEventMouseMotion eventMouseMotion)
+		else if (@event is InputEventMouseButton eventMouseButton)
 		{
-			AttackLocation.UpdateMouseInput(eventMouseMotion.Relative);
-			GD.Print("Mouse Motion at: ", eventMouseMotion.Relative);
+			// eventMouseButton.Position
 		}
 	}
 
 	private void Stage_Init()
 	{
-		int iSpawnPaddingX = 20;
-		int iSpawnPaddingY = 20;
-		
 		Vector2 GetRandomSpawnPos()
 		{
-			return new Vector2(iSpawnPaddingX + (GD.Randi() % m_vAreaSize.X), iSpawnPaddingY + (GD.Randi() % m_vAreaSize.Y));
+			return new Vector2(
+				SpawnPaddingX + (GD.Randi() % (m_vAreaSize.X - SpawnPaddingX * 2)), 
+				SpawnPaddingY + (GD.Randi() % (m_vAreaSize.Y - SpawnPaddingY * 2)));
 		}
 
 		m_eStage = Stage.LineUp;
 		m_dStageTimeLeft = GetStageTimer(Stage.LineUp);
 
+		// Spawn our attack and protect positions randomly
 		AttackLocation.Position = GetRandomSpawnPos();
 		ProtectLocation.Position = GetRandomSpawnPos();
+		EnemyAttackLocation.Position = GetRandomSpawnPos();
+		EnemyProtectLocation.Position = GetRandomSpawnPos();
 
-		AttackLocation.SetBounds(m_vAreaSize);
-		ProtectLocation.SetBounds(m_vAreaSize);
-
+		
+		// Capture the mouse so that it's invisible and we can get the relative movement for the frame
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 		
+		// Initialise everything that needs initing
+		AttackLocation.SetBounds(m_vAreaSize);
+		ProtectLocation.SetBounds(m_vAreaSize);
 		AttackLocation.GetMinigameDelegate = GetMinigame;
 		ProtectLocation.GetMinigameDelegate = GetMinigame;
+
+		EnemyAttackLocation.SetBounds(m_vAreaSize);
+		EnemyProtectLocation.SetBounds(m_vAreaSize);
+		EnemyAttackLocation.GetMinigameDelegate = GetMinigame;
+		EnemyProtectLocation.GetMinigameDelegate = GetMinigame;
+
+		m_enemy.Init(EnemyController.Difficulty.One, m_vAreaSize, LocationRadius);
 	}
 
-	private void Stage_LineUp()
+	private void Stage_LineUp(double delta)
 	{
+		ProcessInput(delta);
+
 		AttackLocation.Process(Stage.LineUp, m_dStageTimeLeft);
 		ProtectLocation.Process(Stage.LineUp, m_dStageTimeLeft);
 
+		EnemyAttackLocation.Process(Stage.LineUp, m_dStageTimeLeft);
+		EnemyProtectLocation.Process(Stage.LineUp, m_dStageTimeLeft);
+
 		Vector2 vAttackPosition = AttackLocation.Position;
 		Vector2 vProtectLocation = ProtectLocation.Position;
-		if(vAttackPosition.DistanceSquaredTo(vProtectLocation) < 20.0f * 20.0f)
+
+		if(vAttackPosition.DistanceSquaredTo(vProtectLocation) < LocationRadius * LocationRadius)
 		{
 			Vector2 attackVel = AttackLocation.m_vVelocity;
 			Vector2 protectVel = ProtectLocation.m_vVelocity;
@@ -185,5 +217,37 @@ public partial class Minigame : Node2D
 	private void Stage_Exit()
 	{
 		m_eStage = Stage.Idle;
+	}
+
+	private void ProcessInput(double delta)
+	{
+		Vector2 vInput = new();
+
+		// Add to the janky ps1 demo vibe, only allow one input at a time
+		//	and make the player keep pressing the direction
+		if(Input.IsActionJustPressed("Key_Left"))
+		{
+			vInput.X = -1;
+		}
+		else if(Input.IsActionJustPressed("Key_Right"))
+		{
+			vInput.X = 1;
+		}
+		else if(Input.IsActionJustPressed("Key_Up"))
+		{
+			vInput.Y = -1;
+		}
+		else if(Input.IsActionJustPressed("Key_Down"))
+		{
+			vInput.Y = 1;
+		}
+
+		ProtectLocation.AddInput(vInput);
+
+		m_enemy.Process(AttackLocation.Position, ProtectLocation.Position, 
+			EnemyAttackLocation.Position, EnemyProtectLocation.Position, delta);
+
+		EnemyAttackLocation.AddInput(m_enemy.GetAttackInput());
+		EnemyProtectLocation.AddInput(m_enemy.GetProtectInput());
 	}
 }

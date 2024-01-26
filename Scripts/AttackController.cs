@@ -21,8 +21,9 @@ public partial class AttackController : LocationController
 		}
 	}
 
-	public void UpdateMouseInput(Vector2 vInput)
+	public void AddInput(Vector2 vInput)
 	{
+		// Accept input on a range of 0 to 50
 		float fStrength = Mathf.Remap(vInput.Length(), 0.0f, 50.0f, 0.0f, 1.0f);
 		Vector2 vNorm = vInput.Normalized();
 
@@ -31,9 +32,9 @@ public partial class AttackController : LocationController
 
 	private void StageLineUp(Minigame.Stage eStage, double dTimeLeft)
 	{
-		ApplyForce(m_vMouseRelative * MovementStrength);
+		ApplyForce(m_vMouseRelative);
 		m_vMouseRelative = Vector2.Zero;
-		
+
 		base.Process(eStage, dTimeLeft);
 	}
 	

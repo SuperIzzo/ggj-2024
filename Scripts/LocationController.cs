@@ -16,13 +16,10 @@ public partial class LocationController : Node2D
 	protected float Friction = 0.02f;
 
 	protected Vector2 m_vBoundsSize;
+	protected Vector2 m_vInput;
 
 	public delegate Minigame DelGetMinigame();
 	public DelGetMinigame GetMinigameDelegate;
-
-
-	
-
 
 	public virtual void Process(Minigame.Stage eStage, double dTimeLeft) 
 	{
@@ -32,6 +29,9 @@ public partial class LocationController : Node2D
 	}
 
 	public void SetBounds(Vector2 vBounds) => m_vBoundsSize = vBounds;
+
+
+	public virtual void AddInput(Vector2 vInput) {}
 
 	protected void ApplyForce(Vector2 v)
 	{

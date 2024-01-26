@@ -6,11 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://do8fjux2wqcjy" path="res://Assets/Shield.png" id="4_n5mht"]
 [ext_resource type="Script" path="res://Scripts/ProtectController.cs" id="5_tf3pd"]
 
-[node name="Minigame" type="Node2D" node_paths=PackedStringArray("PlayAreaNode", "AttackLocation", "ProtectLocation")]
+[node name="Minigame" type="Node2D" node_paths=PackedStringArray("PlayAreaNode", "AttackLocation", "ProtectLocation", "EnemyAttackLocation", "EnemyProtectLocation")]
 script = ExtResource("1_jcakm")
 PlayAreaNode = NodePath("PlayArea")
 AttackLocation = NodePath("PlayArea/AttackLocation")
 ProtectLocation = NodePath("PlayArea/ProtectLocation")
+EnemyAttackLocation = NodePath("PlayArea/EnemyAttack")
+EnemyProtectLocation = NodePath("PlayArea/EnemyDefend")
 
 [node name="PlayArea" type="Polygon2D" parent="."]
 position = Vector2(440, 280)
@@ -19,13 +21,37 @@ polygon = PackedVector2Array(0, 0, 400, 0, 400, 400, 0, 400)
 metadata/_edit_lock_ = true
 
 [node name="AttackLocation" type="Sprite2D" parent="PlayArea"]
+z_index = 4
 texture_filter = 1
+position = Vector2(-25, 0)
 texture = ExtResource("2_oelte")
 script = ExtResource("3_m78mq")
-Friction = 0.06
+MovementStrength = 0.5
+Friction = 0.1
 
 [node name="ProtectLocation" type="Sprite2D" parent="PlayArea"]
+z_index = 3
 texture_filter = 1
+texture = ExtResource("4_n5mht")
+script = ExtResource("5_tf3pd")
+Mass = 1.0
+Friction = 0.03
+
+[node name="EnemyAttack" type="Sprite2D" parent="PlayArea"]
+modulate = Color(1, 0.411765, 0.298039, 0.784314)
+z_index = 2
+texture_filter = 1
+position = Vector2(55, 0)
+texture = ExtResource("2_oelte")
+script = ExtResource("3_m78mq")
+MovementStrength = 0.7
+Friction = 0.1
+
+[node name="EnemyDefend" type="Sprite2D" parent="PlayArea"]
+modulate = Color(1, 0.411765, 0.298039, 0.784314)
+z_index = 1
+texture_filter = 1
+position = Vector2(30, 0)
 texture = ExtResource("4_n5mht")
 script = ExtResource("5_tf3pd")
 Mass = 1.0
