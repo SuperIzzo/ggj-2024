@@ -27,6 +27,7 @@ public partial class Minigame : Node2D
 	private Vector2 m_vAreaSize = new();
 	private double m_dStageTimeLeft;
 
+	public Minigame GetMinigame() => this;
 
 	public void TriggerStart()
 	{
@@ -117,7 +118,6 @@ public partial class Minigame : Node2D
 
 	public override void _Input(InputEvent @event)
 	{
-		// Mouse in viewport coordinates.
 		if (@event is InputEventMouseButton eventMouseButton)
 		{
 			//GD.Print("Mouse Click/Unclick at: ", eventMouseButton.Position);
@@ -127,9 +127,6 @@ public partial class Minigame : Node2D
 			AttackLocation.UpdateMouseInput(eventMouseMotion.Relative);
 			GD.Print("Mouse Motion at: ", eventMouseMotion.Relative);
 		}
-
-		// Print the size of the viewport.
-		//GD.Print("Viewport Resolution is: ", GetViewport().GetVisibleRect().Size);
 	}
 
 	private void Stage_Init()
@@ -152,13 +149,32 @@ public partial class Minigame : Node2D
 		ProtectLocation.SetBounds(m_vAreaSize);
 
 		Input.MouseMode = Input.MouseModeEnum.Captured;
-		//Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN);
+		
+		AttackLocation.GetMinigameDelegate = GetMinigame;
+		ProtectLocation.GetMinigameDelegate = GetMinigame;
 	}
 
 	private void Stage_LineUp()
 	{
 		AttackLocation.Process(Stage.LineUp, m_dStageTimeLeft);
 		ProtectLocation.Process(Stage.LineUp, m_dStageTimeLeft);
+
+		Vector2 vAttackPosition = AttackLocation.Position;
+		Vector2 vProtectLocation = ProtectLocation.Position;
+		if(vAttackPosition.DistanceSquaredTo(vProtectLocation) < 20.0f * 20.0f)
+		{
+			Vector2 attackVel = AttackLocation.m_vVelocity;
+			Vector2 protectVel = ProtectLocation.m_vVelocity;
+			Vector2 vAttToPro = (vProtectLocation - vAttackPosition).Normalized();
+
+			AttackLocation.m_vVelocity = protectVel;
+			AttackLocation.Position += protectVel.Normalized();
+			AttackLocation.m_vVelocity += -vAttToPro;
+
+			ProtectLocation.m_vVelocity = attackVel;
+			ProtectLocation.Position += attackVel.Normalized();
+			ProtectLocation.m_vVelocity += vAttToPro;
+		}
 	}
 
 	private void Stage_Engage()

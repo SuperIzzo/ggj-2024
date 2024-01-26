@@ -44,7 +44,7 @@ public partial class ProtectController : LocationController
 		}
 
 		ApplyForce(vInput);
-
+		
 		base.Process(eStage, dTimeLeft);
 	}
 

@@ -3,8 +3,8 @@ using System;
 
 public partial class LocationController : Node2D
 {
-	protected Vector2 m_vVelocity = new();
-	protected Vector2 m_vAcceleration = new();
+	public Vector2 m_vVelocity = new();
+	public Vector2 m_vAcceleration = new();
 	
 	[Export]
 	protected float MovementStrength = 1.0f;
@@ -16,6 +16,13 @@ public partial class LocationController : Node2D
 	protected float Friction = 0.02f;
 
 	protected Vector2 m_vBoundsSize;
+
+	public delegate Minigame DelGetMinigame();
+	public DelGetMinigame GetMinigameDelegate;
+
+
+	
+
 
 	public virtual void Process(Minigame.Stage eStage, double dTimeLeft) 
 	{

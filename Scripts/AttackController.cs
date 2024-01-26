@@ -33,7 +33,7 @@ public partial class AttackController : LocationController
 	{
 		ApplyForce(m_vMouseRelative * MovementStrength);
 		m_vMouseRelative = Vector2.Zero;
-
+		
 		base.Process(eStage, dTimeLeft);
 	}
 	
