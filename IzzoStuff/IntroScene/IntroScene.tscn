@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://b82b3ubd8arb0"]
+[gd_scene load_steps=11 format=3 uid="uid://b82b3ubd8arb0"]
 
 [ext_resource type="PackedScene" uid="uid://dqo45ycyo8tbb" path="res://Abby/slon.glb" id="1_dlqh4"]
+[ext_resource type="Shader" path="res://Abby/PS1.gdshader" id="1_gobki"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_46gea"]
 sky_top_color = Color(0.67451, 0.360784, 0.227451, 1)
@@ -23,6 +24,14 @@ ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.65
 
+[sub_resource type="QuadMesh" id="QuadMesh_iidmb"]
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ft1f1"]
+render_priority = 0
+shader = ExtResource("1_gobki")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ajdo6"]
 albedo_color = Color(0.654902, 0.415686, 1, 1)
 
@@ -42,6 +51,13 @@ shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
 
+[node name="PS1PostProcess" type="MeshInstance3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.98023e-08, 0, -0.306047)
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_iidmb")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_ft1f1")
+
 [node name="slon" parent="." instance=ExtResource("1_dlqh4")]
 transform = Transform3D(0.565313, 0, -0.824877, 0, 1, 0, 0.824877, 0, 0.565313, 6.22882, -4.13968, -12.1764)
 
@@ -59,4 +75,7 @@ skeleton = NodePath("../Label3D")
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(0.727785, 0, 0.685806, 0, 1, 0, -0.685806, 0, 0.727785, -0.683804, 0.251475, -1.49434)
-text = "Slon is here!"
+sorting_offset = 100.0
+text = "Slon is here!
+And they're queer"
+outline_size = 16
