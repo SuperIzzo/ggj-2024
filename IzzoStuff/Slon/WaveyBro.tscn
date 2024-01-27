@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://rrdu1n0hlvg7"]
 
-[ext_resource type="Material" uid="uid://bdtj6emln4a7k" path="res://Abby/Default.tres" id="1_3i34y"]
-[ext_resource type="Shader" path="res://Abby/waveyBro.gdshader" id="2_486i5"]
+[ext_resource type="Material" uid="uid://bdtj6emln4a7k" path="res://Abby/Shaders/Default.tres" id="1_3i34y"]
+[ext_resource type="Shader" path="res://Abby/Shaders/waveyBro.gdshader" id="2_486i5"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_m6eh6"]
 resource_name = "slon_Mesh"
