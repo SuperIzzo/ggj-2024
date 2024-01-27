@@ -15,6 +15,9 @@ public partial class LocationController : Node2D
 	[Export]
 	protected float Friction = 0.02f;
 
+	[Export]
+	protected Vector2 MaxVelocity = Vector2.Zero;
+
 	protected Vector2 m_vBoundsSize;
 	protected Vector2 m_vInput;
 
@@ -33,8 +36,13 @@ public partial class LocationController : Node2D
 
 	public virtual void AddInput(Vector2 vInput) {}
 
-	protected void ApplyForce(Vector2 v)
+	protected void ApplyForce(Vector2 v, bool bApplyingFriction = false)
 	{
+		if(!bApplyingFriction && IsVelocityOutOfBounds())
+		{
+			return;
+		}
+
 		Vector2 vForce = v / Mass;
 		m_vAcceleration += vForce;
 	}
@@ -60,7 +68,7 @@ public partial class LocationController : Node2D
 		vFriction = vFriction.Normalized();
 		vFriction *= Friction;
 
-		ApplyForce(vFriction);
+		ApplyForce(vFriction, true);
 	}
 
 	protected void ProcessKeepInBounds()
@@ -86,5 +94,20 @@ public partial class LocationController : Node2D
 			Position = new Vector2(Position.X, m_vBoundsSize.Y);
 			m_vVelocity.Y = -m_vVelocity.Y;
 		}
+	}
+
+	private bool IsVelocityOutOfBounds()
+	{
+		if(!MaxVelocity.IsZeroApprox())
+		{
+			// If the current velocity is outside of our max vel when wanting to add input, bail out
+			Vector2 vClamped = m_vVelocity.Clamp(-MaxVelocity, MaxVelocity);
+			if(!m_vVelocity.IsEqualApprox(vClamped))
+			{
+				return true;
+			}
+		}
+
+		return false;
 	}
 }

@@ -19,10 +19,12 @@ public class EnemyController
 
 	public struct Action
 	{
-		// Config
+		// Config Both
 		public double Interval;
 		public float MoveStrength;
 		public float RandomisedAngle;
+
+		// Config Flee
 		public Vector2 MaxSpeed;
 		public double IgnoreBurstMax; // Good values 1.0 to 0.5
 		public double IgnoreBurstMin; // Good values 0.5 to 0.2
@@ -36,7 +38,6 @@ public class EnemyController
 		// Runtime
 		public double Timer;
 		public double TimeToIgnoreTarget;
-		public double TimeToChill;
 		public Vector2 DirOnStartIgnore;
 		public Vector2 RandoChillDirection;
 	}
@@ -57,28 +58,45 @@ public class EnemyController
 		m_vMaxBounds = vMaxBounds;
 		m_fActionRadius = fActionRadius;
 
+		float fDiff = (float)eDiff;
+
 		m_attack = new()
 		{
 			Interval = 0.0,
-			Timer = 0.0,
-			MoveStrength = 20.0f,
-			RandomisedAngle = 40.0f,
-			MaxSpeed = new Vector2(5.0f, 5.0f),
-			IgnoreBurstMax = 0.9,
-			IgnoreBurstMin = 0.4,
-			WanderStrength = 0.45f,
-			RandoChillDirection = GetRandomDir(),
-			MaxFleeStrength = 0.75f,
-			DistToFlee = m_vMaxBounds.X * 0.4f
+			
+			MoveStrength = 15.0f + (2.0f * fDiff),
+			RandomisedAngle = 70.0f - (10.0f * fDiff),
+
+			MaxSpeed = new Vector2(0.75f, 0.75f) + (new Vector2(0.15f, 0.15f) * fDiff),
+			IgnoreBurstMax = Mathf.Clamp(0.6 + (0.02 * fDiff), 0.6, 0.9),
+			IgnoreBurstMin = Mathf.Clamp(0.2 + (0.02 * fDiff), 0.2, 0.5),
+			WanderStrength = Mathf.Clamp(0.35f + (0.02f * fDiff), 0.25f, 0.65f),
+			MaxFleeStrength = Mathf.Clamp(0.5f + (0.02f * fDiff), 0.5f, 0.8f),
+			DistToFlee = m_vMaxBounds.X * (0.35f + (fDiff / 10.0f)),
+
+			Timer = Mathf.Clamp(2.5 - (0.55 * fDiff), 0.0, 3.0),
+			TimeToIgnoreTarget = 0.0,
+			DirOnStartIgnore = Vector2.Zero,
+			RandoChillDirection = GetRandomDir()
 		};
 
 		m_protect = new()
 		{
 			Interval = 1.0,
 			Timer = 0.0,
-			MoveStrength = 2.0f,
-			RandomisedAngle = 40.0f
+			MoveStrength = 1.0f,
+			RandomisedAngle = 70.0f - (10.0f * fDiff),
 		};
+
+		switch(eDiff)
+		{
+			case Difficulty.One: m_protect.Interval 	= 1.0; break;
+			case Difficulty.Two: m_protect.Interval 	= 0.8; break;
+			case Difficulty.Three: m_protect.Interval 	= 0.7; break;
+			case Difficulty.Four: m_protect.Interval 	= 0.4; break;
+			case Difficulty.Five: m_protect.Interval 	= 0.25; break;
+			case Difficulty.Six: m_protect.Interval 	= 0.15; break;
+		}
 	}
 
 	public void Process(Vector2 vPlayerAttack, Vector2 vPlayerProtect, Vector2 vEnemyAttack, Vector2 vEnemyProtect, double delta)
@@ -91,7 +109,6 @@ public class EnemyController
 	{
 		rAction.Timer -= delta;
 		rAction.TimeToIgnoreTarget -= delta;
-		rAction.TimeToChill -= delta;
 
 		if(rAction.Timer > 0.0)
 		{
