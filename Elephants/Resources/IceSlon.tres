@@ -1,11 +1,11 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://c12xuf43l5hat"]
 
-[ext_resource type="PackedScene" uid="uid://omyb4yqrpq1i" path="res://Elephants/Models/NormalSlon.tscn" id="1_jjar6"]
+[ext_resource type="PackedScene" uid="uid://br28vpf0blwdf" path="res://Elephants/Models/IceSlon.tscn" id="1_tev0j"]
 [ext_resource type="Script" path="res://Scripts/SlonResource.cs" id="2_bya1p"]
 
 [resource]
 script = ExtResource("2_bya1p")
-Name = "Slon"
-IntroTitle = "Slon Appears"
-IntroSubtitle = "Be prepared"
-SlonModel = ExtResource("1_jjar6")
+Name = "Miss Freeze"
+IntroTitle = "Miss Freeze Is Here"
+IntroSubtitle = "World's Deadliest Ice Cube"
+SlonModel = ExtResource("1_tev0j")
