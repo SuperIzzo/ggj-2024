@@ -4,10 +4,10 @@ using System;
 public partial class GameRootController : Node3D
 {
 	[Export]
-	SlonResource SlonA;
+	SlonResource DefaultSlonA;
 	
 	[Export]
-	SlonResource SlonB;
+	SlonResource DefaultSlonB;
 	
 	Camera3D camera;
 	double cameraSpeed = 2.5;
@@ -24,7 +24,7 @@ public partial class GameRootController : Node3D
 		
 		camera = GetParent().GetChildByType<Camera3D>();
 		
-		Setup();
+		Setup(DefaultSlonA, DefaultSlonB);
 		RunGame();
 	}
 
@@ -42,7 +42,7 @@ public partial class GameRootController : Node3D
 		}
 	}
 	
-	public void Setup()
+	public void Setup(SlonResource SlonA, SlonResource SlonB)
 	{
 		GameRunning = false;
 		standoff.SetUpStandoff(SlonA, SlonB);
