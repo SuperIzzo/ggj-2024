@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bdtj6emln4a7k"]
+
+[ext_resource type="Texture2D" uid="uid://djsck2mxdise6" path="res://Abby/slon_slonik_tekst.jpg" id="1_7vmmj"]
+
+[resource]
+resource_name = "Default"
+cull_mode = 2
+albedo_texture = ExtResource("1_7vmmj")
+roughness = 0.933451

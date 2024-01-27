@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3piuorbblxt2"]
+
+[ext_resource type="PackedScene" uid="uid://h3b7s8s6rmkr" path="res://Abby/slonAnimated.gltf" id="1_8cnfh"]
+[ext_resource type="Script" path="res://Abby/playerAnimToggle.gd" id="1_nmuhf"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ngbn8"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_nmuhf")
+
+[node name="slonAnimated" parent="." instance=ExtResource("1_8cnfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0152754, 0, -0.233251)
+
+[node name="Skeleton3D" parent="slonAnimated/Armature" index="0"]
+bones/2/rotation = Quaternion(0.316945, -1.13063e-07, -3.77828e-08, 0.948444)
+bones/3/rotation = Quaternion(0.323536, -7.613e-14, -7.71371e-08, 0.946216)
+bones/5/rotation = Quaternion(0.456788, 1.00142e-12, -4.35628e-07, 0.889575)
+bones/6/rotation = Quaternion(0.598122, 0.540086, 0.456407, 0.377161)
+bones/8/rotation = Quaternion(-0.43466, 0.66291, 0.246069, -0.557737)
+bones/11/rotation = Quaternion(-0.595911, 0.2194, -0.672208, 0.380646)
+bones/13/rotation = Quaternion(-0.388542, -0.474755, 0.524031, 0.590792)
+
+[node name="AnimationPlayer" parent="slonAnimated" index="1"]
+autoplay = "trunk"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(6, 0, 0, 0, 4, 0, 0, 0, 12, 0, 4.47498, 0.331787)
+shape = SubResource("CapsuleShape3D_ngbn8")
+
+[editable path="slonAnimated"]

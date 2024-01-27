@@ -1,7 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://b82b3ubd8arb0"]
+[gd_scene load_steps=16 format=3 uid="uid://b82b3ubd8arb0"]
 
 [ext_resource type="PackedScene" uid="uid://dqo45ycyo8tbb" path="res://Abby/slon.glb" id="1_dlqh4"]
 [ext_resource type="Shader" path="res://Abby/PS1.gdshader" id="1_gobki"]
+[ext_resource type="Script" path="res://IzzoStuff/IntroScene/Intro.cs" id="2_jj3r1"]
+[ext_resource type="Resource" uid="uid://bia5lyle1hkq" path="res://IzzoStuff/Slon/Slon.tres" id="3_3s24l"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_46gea"]
 sky_top_color = Color(0.67451, 0.360784, 0.227451, 1)
@@ -94,6 +96,8 @@ surface_material_override/0 = SubResource("ShaderMaterial_ft1f1")
 
 [node name="Intro" type="Node3D" parent="."]
 transform = Transform3D(0.565313, 0, -0.824877, 0, 1, 0, 0.824877, 0, 0.565313, 0, -4.14, -5.88691)
+script = ExtResource("2_jj3r1")
+Slon = ExtResource("3_3s24l")
 
 [node name="IntroPane" type="Node3D" parent="Intro"]
 transform = Transform3D(0.565312, 0, 0.824875, 0, 1, 0, -0.824875, 0, 0.565312, 3.254, 4.199, 3.022)
