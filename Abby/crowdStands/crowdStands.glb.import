@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cd3bavmv7smds"
-path="res://.godot/imported/crowdStands.glb-e4c876cde4290e0f574cd65b4e1f45f3.scn"
+uid="uid://gaef3j8js3hw"
+path="res://.godot/imported/crowdStands.glb-cd86511c6c95b2a32db8b59f93a6c151.scn"
 
 [deps]
 
-source_file="res://crowdStands.glb"
-dest_files=["res://.godot/imported/crowdStands.glb-e4c876cde4290e0f574cd65b4e1f45f3.scn"]
+source_file="res://Abby/crowdStands/crowdStands.glb"
+dest_files=["res://.godot/imported/crowdStands.glb-cd86511c6c95b2a32db8b59f93a6c151.scn"]
 
 [params]
 
