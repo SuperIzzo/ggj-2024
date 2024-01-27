@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://omyb4yqrpq1i"]
+
+[ext_resource type="PackedScene" uid="uid://o4nrbuly60d1" path="res://Elephants/Models/BaseSlon.tscn" id="1_bfw5h"]
+
+[node name="Slon" instance=ExtResource("1_bfw5h")]
