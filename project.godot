@@ -24,6 +24,10 @@ window/size/viewport_height=960
 
 project/assembly_name="Elephancing"
 
+[filesystem]
+
+import/fbx/enabled=false
+
 [input]
 
 Action={

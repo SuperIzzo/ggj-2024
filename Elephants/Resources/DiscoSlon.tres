@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://bca1npr4dgng2"]
+
+[ext_resource type="PackedScene" uid="uid://dnrg4rb2qcei3" path="res://Elephants/Models/BubbleSlon.tscn" id="1_1omnv"]
+[ext_resource type="Script" path="res://Scripts/SlonResource.cs" id="2_uqbno"]
+
+[resource]
+script = ExtResource("2_uqbno")
+Name = "The Bubble"
+IntroTitle = "The Bubble!"
+IntroSubtitle = "Surprisingly Robust"
+SlonModel = ExtResource("1_1omnv")

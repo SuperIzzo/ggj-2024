@@ -28,6 +28,7 @@ texture = ExtResource("2_oelte")
 script = ExtResource("3_m78mq")
 MovementStrength = 0.5
 Friction = 0.1
+MaxVelocity = Vector2(1, 1)
 
 [node name="ProtectLocation" type="Sprite2D" parent="PlayArea"]
 z_index = 3
