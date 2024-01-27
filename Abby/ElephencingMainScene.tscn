@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dfwrfjwmbtjf"]
 
-[ext_resource type="PackedScene" uid="uid://h3b7s8s6rmkr" path="res://Abby/slonAnimated.gltf" id="1_5ajqr"]
+[ext_resource type="PackedScene" uid="uid://d4coe2dnmrfer" path="res://Abby/slon_standoff.tscn" id="1_70em2"]
 [ext_resource type="PackedScene" uid="uid://cd3bavmv7smds" path="res://crowdStands.glb" id="2_3gdxp"]
 [ext_resource type="Shader" path="res://Abby/Shaders/PS1.gdshader" id="3_ptv5m"]
 [ext_resource type="PackedScene" uid="uid://bhgvk6qp6vs6b" path="res://Abby/Terrain/terrain.glb" id="4_68amf"]
@@ -18,11 +18,7 @@ shader = ExtResource("3_ptv5m")
 
 [node name="Node3D" type="Node3D"]
 
-[node name="slonAnimated" parent="." instance=ExtResource("1_5ajqr")]
-transform = Transform3D(-0.00911049, 0, -0.999959, 0, 1, 0, 0.999959, 0, -0.00911049, 3.98223, 4.76837e-07, -5.25144)
-
-[node name="slonAnimated2" parent="." instance=ExtResource("1_5ajqr")]
-transform = Transform3D(-0.05793, 0, 0.998321, 0, 1, 0, -0.998321, 0, -0.05793, -40.2521, 4.76837e-07, 5.50637)
+[node name="SlonStandoff" parent="." instance=ExtResource("1_70em2")]
 
 [node name="crowdStands" parent="." instance=ExtResource("2_3gdxp")]
 transform = Transform3D(3.37841, 0, 0, 0, 3.7034, 0, 0, 0, 3.00357, 0.193163, 0, 22.6101)
