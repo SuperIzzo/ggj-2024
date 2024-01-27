@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://o4nrbuly60d1" path="res://Elephants/Models/BaseSlon.tscn" id="1_i0vqj"]
 [ext_resource type="Shader" path="res://Abby/Shaders/waveyBro.gdshader" id="2_b4alo"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_q2h43"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_prr04"]
 render_priority = 0
 shader = ExtResource("2_b4alo")
 shader_parameter/amp = Vector2(0.2, 0.1)
@@ -18,5 +18,5 @@ shader_parameter/noise_scale = 0.03
 
 [node name="Slon" instance=ExtResource("1_i0vqj")]
 
-[node name="Mesh" parent="Armature/Skeleton" index="0"]
-surface_material_override/0 = SubResource("ShaderMaterial_q2h43")
+[node name="Mesh" parent="SlonAnimated/Armature/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_prr04")

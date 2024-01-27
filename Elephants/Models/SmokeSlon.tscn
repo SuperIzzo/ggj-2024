@@ -4,18 +4,29 @@
 [ext_resource type="Material" uid="uid://bdtj6emln4a7k" path="res://Abby/Shaders/Default.tres" id="2_ygr82"]
 [ext_resource type="Shader" path="res://Abby/Shaders/smoke.gdshader" id="3_iu0yx"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kex4i"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2mgv1"]
 render_priority = 0
 next_pass = ExtResource("2_ygr82")
 shader = ExtResource("3_iu0yx")
 shader_parameter/scale = 1.0
 shader_parameter/tex_speed = Vector3(0, -2.2, 0.5)
 shader_parameter/mokomoko = Vector2(0.1, 0.1)
-shader_parameter/smoke_volume = 0.777
-shader_parameter/smoke_aperture = 0.345
-shader_parameter/smoke_color = Color(0.360784, 0.360784, 0.360784, 1)
+shader_parameter/smoke_volume = 0.672
+shader_parameter/smoke_aperture = 0.3
+shader_parameter/smoke_color = Color(0.185, 0.185, 0.185, 1)
 
 [node name="Slon" instance=ExtResource("1_jtxgf")]
 
-[node name="Mesh" parent="Armature/Skeleton" index="0"]
-surface_material_override/0 = SubResource("ShaderMaterial_kex4i")
+[node name="Skeleton3D" parent="SlonAnimated/Armature" index="0"]
+bones/1/rotation = Quaternion(0.0527039, -0.00128453, 0.00383437, 0.998602)
+bones/2/rotation = Quaternion(0.258561, 0.000492064, -2.56388e-05, 0.965995)
+bones/3/rotation = Quaternion(0.251892, 0.000460914, -0.000391408, 0.967755)
+bones/4/rotation = Quaternion(0.0934676, 9.2294e-05, -0.000210124, 0.995622)
+bones/5/rotation = Quaternion(0.318745, -0.000217529, -0.001189, 0.94784)
+bones/6/rotation = Quaternion(0.570482, 0.570482, 0.417792, 0.417793)
+bones/8/rotation = Quaternion(-0.570482, 0.570482, 0.417792, -0.417793)
+bones/11/rotation = Quaternion(-0.439517, 0.426298, -0.564154, 0.553918)
+bones/13/rotation = Quaternion(-0.439516, -0.426297, 0.564155, 0.553918)
+
+[node name="Mesh" parent="SlonAnimated/Armature/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_2mgv1")

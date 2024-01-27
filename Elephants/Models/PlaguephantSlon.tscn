@@ -4,7 +4,7 @@
 [ext_resource type="Shader" path="res://Abby/Shaders/plaguephant.gdshader" id="2_4d08y"]
 [ext_resource type="Material" uid="uid://bdtj6emln4a7k" path="res://Abby/Shaders/Default.tres" id="2_6ma5e"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mlfgg"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6l5cq"]
 render_priority = 0
 next_pass = ExtResource("2_6ma5e")
 shader = ExtResource("2_4d08y")
@@ -17,5 +17,5 @@ shader_parameter/back_marble_scale = 20.1
 
 [node name="Slon" instance=ExtResource("1_gdelr")]
 
-[node name="Mesh" parent="Armature/Skeleton" index="0"]
-surface_material_override/0 = SubResource("ShaderMaterial_mlfgg")
+[node name="Mesh" parent="SlonAnimated/Armature/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_6l5cq")
