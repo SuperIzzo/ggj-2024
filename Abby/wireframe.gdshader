@@ -19,6 +19,9 @@ vec3 palette( float t)
 }
 
 void vertex() {
+	
+	
+	
 	int index = VERTEX_ID % 3;
 	switch (index) {
 		case 0:
@@ -54,4 +57,5 @@ void fragment()
 	vec3 barys_s = smoothstep(deltas * wire_width - wire_smoothness, deltas * wire_width + wire_smoothness, barys);
 	float wires = min(barys_s.x, min(barys_s.y, barys_s.z));
 	ALBEDO = mix(wire_color.rgb, z, wires);
+	ALPHA = 0.6;
 }
