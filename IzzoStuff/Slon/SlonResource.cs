@@ -11,4 +11,7 @@ public partial class SlonResource : Resource
 	
 	[Export]
 	public string IntroSubtitle;
+	
+	[Export]
+	public PackedScene SlonModel;
 }

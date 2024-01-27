@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4coe2dnmrfer"]
+
+[ext_resource type="Script" path="res://Scripts/SlonStandoff.cs" id="1_nprel"]
+[ext_resource type="PackedScene" uid="uid://h3b7s8s6rmkr" path="res://Abby/slonAnimated.gltf" id="1_yhr4d"]
+
+[node name="SlonStandoff" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.135, 0, 0.128)
+script = ExtResource("1_nprel")
+
+[node name="SlonA" type="Node3D" parent="."]
+transform = Transform3D(-0.00911049, 0, -0.999959, 0, 1, 0, 0.999959, 0, -0.00911049, 20, 0, -5)
+
+[node name="slonAnimated" parent="SlonA" instance=ExtResource("1_yhr4d")]
+
+[node name="SlonB" type="Node3D" parent="."]
+transform = Transform3D(-0.05793, 0, 0.998321, 0, 1, 0, -0.998321, 0, -0.05793, -20, 0, 5)
+
+[node name="slonAnimated2" parent="SlonB" instance=ExtResource("1_yhr4d")]

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cbqwr05a1vlkp"]
+
+[ext_resource type="PackedScene" uid="uid://rrdu1n0hlvg7" path="res://IzzoStuff/Slon/WaveyBro.tscn" id="1_3smuk"]
+[ext_resource type="Script" path="res://IzzoStuff/Slon/SlonResource.cs" id="2_irjpx"]
+
+[resource]
+script = ExtResource("2_irjpx")
+Name = "Acid McGee"
+IntroTitle = "Acid McGee Is Here!"
+IntroSubtitle = "GOD IS HE HIGH"
+SlonModel = ExtResource("1_3smuk")
