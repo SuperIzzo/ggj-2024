@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://ny27uayfdiv6"]
+
+[ext_resource type="PackedScene" uid="uid://o4nrbuly60d1" path="res://Elephants/Models/BaseSlon.tscn" id="1_jtxgf"]
+[ext_resource type="Material" uid="uid://bdtj6emln4a7k" path="res://Abby/Shaders/Default.tres" id="2_ygr82"]
+[ext_resource type="Shader" path="res://Abby/Shaders/smoke.gdshader" id="3_iu0yx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kex4i"]
+render_priority = 0
+next_pass = ExtResource("2_ygr82")
+shader = ExtResource("3_iu0yx")
+shader_parameter/scale = 1.0
+shader_parameter/tex_speed = Vector3(0, -2.2, 0.5)
+shader_parameter/mokomoko = Vector2(0.1, 0.1)
+shader_parameter/smoke_volume = 0.777
+shader_parameter/smoke_aperture = 0.345
+shader_parameter/smoke_color = Color(0.360784, 0.360784, 0.360784, 1)
+
+[node name="Slon" instance=ExtResource("1_jtxgf")]
+
+[node name="Mesh" parent="Armature/Skeleton" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_kex4i")

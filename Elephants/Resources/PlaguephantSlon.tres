@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://bsgu6h4ymm7l4"]
+
+[ext_resource type="PackedScene" uid="uid://bnqhv27h3lkw6" path="res://Elephants/Models/PlaguephantSlon.tscn" id="1_u8s24"]
+[ext_resource type="Script" path="res://Scripts/SlonResource.cs" id="2_gk1es"]
+
+[resource]
+script = ExtResource("2_gk1es")
+Name = "Plaguephant"
+IntroTitle = "Plaguephant Rolled In"
+IntroSubtitle = "They're Not Looking Too Fresh"
+SlonModel = ExtResource("1_u8s24")

@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxe5lrwssvwxq"]
+
+[ext_resource type="PackedScene" uid="uid://o4nrbuly60d1" path="res://Elephants/Models/BaseSlon.tscn" id="1_xy5gf"]
+[ext_resource type="Shader" path="res://Abby/Shaders/wireframe.gdshader" id="2_5ka2e"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_etjif"]
+render_priority = 0
+shader = ExtResource("2_5ka2e")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/wire_width = 5.0
+shader_parameter/wire_smoothness = 0.01
+
+[node name="Slon" instance=ExtResource("1_xy5gf")]
+
+[node name="Mesh" parent="Armature/Skeleton" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_etjif")

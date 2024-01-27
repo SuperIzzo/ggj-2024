@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnqhv27h3lkw6"]
+
+[ext_resource type="PackedScene" uid="uid://o4nrbuly60d1" path="res://Elephants/Models/BaseSlon.tscn" id="1_gdelr"]
+[ext_resource type="Shader" path="res://Abby/Shaders/plaguephant.gdshader" id="2_4d08y"]
+[ext_resource type="Material" uid="uid://bdtj6emln4a7k" path="res://Abby/Shaders/Default.tres" id="2_6ma5e"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mlfgg"]
+render_priority = 0
+next_pass = ExtResource("2_6ma5e")
+shader = ExtResource("2_4d08y")
+shader_parameter/light_color = Color(0.529412, 0.956835, 0.156315, 1)
+shader_parameter/dark_color = Color(0.196078, 0.419608, 0.196078, 1)
+shader_parameter/front_random_scale = 1.6
+shader_parameter/back_random_scale = -6.12
+shader_parameter/front_marble_scale = 15.4
+shader_parameter/back_marble_scale = 20.1
+
+[node name="Slon" instance=ExtResource("1_gdelr")]
+
+[node name="Mesh" parent="Armature/Skeleton" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_mlfgg")

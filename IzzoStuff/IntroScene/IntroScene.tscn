@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" path="res://Abby/Shaders/PS1.gdshader" id="1_gobki"]
 [ext_resource type="Script" path="res://IzzoStuff/IntroScene/Intro.cs" id="2_jj3r1"]
-[ext_resource type="Resource" uid="uid://cbqwr05a1vlkp" path="res://IzzoStuff/Slon/WaveBoi.tres" id="3_m5di4"]
+[ext_resource type="Resource" uid="uid://cbqwr05a1vlkp" path="res://Elephants/Resources/AcidSlon.tres" id="3_m5di4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_46gea"]
 sky_top_color = Color(0.67451, 0.360784, 0.227451, 1)
