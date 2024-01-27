@@ -12,6 +12,9 @@ transform = Transform3D(-0.0348995, 0, -0.999391, 0, 1, 0, 0.999391, 0, -0.03489
 
 [node name="slonAnimated" parent="SlonA" instance=ExtResource("1_yhr4d")]
 
+[node name="CameraSlot" type="Node3D" parent="SlonA"]
+transform = Transform3D(-1, 0, -8.56817e-08, 0, 1, 0, 8.56817e-08, 0, -1, -0.601771, 12.1562, -17.2324)
+
 [node name="SlonB" type="Node3D" parent="."]
 transform = Transform3D(-0.05793, 0, 0.998321, 0, 1, 0, -0.998321, 0, -0.05793, -20, 0, 5)
 

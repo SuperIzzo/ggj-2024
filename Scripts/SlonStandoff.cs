@@ -54,9 +54,7 @@ public partial class SlonStandoff : Node3D
 			SlonASlot.Position = SlonAStart.Lerp(SlonAEnd, Progress);
 			SlonBSlot.Position = SlonBStart.Lerp(SlonBEnd, Progress);
 			SlonASlot.Quaternion = SlonARotStart.Slerp(SlonARotEnd, Progress);
-			SlonBSlot.Quaternion = SlonBRotStart.Slerp(SlonBRotEnd, Progress);
-			
-			GD.Print(SlonAEnd);
+			SlonBSlot.Quaternion = SlonBRotStart.Slerp(SlonBRotEnd, Progress);;
 		}
 	}
 	

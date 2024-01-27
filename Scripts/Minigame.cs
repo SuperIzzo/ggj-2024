@@ -67,6 +67,9 @@ public partial class Minigame : Node2D
 
 	[Export]
 	float LocationRadius = 20.0f;
+	
+	[Export]
+	bool autostart = true;
 
 	private Stage m_eStage = new();
 	private Vector2 m_vAreaSize = new();
@@ -101,6 +104,7 @@ public partial class Minigame : Node2D
 	List<KeyPressCollection> m_defendKeys = new();
 
 	public Minigame GetMinigame() => this;
+	public Stage CurrentStage => m_eStage;
 
 	public void TriggerStart()
 	{
@@ -147,7 +151,10 @@ public partial class Minigame : Node2D
 		{
 			case Stage.Idle:
 			{
-				TriggerStart(); // Temp for now until a calling system can call this for us
+				if (autostart)
+				{
+					TriggerStart(); // Temp for now until a calling system can call this for us
+				}
 				break;
 			}
 			case Stage.Init:
@@ -222,7 +229,7 @@ public partial class Minigame : Node2D
 		}
 	}
 
-    private void Stage_Init()
+	private void Stage_Init()
 	{
 		Vector2 GetRandomSpawnPos()
 		{
