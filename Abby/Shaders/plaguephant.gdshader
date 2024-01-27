@@ -54,6 +54,6 @@ void fragment( )
 	float a = noise_tex( UV * front_random_scale );
 	float b = noise_tex( UV * back_random_scale );
 
-	ALBEDO = mix( dark_color, light_color, clamp( abs( cos( a * front_marble_scale ) + sin( b * back_marble_scale ) * 0.4 ), 0.0, 1.0 ) + sin(TIME*0.5) ).rgb;
-	ALPHA = 0.5 * dark_color.y;
+	ALBEDO = mix( dark_color, light_color, clamp( abs( cos( a * front_marble_scale ) + sin( b * back_marble_scale ) * 0.4 ), 0.0, 1.0 ) + sin(TIME) ).rgb;
+	ALPHA = 0.6 * dark_color.y;
 }

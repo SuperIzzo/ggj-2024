@@ -223,23 +223,24 @@ public partial class Minigame : Node2D
 	{
 		Vector2 vInput = new();
 
-		// Add to the janky ps1 demo vibe, only allow one input at a time
-		//	and make the player keep pressing the direction
+		// Add to the janky ps1 demo vibe, make the user keep pressing inputs
+		float fDirAmount = 1.0f;
 		if(Input.IsActionJustPressed("Key_Left"))
 		{
-			vInput.X = -1;
+			vInput.X = -fDirAmount;
 		}
 		else if(Input.IsActionJustPressed("Key_Right"))
 		{
-			vInput.X = 1;
+			vInput.X = fDirAmount;
 		}
-		else if(Input.IsActionJustPressed("Key_Up"))
+
+		if(Input.IsActionJustPressed("Key_Up"))
 		{
-			vInput.Y = -1;
+			vInput.Y = -fDirAmount;
 		}
 		else if(Input.IsActionJustPressed("Key_Down"))
 		{
-			vInput.Y = 1;
+			vInput.Y = fDirAmount;
 		}
 
 		ProtectLocation.AddInput(vInput);
