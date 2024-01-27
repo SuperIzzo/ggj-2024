@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://b8b6ie8n1atx6"]
 
-[ext_resource type="Material" uid="uid://bbfmdb11f3aa8" path="res://Abby/Default.tres" id="1_3riaq"]
+[ext_resource type="Material" uid="uid://bdtj6emln4a7k" path="res://Abby/Default.tres" id="1_3riaq"]
 [ext_resource type="PackedScene" uid="uid://dqo45ycyo8tbb" path="res://Abby/slon.glb" id="1_voecs"]
 [ext_resource type="Shader" path="res://Abby/waveyBro.gdshader" id="2_q6k6g"]
 [ext_resource type="Shader" path="res://Abby/PS1.gdshader" id="2_vnp2m"]
@@ -229,3 +229,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.1985, 0, -16.992)
 
 [node name="slon4" parent="." instance=ExtResource("1_voecs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.2282, 0, -8.50626)
+
+[node name="slon5" parent="." instance=ExtResource("1_voecs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.5271, 0, 13.4386)
