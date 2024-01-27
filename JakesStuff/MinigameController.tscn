@@ -45,7 +45,7 @@ position = Vector2(55, 0)
 texture = ExtResource("2_oelte")
 script = ExtResource("3_m78mq")
 MovementStrength = 0.7
-Friction = 0.1
+Friction = 0.4
 
 [node name="EnemyDefend" type="Sprite2D" parent="PlayArea"]
 modulate = Color(1, 0.411765, 0.298039, 0.784314)
