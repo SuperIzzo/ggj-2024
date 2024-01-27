@@ -10,7 +10,7 @@
 [ext_resource type="Shader" path="res://Abby/Shaders/PS1.gdshader" id="7_n5f57"]
 [ext_resource type="PackedScene" uid="uid://h3b7s8s6rmkr" path="res://Abby/slonAnimated.gltf" id="8_tuopj"]
 [ext_resource type="Shader" path="res://Abby/Shaders/smoke.gdshader" id="8_x5d4s"]
-[ext_resource type="PackedScene" uid="uid://cd3bavmv7smds" path="res://Abby/crowdStands/crowdStands.glb" id="9_i6bsf"]
+[ext_resource type="PackedScene" uid="uid://gaef3j8js3hw" path="res://Abby/crowdStands/crowdStands.glb" id="9_i6bsf"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_m6eh6"]
 resource_name = "slon_Mesh"

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5xeg2rgoqllw"
-path.s3tc="res://.godot/imported/fern_wdvlditia_2K_Albedo-wdvlditia_2K_Opacity.png-655807c19a650af4ee03d8e8511e2de8.s3tc.ctex"
+uid="uid://dvcakvs5kblir"
+path.s3tc="res://.godot/imported/abbyMonke_abby.png-545f5cb8fdc7a430d7383c935f4f205e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://Abby/fern_wdvlditia_2K_Albedo-wdvlditia_2K_Opacity.png"
-dest_files=["res://.godot/imported/fern_wdvlditia_2K_Albedo-wdvlditia_2K_Opacity.png-655807c19a650af4ee03d8e8511e2de8.s3tc.ctex"]
+source_file="res://Abby/abbyMonke_abby.png"
+dest_files=["res://.godot/imported/abbyMonke_abby.png-545f5cb8fdc7a430d7383c935f4f205e.s3tc.ctex"]
 
 [params]
 
