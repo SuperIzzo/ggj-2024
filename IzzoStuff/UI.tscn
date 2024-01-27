@@ -14,10 +14,10 @@ grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_left = 17.0
-offset_top = 504.0
-offset_right = 1132.0
-offset_bottom = 637.0
+offset_left = 77.0
+offset_top = 767.0
+offset_right = 1217.0
+offset_bottom = 918.0
 script = ExtResource("1_uarxy")
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer"]
