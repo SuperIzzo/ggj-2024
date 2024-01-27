@@ -1,18 +1,38 @@
-[gd_scene load_steps=6 format=3 uid="uid://8e7nvk6clrwg"]
+[gd_scene load_steps=17 format=3 uid="uid://8e7nvk6clrwg"]
 
 [ext_resource type="Script" path="res://Scripts/Minigame.cs" id="1_jcakm"]
 [ext_resource type="Texture2D" uid="uid://cvxb3mf04gupy" path="res://Assets/Sword.png" id="2_oelte"]
 [ext_resource type="Script" path="res://Scripts/AttackController.cs" id="3_m78mq"]
+[ext_resource type="Texture2D" uid="uid://dv3257dp5wyo3" path="res://Assets/ArrowLeft.png" id="4_kpbnl"]
 [ext_resource type="Texture2D" uid="uid://do8fjux2wqcjy" path="res://Assets/Shield.png" id="4_n5mht"]
+[ext_resource type="Texture2D" uid="uid://bsx5tq5npyfck" path="res://Assets/ArrowRight.png" id="5_gbaac"]
 [ext_resource type="Script" path="res://Scripts/ProtectController.cs" id="5_tf3pd"]
+[ext_resource type="Texture2D" uid="uid://cb5hmn2ripkj2" path="res://Assets/ArrowU.png" id="6_xcf1f"]
+[ext_resource type="Texture2D" uid="uid://che8sksgoiq1q" path="res://Assets/ArrowD.png" id="7_4dslg"]
+[ext_resource type="Texture2D" uid="uid://b2vvqakh4mbqn" path="res://Assets/A.png" id="7_sx5i5"]
+[ext_resource type="Texture2D" uid="uid://d0bh8tyhtso0t" path="res://Assets/D.png" id="8_0vtoe"]
+[ext_resource type="Texture2D" uid="uid://cv7yrtahffcis" path="res://Assets/W.png" id="9_trvxe"]
+[ext_resource type="Texture2D" uid="uid://df0dt7lqpwhjw" path="res://Assets/S.png" id="10_fgk1h"]
+[ext_resource type="Texture2D" uid="uid://dncynrs7jd1kn" path="res://Assets/EnemySword.png" id="10_wvnib"]
+[ext_resource type="Texture2D" uid="uid://bjag2golb3em1" path="res://Assets/EnemyShield.png" id="11_a2lgm"]
+[ext_resource type="FontFile" uid="uid://dsxvqpg0qsctk" path="res://JakesStuff/Komigo3D-Regular.ttf" id="12_vidmi"]
 
-[node name="Minigame" type="Node2D" node_paths=PackedStringArray("PlayAreaNode", "AttackLocation", "ProtectLocation", "EnemyAttackLocation", "EnemyProtectLocation")]
+[node name="Minigame" type="Node2D" node_paths=PackedStringArray("PlayAreaNode", "AttackLocation", "ProtectLocation", "EnemyAttackLocation", "EnemyProtectLocation", "TimeBar", "UpKey", "DownKey", "LeftKey", "RightKey", "UpArrow", "DownArrow", "LeftArrow", "RightArrow")]
 script = ExtResource("1_jcakm")
 PlayAreaNode = NodePath("PlayArea")
 AttackLocation = NodePath("PlayArea/AttackLocation")
 ProtectLocation = NodePath("PlayArea/ProtectLocation")
 EnemyAttackLocation = NodePath("PlayArea/EnemyAttack")
 EnemyProtectLocation = NodePath("PlayArea/EnemyDefend")
+TimeBar = NodePath("PlayArea/TimerBG/TimeBar")
+UpKey = NodePath("PlayArea/ProtectLocation/TopKey")
+DownKey = NodePath("PlayArea/ProtectLocation/BotKey")
+LeftKey = NodePath("PlayArea/ProtectLocation/LeftKey")
+RightKey = NodePath("PlayArea/ProtectLocation/RightKey")
+UpArrow = NodePath("PlayArea/AttackLocation/UpArrow")
+DownArrow = NodePath("PlayArea/AttackLocation/DownArrow")
+LeftArrow = NodePath("PlayArea/AttackLocation/LeftArrow")
+RightArrow = NodePath("PlayArea/AttackLocation/RightArrow")
 
 [node name="PlayArea" type="Polygon2D" parent="."]
 position = Vector2(440, 280)
@@ -29,31 +49,134 @@ script = ExtResource("3_m78mq")
 MovementStrength = 0.5
 Friction = 0.1
 MaxVelocity = Vector2(1, 1)
+AbilityRadiusColor = Color(0.85098, 0.929412, 0.74902, 0.196078)
+
+[node name="LeftArrow" type="Sprite2D" parent="PlayArea/AttackLocation"]
+position = Vector2(-30, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("4_kpbnl")
+
+[node name="RightArrow" type="Sprite2D" parent="PlayArea/AttackLocation"]
+position = Vector2(30, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("5_gbaac")
+
+[node name="UpArrow" type="Sprite2D" parent="PlayArea/AttackLocation"]
+position = Vector2(0, -30)
+scale = Vector2(2, 2)
+texture = ExtResource("6_xcf1f")
+
+[node name="DownArrow" type="Sprite2D" parent="PlayArea/AttackLocation"]
+position = Vector2(0, 30)
+scale = Vector2(2, 2)
+texture = ExtResource("7_4dslg")
 
 [node name="ProtectLocation" type="Sprite2D" parent="PlayArea"]
 z_index = 3
 texture_filter = 1
+position = Vector2(-25, 83)
 texture = ExtResource("4_n5mht")
 script = ExtResource("5_tf3pd")
 Mass = 1.0
 Friction = 0.03
+AbilityRadiusColor = Color(0.85098, 0.929412, 0.74902, 0.196078)
+
+[node name="LeftKey" type="Sprite2D" parent="PlayArea/ProtectLocation"]
+position = Vector2(-36, -5)
+scale = Vector2(2, 2)
+texture = ExtResource("7_sx5i5")
+
+[node name="RightKey" type="Sprite2D" parent="PlayArea/ProtectLocation"]
+position = Vector2(37, 1)
+scale = Vector2(2, 2)
+texture = ExtResource("8_0vtoe")
+
+[node name="TopKey" type="Sprite2D" parent="PlayArea/ProtectLocation"]
+position = Vector2(6, -31)
+scale = Vector2(2, 2)
+texture = ExtResource("9_trvxe")
+
+[node name="BotKey" type="Sprite2D" parent="PlayArea/ProtectLocation"]
+position = Vector2(-4, 33)
+scale = Vector2(2, 2)
+texture = ExtResource("10_fgk1h")
 
 [node name="EnemyAttack" type="Sprite2D" parent="PlayArea"]
-modulate = Color(1, 0.411765, 0.298039, 0.784314)
 z_index = 2
 texture_filter = 1
 position = Vector2(55, 0)
-texture = ExtResource("2_oelte")
+texture = ExtResource("10_wvnib")
 script = ExtResource("3_m78mq")
 MovementStrength = 0.7
 Friction = 0.4
+AbilityRadiusColor = Color(1, 0.556863, 0.588235, 0.196078)
 
 [node name="EnemyDefend" type="Sprite2D" parent="PlayArea"]
-modulate = Color(1, 0.411765, 0.298039, 0.784314)
 z_index = 1
 texture_filter = 1
 position = Vector2(30, 0)
-texture = ExtResource("4_n5mht")
+texture = ExtResource("11_a2lgm")
 script = ExtResource("5_tf3pd")
 Mass = 1.0
 Friction = 0.03
+AbilityRadiusColor = Color(1, 0.556863, 0.588235, 0.196078)
+
+[node name="TimerBG" type="Polygon2D" parent="PlayArea"]
+color = Color(0.0509804, 0.0509804, 0.0509804, 1)
+polygon = PackedVector2Array(0, 410, 400, 410, 400, 440, 0, 440)
+
+[node name="TimeBar" type="Polygon2D" parent="PlayArea/TimerBG"]
+color = Color(0.823529, 0.823529, 0.823529, 1)
+polygon = PackedVector2Array(2, 412, 398, 412, 398, 438, 2, 438)
+
+[node name="PlayerAttackStatus" type="Label" parent="."]
+visible = false
+z_index = 20
+texture_filter = 1
+offset_left = 370.0
+offset_top = 327.0
+offset_right = 1408.0
+offset_bottom = 1198.0
+scale = Vector2(0.08, 0.0802559)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("12_vidmi")
+theme_override_font_sizes/font_size = 512
+text = "Hit
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Polygon2D" type="Polygon2D" parent="PlayerAttackStatus"]
+z_index = -1
+position = Vector2(99.5053, 0)
+scale = Vector2(0.930693, 1)
+polygon = PackedVector2Array(-25, 175, 1075, 175, 937.5, 687.5, -187.5, 687.5)
+metadata/_edit_lock_ = true
+
+[node name="EnemyAttackStatus" type="Label" parent="."]
+visible = false
+z_index = 20
+texture_filter = 1
+offset_left = 472.0
+offset_top = 327.0
+offset_right = 1510.0
+offset_bottom = 1198.0
+scale = Vector2(0.08, 0.08)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("12_vidmi")
+theme_override_font_sizes/font_size = 512
+text = "Hit
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Polygon2D" type="Polygon2D" parent="EnemyAttackStatus"]
+z_index = -1
+position = Vector2(99.5053, 0)
+scale = Vector2(0.930693, 1)
+polygon = PackedVector2Array(-25, 175, 1075, 175, 937.5, 687.5, -187.5, 687.5)
+metadata/_edit_lock_ = true

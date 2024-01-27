@@ -18,8 +18,14 @@ public partial class LocationController : Node2D
 	[Export]
 	protected Vector2 MaxVelocity = Vector2.Zero;
 
+	[Export]
+	protected Color AbilityRadiusColor;
+
 	protected Vector2 m_vBoundsSize;
 	protected Vector2 m_vInput;
+
+	[Export]
+	protected float AbilityRadius = 30.0f;
 
 	public delegate Minigame DelGetMinigame();
 	public DelGetMinigame GetMinigameDelegate;
@@ -109,5 +115,10 @@ public partial class LocationController : Node2D
 		}
 
 		return false;
+	}
+
+	public override void _Draw()
+	{
+		DrawCircle(new Vector2(0.0f, 0.0f), AbilityRadius, AbilityRadiusColor);
 	}
 }

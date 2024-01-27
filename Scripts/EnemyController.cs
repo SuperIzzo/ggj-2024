@@ -51,6 +51,9 @@ public class EnemyController
 	public Vector2 GetAttackInput() => m_attack.Output;
 	public Vector2 GetProtectInput() => m_protect.Output;
 
+	public int AttackEngageDirection = -1;
+	public int ProtectEngageDirection = -1;
+
 	private Vector2 m_vFleeDirection;
 
 	public void Init(Difficulty eDiff, Vector2 vMaxBounds, float fActionRadius)
@@ -103,6 +106,24 @@ public class EnemyController
 	{
 		ProcessFleeInput(ref m_attack, vEnemyAttack, vPlayerProtect, delta);
 		ProcessChaseInput(ref m_protect, vEnemyProtect, vPlayerAttack, delta);
+	}
+
+	public void ChooseEngageDirections(Difficulty eDiff, Vector2 vPlayerAttack, Vector2 vPlayerProtect, Vector2 vEnemyAttack, Vector2 vEnemyProtect)
+	{
+		Vector2 vDirToBlock = vPlayerAttack - vEnemyProtect.Normalized();
+		Vector2 vDirToAttack = -(vPlayerProtect - vEnemyAttack).Normalized();
+
+		float fChanceToTakeBest = 0.3f + (0.1f * (float)eDiff);
+		var random = new RandomNumberGenerator();
+		random.Randomize();
+
+		AttackEngageDirection = random.Randf() < fChanceToTakeBest
+			? GetDirectionFromVector(vDirToAttack)
+			: (int)(GD.Randi() % 4);
+
+		ProtectEngageDirection = random.Randf() < fChanceToTakeBest
+			? GetDirectionFromVector(vDirToBlock)
+			: (int)(GD.Randi() % 4);
 	}
 
 	private void ProcessFleeInput(ref Action rAction, Vector2 vSelf, Vector2 vTarget, double delta)
@@ -256,5 +277,49 @@ public class EnemyController
         float py = x * sn + y * cs;
 
 		return new Vector2(px, py);
+	}
+
+	public int GetDirectionFromVector(Vector2 v)
+	{
+		if(Mathf.IsEqualApprox(1.0f, v.X))
+		{
+			return 1;
+		}
+		else if(Mathf.IsEqualApprox(-1.0f, v.X))
+		{
+			return 3;
+		}
+		else if(Mathf.IsEqualApprox(-1.0f, v.Y))
+		{
+			return 0;
+		}
+		else if(Mathf.IsEqualApprox(1.0f, v.Y))
+		{
+			return 2;
+		}
+
+		return (int)(GD.Randi() % 4);
+	}
+
+	public Vector2 GetVectorFromDirection(int dir)
+	{
+		if(dir == 0)
+		{
+			return new Vector2(0.0f, -1.0f);
+		}
+		else if(dir == 1)
+		{
+			return new Vector2(1.0f, 0.0f);
+		}
+		else if(dir == 2)
+		{
+			return new Vector2(0.0f, 1.0f);
+		}
+		else if(dir == 3)
+		{
+			return new Vector2(-1.0f, 0.0f);
+		}
+
+		return Vector2.Zero;
 	}
 }
