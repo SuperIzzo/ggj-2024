@@ -10,7 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_msk6f")
-time = 3.0
+time = 4.0
 
 [node name="RandomEventGenerator" type="Label" parent="."]
 layout_mode = 0
