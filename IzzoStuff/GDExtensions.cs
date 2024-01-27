@@ -2,6 +2,20 @@ using Godot;
 
 public static class GDExtensions
 {	
+	public static void ClearAllChildren(this Node node, bool recursive = true)		
+	{
+		var children = node.GetChildren();
+		foreach (var child in children)
+		{
+			if (recursive)
+			{
+				child.ClearAllChildren(recursive);
+			}
+			node.RemoveChild(child);
+			child.QueueFree();
+		}
+	}
+		
 	public static T GetChildByType<T>(this Node node, bool recursive = true)
 		where T : Node
 	{
