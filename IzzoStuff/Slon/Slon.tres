@@ -1,5 +1,6 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bia5lyle1hkq"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://bia5lyle1hkq"]
 
+[ext_resource type="PackedScene" uid="uid://dqo45ycyo8tbb" path="res://Abby/slon.glb" id="1_3bj8g"]
 [ext_resource type="Script" path="res://IzzoStuff/Slon/SlonResource.cs" id="1_hpygt"]
 
 [resource]
@@ -7,3 +8,4 @@ script = ExtResource("1_hpygt")
 Name = "Slon"
 IntroTitle = "Slon Appears"
 IntroSubtitle = "Be prepared"
+SlonModel = ExtResource("1_3bj8g")
