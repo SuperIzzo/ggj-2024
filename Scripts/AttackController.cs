@@ -24,7 +24,7 @@ public partial class AttackController : LocationController
 	public void AddInput(Vector2 vInput)
 	{
 		// Accept input on a range of 0 to 50
-		float fStrength = Mathf.Remap(vInput.Length(), 0.0f, 50.0f, 0.0f, 1.0f);
+		float fStrength = Mathf.Clamp(Mathf.Remap(vInput.Length(), 0.0f, 50.0f, 0.0f, 2.0f), 0.0f, 2.0f);
 		Vector2 vNorm = vInput.Normalized();
 
 		m_vMouseRelative = vNorm * MovementStrength * fStrength;
