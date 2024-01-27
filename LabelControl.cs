@@ -9,12 +9,14 @@ public partial class LabelControl : Control
 	private double timer = 0;
 	[Export]
 	double time = 3;
+	private bool isTextClear = true;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		Screentext = GetNode<Label>("RandomEventGenerator");
 		randomEvents = new List<string>();
+//region Events list.
 		randomEvents.Add("You no longer have your horse");
 		randomEvents.Add("A mischievous monkey steals your fencing gear.");
 		randomEvents.Add("A Specific portal opens.");
@@ -28,6 +30,8 @@ public partial class LabelControl : Control
 		randomEvents.Add("Genie disappears; two wishes remaining.");
 		randomEvents.Add("You're out of ammo");
 		randomEvents.Add("Kasahune is Nearby");
+//endregion
+		UpdateRandomEvent();
 		
 	}
 	
@@ -37,6 +41,16 @@ public partial class LabelControl : Control
 		{
 			int randomIndex = new Random().Next(0, randomEvents.Count);
 			Screentext.Text = randomEvents[randomIndex];
+			isTextClear = false;
+		}
+	}
+	
+	public void ClearEventText()
+	{
+		if(isTextClear == false)
+		{
+			Screentext.Text = "";
+			isTextClear = true;
 		}
 	}
 
@@ -48,7 +62,7 @@ public partial class LabelControl : Control
 		if (timer >= time)
 		{
 			timer = 0;
-			UpdateRandomEvent();
+			ClearEventText();
 		}
 	}
 }
