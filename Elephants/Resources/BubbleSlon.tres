@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://chyxxqemtjevj"]
+
+[ext_resource type="PackedScene" uid="uid://omyb4yqrpq1i" path="res://Elephants/Models/NormalSlon.tscn" id="1_sltfw"]
+[ext_resource type="Script" path="res://Scripts/SlonResource.cs" id="2_pc8av"]
+
+[resource]
+script = ExtResource("2_pc8av")
+Name = "Slon"
+IntroTitle = "Slon Appears"
+IntroSubtitle = "Be prepared"
+SlonModel = ExtResource("1_sltfw")

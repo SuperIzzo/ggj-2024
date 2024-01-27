@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://hp77hqsf8u1t"]
+
+[ext_resource type="Texture2D" uid="uid://chsfohoo23acb" path="res://Abby/crowdStands/crowdStands3.png" id="1_xxfyx"]
+
+[resource]
+resource_name = "Default"
+cull_mode = 2
+albedo_texture = ExtResource("1_xxfyx")
+roughness = 0.933451

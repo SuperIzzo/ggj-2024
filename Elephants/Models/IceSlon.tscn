@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://br28vpf0blwdf"]
+
+[ext_resource type="PackedScene" uid="uid://o4nrbuly60d1" path="res://Elephants/Models/BaseSlon.tscn" id="1_7lqog"]
+[ext_resource type="Shader" path="res://Abby/Shaders/icephant.gdshader" id="2_4y2tv"]
+[ext_resource type="Material" uid="uid://bdtj6emln4a7k" path="res://Abby/Shaders/Default.tres" id="2_x62kj"]
+[ext_resource type="Texture2D" uid="uid://cvrpvseffwsux" path="res://Abby/clouds-3.png" id="4_rx307"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bopvn"]
+render_priority = 0
+next_pass = ExtResource("2_x62kj")
+shader = ExtResource("2_4y2tv")
+shader_parameter/Glow_Power = 3.698
+shader_parameter/Lightness_Difference = 3.465
+shader_parameter/Sun_Color = Color(0.286275, 0.662745, 0.733333, 1)
+shader_parameter/waveSpeed = 0.024
+shader_parameter/fresnel = 1.0
+shader_parameter/scale = 0.127
+shader_parameter/blendSharpness = 0.116
+shader_parameter/voronoi_noise = ExtResource("4_rx307")
+shader_parameter/emission_noise = ExtResource("4_rx307")
+
+[node name="Slon" instance=ExtResource("1_7lqog")]
+
+[node name="Mesh" parent="SlonAnimated/Armature/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_bopvn")
