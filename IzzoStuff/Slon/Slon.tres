@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bia5lyle1hkq"]
+
+[ext_resource type="Script" path="res://IzzoStuff/Slon/SlonResource.cs" id="1_hpygt"]
+
+[resource]
+script = ExtResource("1_hpygt")
+Name = "Slon"
+IntroTitle = "Slon Appears"
+IntroSubtitle = "Be prepared"
