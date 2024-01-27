@@ -1,0 +1,16 @@
+[gd_scene load_steps=6 format=3 uid="uid://v2ssxct725w1"]
+
+[ext_resource type="PackedScene" uid="uid://d4coe2dnmrfer" path="res://Abby/slon_standoff.tscn" id="1_3h00j"]
+[ext_resource type="Script" path="res://Scripts/GameRootController.cs" id="1_b45bi"]
+[ext_resource type="PackedScene" uid="uid://dr16xdtnwat14" path="res://JakesStuff/MinigameTestScene.tscn" id="2_7dmuh"]
+[ext_resource type="Resource" uid="uid://cbqwr05a1vlkp" path="res://Elephants/Resources/AcidSlon.tres" id="2_i8lhx"]
+[ext_resource type="Resource" uid="uid://bia5lyle1hkq" path="res://Elephants/Resources/NormalSlon.tres" id="2_sa46l"]
+
+[node name="Game" type="Node3D"]
+script = ExtResource("1_b45bi")
+SlonA = ExtResource("2_i8lhx")
+SlonB = ExtResource("2_sa46l")
+
+[node name="SlonStandoff" parent="." instance=ExtResource("1_3h00j")]
+
+[node name="Minigame" parent="." instance=ExtResource("2_7dmuh")]
