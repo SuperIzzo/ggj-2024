@@ -8,6 +8,9 @@ public partial class GameRootController : Node3D
 	
 	[Export]
 	SlonResource DefaultSlonB;
+
+	[Export]
+	AudioStreamPlayer2D Sound_Hit;
 	
 	Label labelA;
 	Label labelB;
@@ -32,6 +35,8 @@ public partial class GameRootController : Node3D
 		
 		GameGlobals globals = GetNode<GameGlobals>("/root/GameGlobals");
 		
+		globals.GameRef = this;
+
 		SetupRound(globals.PlayerSlon, globals.EnemySlon);
 		RunGame();
 	}

@@ -67,17 +67,17 @@ public class EnemyController
 		{
 			Interval = 0.0,
 			
-			MoveStrength = 15.0f + (2.0f * fDiff),
+			MoveStrength = 20.0f + (2.0f * fDiff),
 			RandomisedAngle = 70.0f - (10.0f * fDiff),
 
-			MaxSpeed = new Vector2(0.75f, 0.75f) + (new Vector2(0.15f, 0.15f) * fDiff),
-			IgnoreBurstMax = Mathf.Clamp(0.6 + (0.02 * fDiff), 0.6, 0.9),
-			IgnoreBurstMin = Mathf.Clamp(0.2 + (0.02 * fDiff), 0.2, 0.5),
-			WanderStrength = Mathf.Clamp(0.35f + (0.02f * fDiff), 0.25f, 0.65f),
-			MaxFleeStrength = Mathf.Clamp(0.5f + (0.02f * fDiff), 0.5f, 0.8f),
+			MaxSpeed = new Vector2(1.25f, 1.25f) + (new Vector2(0.25f, 0.25f) * fDiff),
+			IgnoreBurstMax = Mathf.Clamp(0.65 + (0.04 * fDiff), 0.6, 0.95),
+			IgnoreBurstMin = Mathf.Clamp(0.3 + (0.04 * fDiff), 0.2, 0.55),
+			WanderStrength = Mathf.Clamp(0.45f + (0.04f * fDiff), 0.25f, 0.70f),
+			MaxFleeStrength = Mathf.Clamp(0.55f + (0.04f * fDiff), 0.5f, 0.85f),
 			DistToFlee = m_vMaxBounds.X * (0.35f + (fDiff / 10.0f)),
 
-			Timer = Mathf.Clamp(2.5 - (0.55 * fDiff), 0.0, 3.0),
+			Timer = Mathf.Clamp(2.0 - (0.55 * fDiff), 0.0, 3.0),
 			TimeToIgnoreTarget = 0.0,
 			DirOnStartIgnore = Vector2.Zero,
 			RandoChillDirection = GetRandomDir()
@@ -93,9 +93,9 @@ public class EnemyController
 
 		switch(eDiff)
 		{
-			case Difficulty.One: m_protect.Interval 	= 1.0; break;
-			case Difficulty.Two: m_protect.Interval 	= 0.8; break;
-			case Difficulty.Three: m_protect.Interval 	= 0.7; break;
+			case Difficulty.One: m_protect.Interval 	= 0.7; break;
+			case Difficulty.Two: m_protect.Interval 	= 0.6; break;
+			case Difficulty.Three: m_protect.Interval 	= 0.5; break;
 			case Difficulty.Four: m_protect.Interval 	= 0.4; break;
 			case Difficulty.Five: m_protect.Interval 	= 0.25; break;
 			case Difficulty.Six: m_protect.Interval 	= 0.15; break;

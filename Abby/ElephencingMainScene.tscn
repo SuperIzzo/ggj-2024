@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dfwrfjwmbtjf"]
+[gd_scene load_steps=41 format=3 uid="uid://dfwrfjwmbtjf"]
 
 [ext_resource type="PackedScene" uid="uid://gaef3j8js3hw" path="res://Abby/crowdStands/crowdStands.glb" id="2_3gdxp"]
 [ext_resource type="Shader" path="res://Abby/Shaders/PS1.gdshader" id="3_ptv5m"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cdcgbl0mf2fwe" path="res://Abby/fence.glb" id="16_wjpwg"]
 [ext_resource type="PackedScene" uid="uid://v2ssxct725w1" path="res://Abby/GameRootNode.tscn" id="17_h2os2"]
 [ext_resource type="PackedScene" uid="uid://dr1dhyi4iapi" path="res://Abby/abbyMonke.gltf" id="17_j2m7i"]
+[ext_resource type="AudioStream" uid="uid://bto115latyqc8" path="res://Sfx/Hit.wav" id="18_5jy7b"]
 [ext_resource type="Texture2D" uid="uid://dvcakvs5kblir" path="res://Abby/abbyMonke_abby.png" id="18_toc3m"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qranb"]
@@ -246,6 +247,8 @@ extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_e01vh")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_mm4r3")
+
+[node name="AudioListener2D" type="AudioListener2D" parent="Camera3D"]
 
 [node name="terrain4" parent="." instance=ExtResource("4_68amf")]
 transform = Transform3D(0.048931, 0, 0.488142, 0, 1, 0, -0.600161, 0, 0.0397981, -21.1417, 79.1969, -2.70175)
@@ -2913,6 +2916,9 @@ mesh = SubResource("ArrayMesh_5apkx")
 skeleton = NodePath("")
 
 [node name="Game" parent="." instance=ExtResource("17_h2os2")]
+
+[node name="Sound_Hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_5jy7b")
 
 [editable path="terrain4"]
 [editable path="crowdStandsInner/crowdStands2"]

@@ -223,7 +223,7 @@ public partial class Minigame : Node2D
 			case Stage.LineUp:		return 4.0;
 			case Stage.Engage:		return 3.0;
 			case Stage.IntermissionSlowDown: return 1.0;
-			case Stage.ProcessResult: return 2.0;
+			case Stage.ProcessResult: return 1.5;
 			default: return 0.0;
 		}
 	}
@@ -389,7 +389,7 @@ public partial class Minigame : Node2D
 		ProcessEngageInput();
 		ProcessEnemyHinting(delta);
 
-		AttackLocation.Position = m_vLockedInAttackPosition + m_vRelativeMouseInputForEngage;
+		AttackLocation.Position = m_vLockedInAttackPosition + (m_vRelativeMouseInputForEngage.Round() * 3.0f);
 
 		if(m_dStageTimeLeft < 0.0)
 		{
