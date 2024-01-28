@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://v2ssxct725w1"]
+[gd_scene load_steps=14 format=3 uid="uid://v2ssxct725w1"]
 
 [ext_resource type="PackedScene" uid="uid://d4coe2dnmrfer" path="res://Abby/slon_standoff.tscn" id="1_3h00j"]
 [ext_resource type="Script" path="res://Scripts/GameRootController.cs" id="1_b45bi"]
@@ -6,6 +6,46 @@
 [ext_resource type="Resource" uid="uid://chyxxqemtjevj" path="res://Elephants/Resources/BubbleSlon.tres" id="3_6px62"]
 [ext_resource type="PackedScene" uid="uid://8e7nvk6clrwg" path="res://JakesStuff/MinigameController.tscn" id="5_4nqxh"]
 [ext_resource type="PackedScene" uid="uid://dp2ox46we24ah" path="res://YaniStuff/HealthBar.tscn" id="6_e1vo1"]
+[ext_resource type="Texture2D" uid="uid://c0lav4i8wkclh" path="res://IzzoStuff/GameOver/DoubleKO.png" id="7_1iqsg"]
+[ext_resource type="Texture2D" uid="uid://d11e0dbftf4kw" path="res://IzzoStuff/GameOver/Loser.png" id="8_4q2nc"]
+[ext_resource type="Texture2D" uid="uid://dcowoceb4bhb1" path="res://IzzoStuff/GameOver/Winner.png" id="9_shf6s"]
+[ext_resource type="PackedScene" uid="uid://dlqdrv6xtstee" path="res://YaniStuff/Label.tscn" id="10_tpqcf"]
+
+[sub_resource type="Animation" id="Animation_nb0x4"]
+resource_name = "ShowAnim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1x7pm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8e8qj"]
+_data = {
+"RESET": SubResource("Animation_1x7pm"),
+"ShowAnim": SubResource("Animation_nb0x4")
+}
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_b45bi")
@@ -60,3 +100,57 @@ offset_right = -124.0
 offset_bottom = -191.0
 theme_override_font_sizes/font_size = 27
 text = "Slon"
+
+[node name="GameOver" type="Control" parent="2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 250.0
+offset_top = 160.0
+offset_right = 290.0
+offset_bottom = 200.0
+
+[node name="Win" type="TextureRect" parent="2D/GameOver"]
+visible = false
+layout_mode = 0
+offset_left = -371.0
+offset_top = -168.0
+offset_right = 391.0
+offset_bottom = 286.0
+texture = ExtResource("9_shf6s")
+expand_mode = 1
+
+[node name="Lose" type="TextureRect" parent="2D/GameOver"]
+visible = false
+layout_mode = 0
+offset_left = -337.0
+offset_top = -300.0
+offset_right = 419.0
+offset_bottom = 269.0
+texture = ExtResource("8_4q2nc")
+expand_mode = 1
+
+[node name="DoubleKO" type="TextureRect" parent="2D/GameOver"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 5.725
+anchor_top = 6.398
+anchor_right = 5.725
+anchor_bottom = 6.398
+offset_left = -619.0
+offset_top = -472.92
+offset_right = 212.0
+offset_bottom = -11.92
+texture = ExtResource("7_1iqsg")
+expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="2D/GameOver"]
+libraries = {
+"": SubResource("AnimationLibrary_8e8qj")
+}
+
+[node name="RandomEvents" parent="2D" instance=ExtResource("10_tpqcf")]
+offset_left = -343.0
+offset_top = -213.0
+offset_right = -343.0
+offset_bottom = -213.0
