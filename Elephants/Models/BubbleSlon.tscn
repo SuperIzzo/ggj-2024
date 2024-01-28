@@ -1,12 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnrg4rb2qcei3"]
+[gd_scene load_steps=4 format=3 uid="uid://dnrg4rb2qcei3"]
 
 [ext_resource type="PackedScene" uid="uid://o4nrbuly60d1" path="res://Elephants/Models/BaseSlon.tscn" id="1_gn8ng"]
 [ext_resource type="Shader" path="res://Abby/Shaders/bubblephant.gdshader" id="2_hvuwg"]
-[ext_resource type="Material" uid="uid://bdtj6emln4a7k" path="res://Abby/Shaders/Default.tres" id="2_vdcoy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jvl8k"]
-render_priority = 0
-next_pass = ExtResource("2_vdcoy")
+render_priority = 127
 shader = ExtResource("2_hvuwg")
 shader_parameter/fuwafuwa_speed = 1.5
 shader_parameter/fuwafuwa_size = 0.05
@@ -16,17 +14,6 @@ shader_parameter/noise_speed = 0.2
 shader_parameter/noise_scale = 0.5
 
 [node name="Slon" instance=ExtResource("1_gn8ng")]
-
-[node name="Skeleton3D" parent="SlonAnimated/Armature" index="0"]
-bones/1/rotation = Quaternion(0.138136, -0.00160858, 0.00371011, 0.990405)
-bones/2/rotation = Quaternion(0.316945, -1.12953e-07, -3.75618e-08, 0.948444)
-bones/3/rotation = Quaternion(0.323536, 2.54396e-10, -7.72404e-08, 0.946216)
-bones/4/rotation = Quaternion(0.121693, -3.54895e-07, -7.24375e-08, 0.992568)
-bones/5/rotation = Quaternion(0.456788, 3.11623e-10, -4.35468e-07, 0.889576)
-bones/6/rotation = Quaternion(0.570482, 0.570482, 0.417792, 0.417793)
-bones/8/rotation = Quaternion(-0.570482, 0.570482, 0.417792, -0.417793)
-bones/11/rotation = Quaternion(-0.439517, 0.426298, -0.564154, 0.553918)
-bones/13/rotation = Quaternion(-0.439516, -0.426297, 0.564155, 0.553918)
 
 [node name="Mesh" parent="SlonAnimated/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_jvl8k")

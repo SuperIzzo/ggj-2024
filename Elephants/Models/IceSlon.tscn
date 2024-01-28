@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cvrpvseffwsux" path="res://Abby/clouds-3.png" id="4_rx307"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bopvn"]
-render_priority = 0
+render_priority = 127
 next_pass = ExtResource("2_x62kj")
 shader = ExtResource("2_4y2tv")
 shader_parameter/Glow_Power = 3.698
