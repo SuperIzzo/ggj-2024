@@ -1492,6 +1492,391 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.22704, 0, 0)
 [node name="fence14" parent="fences" instance=ExtResource("16_wjpwg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.61055, 0, 0)
 
+[node name="BIGmonke" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5153, 16.4087, -49.3915)
+
+[node name="abbyMonke" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke" index="0"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke" index="1"]
+autoplay = "Action"
+
+[node name="abbyMonke2" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.33411, 0, 0)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke2" index="0"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke2" index="1"]
+autoplay = "Action"
+speed_scale = 1.515
+
+[node name="abbyMonke3" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.29402, 0, 0)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke3" index="0"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 9.18933, 0, 0)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke3" index="1"]
+autoplay = "Action"
+speed_scale = -1.202
+movie_quit_on_finish = true
+
+[node name="abbyMonke12" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(-0.0165799, 0, 0.999863, 0, 1, 0, -0.999863, 0, -0.0165799, -72.7385, -0.813969, 61.4974)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke12" index="0"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke12" index="1"]
+autoplay = "Action"
+
+[node name="abbyMonke13" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(-0.0165799, 0, 0.999863, 0, 1, 0, -0.999863, 0, -0.0165799, -72.8436, -0.813969, 55.1641)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke13" index="0"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.303351, 0, 0)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke13" index="1"]
+autoplay = "Action"
+speed_scale = 1.515
+
+[node name="abbyMonke14" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(-0.0165799, 0, 0.999863, 0, 1, 0, -0.999863, 0, -0.0165799, -72.7932, -0.813969, 58.2038)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke14" index="0"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 9.23292, 0, 0)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke14" index="1"]
+autoplay = "Action"
+speed_scale = -1.202
+movie_quit_on_finish = true
+
+[node name="abbyMonke15" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(-0.967028, 0, 0.25467, 0, 1, 0, -0.25467, 0, -0.967028, -29.3979, -0.813969, 93.111)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke15" index="0"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke15" index="1"]
+autoplay = "Action"
+
+[node name="abbyMonke16" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(-0.967028, 0, 0.25467, 0, 1, 0, -0.25467, 0, -0.967028, -35.5231, -0.813969, 91.4979)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke16" index="0"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.303351, 0, 0)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke16" index="1"]
+autoplay = "Action"
+speed_scale = 1.515
+
+[node name="abbyMonke17" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(-0.967028, 0, 0.25467, 0, 1, 0, -0.25467, 0, -0.967028, -32.5833, -0.813969, 92.2721)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke17" index="0"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 9.23292, 0, 0)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke17" index="1"]
+autoplay = "Action"
+speed_scale = -1.202
+movie_quit_on_finish = true
+
+[node name="abbyMonke21" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(-0.647242, 0, 0.762284, 0, 1, 0, -0.762284, 0, -0.647242, -55.6863, -0.813967, 92.4774)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke21" index="0"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 9.23292, 0, 0)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke21" index="1"]
+autoplay = "Action"
+speed_scale = -1.202
+movie_quit_on_finish = true
+
+[node name="abbyMonke35" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(-0.647242, 0, 0.762284, 0, 1, 0, -0.762284, 0, -0.647242, -60.4136, -0.813965, 86.7808)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke35" index="0"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 7.8243, 0, 0.951248)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke35" index="1"]
+autoplay = "Action"
+speed_scale = -1.202
+movie_quit_on_finish = true
+
+[node name="abbyMonke18" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(-0.999652, 0, 0.0263864, 0, 1, 0, -0.0263864, 0, -0.999652, 0.977318, -0.813969, 94.6055)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke18" index="0"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke18" index="1"]
+autoplay = "Action"
+
+[node name="abbyMonke19" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(-0.999652, 0, 0.0263864, 0, 1, 0, -0.0263864, 0, -0.999652, -5.35458, -0.813969, 94.4383)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke19" index="0"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.303351, 0, 0)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke19" index="1"]
+autoplay = "Action"
+speed_scale = 1.515
+
+[node name="abbyMonke20" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(-0.999652, 0, 0.0263864, 0, 1, 0, -0.0263864, 0, -0.999652, -2.31554, -0.813969, 94.5185)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke20" index="0"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 9.23292, 0, 0)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke20" index="1"]
+autoplay = "Action"
+speed_scale = -1.202
+movie_quit_on_finish = true
+
+[node name="abbyMonke22" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(-0.999652, 0, 0.0263864, 0, 1, 0, -0.0263864, 0, -0.999652, 24.5258, -0.813969, 94.4383)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke22" index="0"]
+transform = Transform3D(3, 0, 7.45058e-09, 0, 3, 0, -7.45058e-09, 0, 3, -0.324269, 0, -0.792446)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke22" index="1"]
+autoplay = "Action"
+speed_scale = 1.515
+
+[node name="abbyMonke23" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(-0.999652, 0, 0.0263864, 0, 1, 0, -0.0263864, 0, -0.999652, 17.7184, -0.813969, 94.5185)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke23" index="0"]
+transform = Transform3D(3, 0, 7.45058e-09, 0, 3, 0, -7.45058e-09, 0, 3, -0.0526141, 0, -1.99329)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke23" index="1"]
+autoplay = "Action"
+speed_scale = -1.202
+movie_quit_on_finish = true
+
+[node name="abbyMonke24" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(-0.999652, 0, 0.0263864, 0, 1, 0, -0.0263864, 0, -0.999652, 54.0654, -0.813969, 88.3957)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke24" index="0"]
+transform = Transform3D(2.73093, 0, 1.24179, 0, 3, 0, -1.24179, 0, 2.73093, 0, 0, 0)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke24" index="1"]
+autoplay = "Action"
+
+[node name="abbyMonke25" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(-0.999652, 0, 0.0263864, 0, 1, 0, -0.0263864, 0, -0.999652, 42.1281, -0.813969, 87.7635)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke25" index="0"]
+transform = Transform3D(2.73093, 0, 1.24179, 0, 3, 0, -1.24179, 0, 2.73093, -5.28369, 0, -2.45602)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke25" index="1"]
+autoplay = "Action"
+speed_scale = 1.515
+
+[node name="abbyMonke26" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(-0.999652, 0, 0.0263864, 0, 1, 0, -0.0263864, 0, -0.999652, 45.1672, -0.813969, 87.8437)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke26" index="0"]
+transform = Transform3D(2.73093, 0, 1.24179, 0, 3, 0, -1.24179, 0, 2.73093, 2.99665, -0.149937, -5.50999)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke26" index="1"]
+autoplay = "Action"
+speed_scale = -1.202
+movie_quit_on_finish = true
+
+[node name="abbyMonke27" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(-0.776498, 0, -0.63012, 0, 1, 0, 0.63012, 0, -0.776498, 67.6049, -0.813969, 67.6298)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke27" index="0"]
+transform = Transform3D(2.73093, 0, 1.24179, 0, 3, 0, -1.24179, 0, 2.73093, -4.43942, 0, 0.040287)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke27" index="1"]
+autoplay = "Action"
+
+[node name="abbyMonke28" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(-0.776498, 0, -0.63012, 0, 1, 0, 0.63012, 0, -0.776498, 62.5422, -0.813969, 72.7419)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke28" index="0"]
+transform = Transform3D(2.73093, 0, 1.24179, 0, 3, 0, -1.24179, 0, 2.73093, -5.28369, 0, -2.45602)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke28" index="1"]
+autoplay = "Action"
+speed_scale = 1.515
+
+[node name="abbyMonke29" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(-0.776498, 0, -0.63012, 0, 1, 0, 0.63012, 0, -0.776498, 64.1519, -0.813969, 76.6627)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke29" index="0"]
+transform = Transform3D(2.73093, 0, 1.24179, 0, 3, 0, -1.24179, 0, 2.73093, 0, 0, 0)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke29" index="1"]
+autoplay = "Action"
+speed_scale = -1.202
+movie_quit_on_finish = true
+
+[node name="abbyMonke30" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(-0.465445, 0, -0.885077, 0, 1, 0, 0.885077, 0, -0.465445, 66.9732, -0.813969, 37.9204)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke30" index="0"]
+transform = Transform3D(2.73093, 0, 1.24179, 0, 3, 0, -1.24179, 0, 2.73093, -4.43942, 0, 0.040287)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke30" index="1"]
+autoplay = "Action"
+
+[node name="abbyMonke31" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(-0.465445, 0, -0.885077, 0, 1, 0, 0.885077, 0, -0.465445, 64.334, -0.813969, 44.6136)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke31" index="0"]
+transform = Transform3D(2.73093, 0, 1.24179, 0, 3, 0, -1.24179, 0, 2.73093, -5.28369, 0, -2.45602)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke31" index="1"]
+autoplay = "Action"
+speed_scale = 1.515
+
+[node name="abbyMonke32" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(-0.465445, 0, -0.885077, 0, 1, 0, 0.885077, 0, -0.465445, 67.3582, -0.813969, 47.5831)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke32" index="0"]
+transform = Transform3D(2.73093, 0, 1.24179, 0, 3, 0, -1.24179, 0, 2.73093, 0, 0, 0)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke32" index="1"]
+autoplay = "Action"
+speed_scale = -1.202
+movie_quit_on_finish = true
+
+[node name="abbyMonke33" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(0.313296, 0, -0.949655, 0, 1, 0, 0.949655, 0, 0.313296, 59.557, 0.596436, 18.0928)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke33" index="0"]
+transform = Transform3D(2.73093, 0, 1.24179, 0, 3, 0, -1.24179, 0, 2.73093, -4.43942, 0, 0.040287)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke33" index="1"]
+autoplay = "Action"
+
+[node name="abbyMonke34" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(0.313296, 0, -0.949655, 0, 1, 0, 0.949655, 0, 0.313296, 62.5381, 0.596436, 24.6409)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke34" index="0"]
+transform = Transform3D(2.73093, 0, 1.24179, 0, 3, 0, -1.24179, 0, 2.73093, -5.28369, 0, -2.45602)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke34" index="1"]
+autoplay = "Action"
+speed_scale = 1.515
+
+[node name="abbyMonke36" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(0.743028, 0, -0.66926, 0, 1, 0, 0.66926, 0, 0.743028, 32.7885, 0.596436, 5.495)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke36" index="0"]
+transform = Transform3D(2.73093, 0, 1.24179, 0, 3, 0, -1.24179, 0, 2.73093, -4.43942, 0, 0.040287)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke36" index="1"]
+autoplay = "Action"
+
+[node name="abbyMonke37" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(0.743028, 0, -0.66926, 0, 1, 0, 0.66926, 0, 0.743028, 38.6246, 0.596436, 9.70263)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke37" index="0"]
+transform = Transform3D(2.73093, 0, 1.24179, 0, 3, 0, -1.24179, 0, 2.73093, -5.28369, 0, -2.45602)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke37" index="1"]
+autoplay = "Action"
+speed_scale = 1.515
+
+[node name="abbyMonke38" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(0.743028, 0, -0.66926, 0, 1, 0, 0.66926, 0, 0.743028, 42.2479, 0.596436, 7.5038)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke38" index="0"]
+transform = Transform3D(2.73093, 0, 1.24179, 0, 3, 0, -1.24179, 0, 2.73093, 0, 0, 0)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke38" index="1"]
+autoplay = "Action"
+speed_scale = -1.202
+movie_quit_on_finish = true
+
+[node name="abbyMonke4" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(0.796372, 0, 0.604808, 0, 1, 0, -0.604808, 0, 0.796372, -55.5461, 0, 8.34304)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke4" index="0"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke4" index="1"]
+autoplay = "Action"
+
+[node name="abbyMonke7" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(0.796372, 0, 0.604808, 0, 1, 0, -0.604808, 0, 0.796372, -50.5018, 0, 4.51212)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke7" index="0"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.303351, 0, 0)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke7" index="1"]
+autoplay = "Action"
+speed_scale = 1.515
+
+[node name="abbyMonke8" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(0.796372, 0, 0.604808, 0, 1, 0, -0.604808, 0, 0.796372, -52.9229, 0, 6.35079)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke8" index="0"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 9.23292, 0, 0)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke8" index="1"]
+autoplay = "Action"
+speed_scale = -1.202
+movie_quit_on_finish = true
+
+[node name="abbyMonke9" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(0.259274, 0, 0.965804, 0, 1, 0, -0.965804, 0, 0.259274, -70.3281, 0, 33.8904)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke9" index="0"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke9" index="1"]
+autoplay = "Action"
+
+[node name="abbyMonke10" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(0.259274, 0, 0.965804, 0, 1, 0, -0.965804, 0, 0.259274, -68.6859, 0, 27.7729)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke10" index="0"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.303351, 0, 0)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke10" index="1"]
+autoplay = "Action"
+speed_scale = 1.515
+
+[node name="abbyMonke11" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(0.259274, 0, 0.965804, 0, 1, 0, -0.965804, 0, 0.259274, -69.4741, 0, 30.709)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke11" index="0"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 9.23292, 0, 0)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke11" index="1"]
+autoplay = "Action"
+speed_scale = -1.202
+movie_quit_on_finish = true
+
+[node name="abbyMonke5" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.2841, 0, 0)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke5" index="0"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.303351, 0, 0)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke5" index="1"]
+autoplay = "Action"
+speed_scale = 1.515
+
+[node name="abbyMonke6" parent="BIGmonke" instance=ExtResource("17_j2m7i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.3242, 0, 0)
+
+[node name="Suzanne" parent="BIGmonke/abbyMonke6" index="0"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 9.23292, 0, 0)
+
+[node name="AnimationPlayer" parent="BIGmonke/abbyMonke6" index="1"]
+autoplay = "Action"
+speed_scale = -1.202
+movie_quit_on_finish = true
+
 [node name="monke" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.49315, 5.59037, -32.0956)
 
@@ -2951,6 +3336,44 @@ stream = ExtResource("18_5jy7b")
 [editable path="crowdStandsOuter/crowdStands23"]
 [editable path="crowdStandsOuter/crowdStands24"]
 [editable path="fern"]
+[editable path="BIGmonke/abbyMonke"]
+[editable path="BIGmonke/abbyMonke2"]
+[editable path="BIGmonke/abbyMonke3"]
+[editable path="BIGmonke/abbyMonke12"]
+[editable path="BIGmonke/abbyMonke13"]
+[editable path="BIGmonke/abbyMonke14"]
+[editable path="BIGmonke/abbyMonke15"]
+[editable path="BIGmonke/abbyMonke16"]
+[editable path="BIGmonke/abbyMonke17"]
+[editable path="BIGmonke/abbyMonke21"]
+[editable path="BIGmonke/abbyMonke35"]
+[editable path="BIGmonke/abbyMonke18"]
+[editable path="BIGmonke/abbyMonke19"]
+[editable path="BIGmonke/abbyMonke20"]
+[editable path="BIGmonke/abbyMonke22"]
+[editable path="BIGmonke/abbyMonke23"]
+[editable path="BIGmonke/abbyMonke24"]
+[editable path="BIGmonke/abbyMonke25"]
+[editable path="BIGmonke/abbyMonke26"]
+[editable path="BIGmonke/abbyMonke27"]
+[editable path="BIGmonke/abbyMonke28"]
+[editable path="BIGmonke/abbyMonke29"]
+[editable path="BIGmonke/abbyMonke30"]
+[editable path="BIGmonke/abbyMonke31"]
+[editable path="BIGmonke/abbyMonke32"]
+[editable path="BIGmonke/abbyMonke33"]
+[editable path="BIGmonke/abbyMonke34"]
+[editable path="BIGmonke/abbyMonke36"]
+[editable path="BIGmonke/abbyMonke37"]
+[editable path="BIGmonke/abbyMonke38"]
+[editable path="BIGmonke/abbyMonke4"]
+[editable path="BIGmonke/abbyMonke7"]
+[editable path="BIGmonke/abbyMonke8"]
+[editable path="BIGmonke/abbyMonke9"]
+[editable path="BIGmonke/abbyMonke10"]
+[editable path="BIGmonke/abbyMonke11"]
+[editable path="BIGmonke/abbyMonke5"]
+[editable path="BIGmonke/abbyMonke6"]
 [editable path="monke/abbyMonke"]
 [editable path="monke/abbyMonke2"]
 [editable path="monke/abbyMonke3"]
