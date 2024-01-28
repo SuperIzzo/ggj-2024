@@ -423,7 +423,15 @@ public partial class Minigame : Node2D
 
 			GameGlobals globals = GetNode<GameGlobals>("/root/GameGlobals");
 
+			if(bPlayerHitEnemy)
+			{
+				--globals.EnemyHP;
+			}
 
+			if(bEnemyHitPlayer)
+			{
+				--globals.PlayerHP;
+			}
 		}
 
 		if(m_dStageTimeLeft < 0.0)

@@ -11,8 +11,8 @@ public partial class GameGlobals : Node
 	public SlonResource PlayerSlon;
 	public SlonResource EnemySlon;
 	
-	public double PlayerHP = 100;
-	public double EnemyHP = 100;
+	public int PlayerHP = 3;
+	public int EnemyHP = 3;
 	
 	public int Match = 0;
 	public int Set = 0;
@@ -25,6 +25,21 @@ public partial class GameGlobals : Node
 		random.Next();
 		random.Next();
 		PrepareNewMatch();
+	}
+
+	public void SetupHealth(EnemyController.Difficulty eDiff)
+	{
+		PlayerHP = 4;
+
+		switch(eDiff)
+		{
+			case EnemyController.Difficulty.One: 	EnemyHP 	= 3; break;
+			case EnemyController.Difficulty.Two: 	EnemyHP 	= 4; break;
+			case EnemyController.Difficulty.Three: 	EnemyHP 	= 4; break;
+			case EnemyController.Difficulty.Four: 	EnemyHP 	= 5; break;
+			case EnemyController.Difficulty.Five: 	EnemyHP 	= 5; break;
+			case EnemyController.Difficulty.Six:	EnemyHP 	= 6; break;
+		}
 	}
 	
 	public void PrepareNewMatch()
