@@ -8,6 +8,11 @@ uniform float wire_smoothness : hint_range(0.0, 0.1) = 0.01;
 
 varying vec3 barys;
 
+uniform vec2 amp = vec2(2., 2.1);
+uniform float freq = 1.0;
+uniform vec2 worldTime = vec2(3.0,2.5);
+
+
 vec3 palette( float t)
 {
     vec3 a = vec3(0.848, 0.500, 0.588);
@@ -18,9 +23,17 @@ vec3 palette( float t)
     return a + b*cos( 6.28318*(c*t+d) );
 }
 
+float wave(vec2 pos, float time){
+	return (amp.x  * sin(pos.x * freq + time * worldTime.x)) + (amp.y * sin(pos.y * freq + time * worldTime.x));
+    
+}
+
+
+
+
 void vertex() {
-	
-	
+
+	VERTEX.x += -0.2 + (0.5 * smoothstep(2.,wave(VERTEX.yx,TIME*0.8),1.));
 	
 	int index = VERTEX_ID % 3;
 	switch (index) {
