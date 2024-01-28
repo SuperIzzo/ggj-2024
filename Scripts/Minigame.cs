@@ -238,7 +238,7 @@ public partial class Minigame : Node2D
 	{
 		switch(m_eStage)
 		{
-			case Stage.LineUp:		return 4.0;
+			case Stage.LineUp:		return 7.5;
 			case Stage.Engage:		return 3.0;
 			case Stage.IntermissionSlowDown: return 1.0;
 			case Stage.ProcessResult: return 1.5;
@@ -268,7 +268,8 @@ public partial class Minigame : Node2D
 	private void Stage_Init()
 	{
 		GameGlobals globals = GetNode<GameGlobals>("/root/GameGlobals");
-		if(globals.EnemySlon.Name == "Quixotic" || globals.EnemySlon.Name == "Acid McGee")
+		if(globals.EnemySlon.Name == "Quixotic" || globals.EnemySlon.Name == "Acid McGee"
+		|| globals.PlayerSlon.Name == "Quixotic" || globals.PlayerSlon.Name == "Acid McGee")
 		{
 			globals.GameRef.Music_Normal.Stop();
 			globals.GameRef.Music_Disco.Play();
@@ -297,7 +298,7 @@ public partial class Minigame : Node2D
 		ProtectLocation.Position = GetRandomSpawnPos();
 		EnemyAttackLocation.Position = GetRandomSpawnPos();
 		EnemyProtectLocation.Position = GetRandomSpawnPos();
-		
+
 		// Capture the mouse so that it's invisible and we can get the relative movement for the frame
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 		

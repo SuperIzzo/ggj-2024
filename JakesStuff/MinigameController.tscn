@@ -161,12 +161,12 @@ polygon = PackedVector2Array(-25, 175, 1075, 175, 937.5, 687.5, -187.5, 687.5)
 metadata/_edit_lock_ = true
 
 [node name="RoundText" type="Label" parent="PlayArea"]
-z_index = 20
+z_index = -5
 texture_filter = 1
-offset_left = 1.0
-offset_top = -71.0
-offset_right = 1522.0
-offset_bottom = 800.0
+offset_left = 4.0
+offset_top = 307.0
+offset_right = 2288.0
+offset_bottom = 1178.0
 scale = Vector2(0.171327, 0.10682)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)

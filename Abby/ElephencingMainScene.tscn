@@ -3334,15 +3334,18 @@ stream = ExtResource("21_x4xr1")
 [node name="Sound_TrunkMove" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(0, 2)
 stream = ExtResource("22_1o6g1")
+volume_db = 5.0
 
 [node name="Sound_KO" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("23_7jw3s")
 
 [node name="Music_Normal" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("24_07hxm")
+volume_db = -5.0
 
 [node name="Music_Disco" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("25_g126q")
+volume_db = -5.0
 
 [editable path="terrain4"]
 [editable path="crowdStandsInner/crowdStands2"]
