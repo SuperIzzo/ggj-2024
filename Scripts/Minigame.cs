@@ -271,6 +271,13 @@ public partial class Minigame : Node2D
 		// Capture the mouse so that it's invisible and we can get the relative movement for the frame
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 		
+		GameGlobals globals = GetNode<GameGlobals>("/root/GameGlobals");
+		m_eCurrentDifficulty = (EnemyController.Difficulty)globals.Match;
+
+		if((int)m_eCurrentDifficulty < 1 || (int)m_eCurrentDifficulty > 6)
+		{
+			m_eCurrentDifficulty = (EnemyController.Difficulty)((int)(GD.Randi() % 3) + 1);
+		}
 
 		// Initialise everything that needs initing
 		AttackLocation.SetBounds(m_vAreaSize);

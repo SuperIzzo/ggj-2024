@@ -44,11 +44,10 @@ public partial class GameGlobals : Node
 	
 	public void PrepareNewMatch()
 	{
-		Match++;
+		++Match;
 		ChooseNewSlons();
 		
-		PlayerHP = 150;
-		EnemyHP = 90 + Match*10;
+		SetupHealth((EnemyController.Difficulty)Match);
 	}
 	
 	public void PrepareNewSet()
