@@ -13,7 +13,7 @@ public partial class Minigame : Node2D
 		LineUp,
 		IntermissionSlowDown,
 		Engage,
-		DetermineResult,
+		ProcessResult,
 		Exit
 	}
 
@@ -60,6 +60,9 @@ public partial class Minigame : Node2D
 	Label EnemyAttackLabel;
 
 	[Export]
+	Label RoundText;
+
+	[Export]
 	int SpawnPaddingX = 50;
 
 	[Export]
@@ -86,11 +89,16 @@ public partial class Minigame : Node2D
 	private double m_dPlayerAttackLabelTimer;
 	private double m_dEnemyAttackLabelTimer;
 
+	private int m_iNumTimesEngaged;
+	private bool m_bResultProcessed;
+
 	Dictionary<string, string> m_randomKeyMaps = new();
 	int m_iChosenAttackInput = -1;
 	int m_iChosenProtectInput = -1;
 
 	Vector2 m_vRelativeMouseInputForEngage = Vector2.Zero;
+
+	List<Tuple<int, Vector2>> m_keyDirs;
 
 	private class KeyPressCollection
 	{
@@ -142,6 +150,14 @@ public partial class Minigame : Node2D
 
 			m_vAreaSize = vMax - vMin;
 		}
+
+		m_keyDirs = new()
+		{
+			new(0, UpKey.Position),
+			new(1, RightKey.Position),
+			new(2, DownKey.Position),
+			new(3, LeftKey.Position)
+		};
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -184,9 +200,9 @@ public partial class Minigame : Node2D
 				Stage_Engage(delta);
 				break;
 			}
-			case Stage.DetermineResult:
+			case Stage.ProcessResult:
 			{
-				Stage_DetermineResult();
+				Stage_ProcessResult(delta);
 				break;
 			}
 			case Stage.Exit:
@@ -206,6 +222,7 @@ public partial class Minigame : Node2D
 			case Stage.LineUp:		return 4.0;
 			case Stage.Engage:		return 3.0;
 			case Stage.IntermissionSlowDown: return 1.0;
+			case Stage.ProcessResult: return 1.5;
 			default: return 0.0;
 		}
 	}
@@ -254,6 +271,13 @@ public partial class Minigame : Node2D
 		// Capture the mouse so that it's invisible and we can get the relative movement for the frame
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 		
+		GameGlobals globals = GetNode<GameGlobals>("/root/GameGlobals");
+		m_eCurrentDifficulty = (EnemyController.Difficulty)globals.Match;
+
+		if((int)m_eCurrentDifficulty < 1 || (int)m_eCurrentDifficulty > 6)
+		{
+			m_eCurrentDifficulty = (EnemyController.Difficulty)((int)(GD.Randi() % 3) + 1);
+		}
 
 		// Initialise everything that needs initing
 		AttackLocation.SetBounds(m_vAreaSize);
@@ -267,8 +291,22 @@ public partial class Minigame : Node2D
 		EnemyProtectLocation.GetMinigameDelegate = GetMinigame;
 
 		m_enemy.Init(m_eCurrentDifficulty, m_vAreaSize, LocationRadius);
+		{
+			float fDiff = (float)m_eCurrentDifficulty;
+
+			ProtectLocation.AbilityRadius = 55.0f - (2.0f * fDiff);
+			ProtectLocation.QueueRedraw();
+
+			EnemyProtectLocation.AbilityRadius = 40.0f + (3.5f * fDiff);
+			EnemyProtectLocation.QueueRedraw();
+		}
 
 		m_fTimeMaxWidth = TimeBar.Polygon[1].X;
+
+		m_iNumTimesEngaged = 0;
+
+		RoundText.Visible = true;
+		RoundText.Text = "Line em up!";
 	}
 
 	private void Stage_LineUp(double delta)
@@ -317,6 +355,11 @@ public partial class Minigame : Node2D
 		m_iChosenProtectInput = -1;
 		m_iChosenAttackInput = -1;
 
+		++m_iNumTimesEngaged;
+
+		RoundText.Visible = true;
+		RoundText.Text = $"Bout {m_iNumTimesEngaged}!";
+
 		m_dEnemyHintTimer = 0.0;
 
 		m_eStage = Stage.Engage;
@@ -331,8 +374,7 @@ public partial class Minigame : Node2D
 		m_vEnemyAttackPos = EnemyAttackLocation.Position;
 		m_vEnemyProtectPos = EnemyProtectLocation.Position;
 
-		m_enemy.ChooseEngageDirections(m_eCurrentDifficulty, AttackLocation.Position, ProtectLocation.Position, 
-			EnemyAttackLocation.Position, EnemyProtectLocation.Position);
+		m_enemy.ChooseEngageDirections(m_eCurrentDifficulty, AttackLocation, EnemyAttackLocation, ProtectLocation, EnemyProtectLocation);
 
 		RandomiseAndShowKeys();
 		ShowArrows();
@@ -348,7 +390,7 @@ public partial class Minigame : Node2D
 
 		AttackLocation.Position = m_vLockedInAttackPosition + m_vRelativeMouseInputForEngage;
 
-		if(m_iChosenAttackInput != -1 && m_iChosenProtectInput != -1)
+		if(m_dStageTimeLeft < 0.0)
 		{
 			AttackLocation.Position = m_vLockedInAttackPosition;
 			EnemyAttackLocation.Position = m_vEnemyAttackPos;
@@ -356,21 +398,62 @@ public partial class Minigame : Node2D
 			EnemyAttackLocation.Modulate = new Color(1.0f, 1.0f, 1.0f, 1.0f);
 			EnemyProtectLocation.Modulate = new Color(1.0f, 1.0f, 1.0f, 1.0f);
 
-			m_eStage = Stage.DetermineResult;
+			m_eStage = Stage.ProcessResult;
+			m_dStageTimeLeft = GetStageTimer(Stage.ProcessResult);
+			m_bResultProcessed = false;
 		}
 	}
 
-	private void Stage_DetermineResult()
+	private void Stage_ProcessResult(double delta)
 	{
-		// TODO
-		/*
-		phase 2: Instantly move in direction player and enemy want to go
-		phase 2: Check overlaps of shields and sword to determine if player/enemy got hit
-		phase 2: Call to show hit/block text.
-		phase 2: Repeat Engage phase 3 times
-		Exit the minigame, launches new minigame next time charge happens
+		m_dStageTimeLeft -= delta;
+
+		void MoveInDirection(LocationController c, int dir)
+		{
+			Vector2 vDir = EnemyController.GetVectorFromDirection(dir);
+			c.Position += vDir * 20.0f;
+		}
+
+		if(!m_bResultProcessed)
+		{
+			m_bResultProcessed = true;
+			
+			MoveInDirection(AttackLocation, m_iChosenAttackInput);
+			MoveInDirection(ProtectLocation, m_iChosenProtectInput);
+			MoveInDirection(EnemyAttackLocation, m_enemy.AttackEngageDirection);
+			MoveInDirection(EnemyProtectLocation, m_enemy.ProtectEngageDirection);
+
+			bool bPlayerHitEnemy = AttackLocation.Position.DistanceTo(EnemyProtectLocation.Position) > EnemyProtectLocation.AbilityRadius;
+			bool bEnemyHitPlayer = EnemyAttackLocation.Position.DistanceTo(ProtectLocation.Position) > ProtectLocation.AbilityRadius;
+			
+			ShowPlayerAttackLabel(bPlayerHitEnemy);
+			ShowEnemyAttackLabel(bEnemyHitPlayer);
+
+			GameGlobals globals = GetNode<GameGlobals>("/root/GameGlobals");
+
+			if(bPlayerHitEnemy)
+			{
+				--globals.EnemyHP;
+			}
+
+			if(bEnemyHitPlayer)
+			{
+				--globals.PlayerHP;
+			}
+		}
+
+		if(m_dStageTimeLeft < 0.0)
+		{
+			if(m_iNumTimesEngaged < 3)
+			{
+				InitEngageStage();
+			}
+			else
+			{
+				m_eStage = Stage.Exit;
+			}
+		}
 		
-		*/
 	}
 
 	private void ProcessEnemyHinting(double delta)
@@ -380,11 +463,11 @@ public partial class Minigame : Node2D
 		m_dEnemyHintTimer += delta;
 
 		EnemyAttackLocation.Position = m_vEnemyAttackPos.Lerp(
-			m_vEnemyAttackPos + m_enemy.GetVectorFromDirection(m_enemy.AttackEngageDirection) * 5.0f, 
+			m_vEnemyAttackPos + EnemyController.GetVectorFromDirection(m_enemy.AttackEngageDirection) * 5.0f, 
 			Mathf.Clamp((float)Mathf.Remap(m_dEnemyHintTimer, 0.0, dMaxTime, 0.0, 1.0), 0.0f, 1.0f));
 
 		EnemyProtectLocation.Position = m_vEnemyProtectPos.Lerp(
-			m_vEnemyProtectPos + m_enemy.GetVectorFromDirection(m_enemy.ProtectEngageDirection) * 5.0f, 
+			m_vEnemyProtectPos + EnemyController.GetVectorFromDirection(m_enemy.ProtectEngageDirection) * 5.0f, 
 			Mathf.Clamp((float)Mathf.Remap(m_dEnemyHintTimer, 0.0, dMaxTime, 0.0, 1.0), 0.0f, 1.0f));
 
 		float fColor = Mathf.Clamp((float)Mathf.Remap(m_dEnemyHintTimer, 0.0, dMaxTime, 0.0, 0.5), 0.0f, 0.5f);
@@ -443,7 +526,7 @@ public partial class Minigame : Node2D
 			{
 				if(Input.IsActionJustPressed(m_defendKeys[i].ActionName))
 				{
-					m_iChosenProtectInput = i;
+					m_iChosenProtectInput = m_defendKeys[i].Dir;
 					FadeUnusedKeysOut();
 					break;
 				}
@@ -478,7 +561,8 @@ public partial class Minigame : Node2D
 
 	private void ProcessTimer()
 	{
-		float fPercentile = (float)Mathf.Clamp(m_dStageTimeLeft / GetStageTimer(Stage.LineUp), 0.0, 1.0);
+		Stage toUse = m_eStage == Stage.LineUp ? Stage.LineUp : Stage.Engage;
+		float fPercentile = (float)Mathf.Clamp(m_dStageTimeLeft / GetStageTimer( Stage.LineUp), 0.0, 1.0);
 
 		var polygons = TimeBar.Polygon;
 		polygons[1] = new Vector2(m_fTimeMaxWidth * fPercentile, polygons[1].Y);
@@ -506,7 +590,7 @@ public partial class Minigame : Node2D
 	{
 		for(int i = 0; i < m_defendKeys.Count; ++i)
 		{
-			bool bFadeOut = i != m_iChosenProtectInput;
+			bool bFadeOut = m_defendKeys[i].Dir != m_iChosenProtectInput;
 			if(bFadeOut)
 			{
 				m_defendKeys[i].Spr.Modulate = new Color(0.5f, 0.5f, 0.5f, 1.0f);
@@ -516,7 +600,7 @@ public partial class Minigame : Node2D
 
 	private void ShowPlayerAttackLabel(bool bHitSuccess)
 	{
-		m_dPlayerAttackLabelTimer = 1.0;
+		m_dPlayerAttackLabelTimer = 1.5;
 		PlayerAttackLabel.Text = bHitSuccess ? "Hit!" : "Block";
 		PlayerAttackLabel.Position = AttackLocation.Position;
 		PlayerAttackLabel.Visible = true;
@@ -526,9 +610,9 @@ public partial class Minigame : Node2D
 
 	private void ShowEnemyAttackLabel(bool bHitSuccess)
 	{
-		m_dPlayerAttackLabelTimer = 1.0;
+		m_dEnemyAttackLabelTimer = 1.5;
 		EnemyAttackLabel.Text = bHitSuccess ? "Hit!" : "Block";
-		EnemyAttackLabel.Position = AttackLocation.Position;
+		EnemyAttackLabel.Position = EnemyAttackLocation.Position;
 		EnemyAttackLabel.Visible = true;
 		EnemyAttackLabel.Modulate = bHitSuccess ? new Color(0.8f, 0.2f, 0.2f, 1.0f) : new Color(0.2f, 0.8f, 0.2f, 1.0f);
 	}
@@ -537,8 +621,8 @@ public partial class Minigame : Node2D
 	{
 		if(m_dPlayerAttackLabelTimer > 0.0)
 		{
-			float fAmount = (float)Mathf.Remap(m_dPlayerAttackLabelTimer, 1.0, 0.25, 0.0, 1.0);
-			PlayerAttackLabel.Modulate = new Color(1.0f - fAmount, 1.0f - fAmount, 1.0f - fAmount, 1.0f - fAmount);
+			float fAmount = (float)Mathf.Remap(m_dPlayerAttackLabelTimer, 0.5, 0.0, 0.0, 1.0);
+			PlayerAttackLabel.Modulate = new Color(PlayerAttackLabel.Modulate.R, PlayerAttackLabel.Modulate.G, PlayerAttackLabel.Modulate.B, 1.0f - fAmount);
 
 			m_dPlayerAttackLabelTimer -= delta;
 
@@ -551,8 +635,8 @@ public partial class Minigame : Node2D
 
 		if(m_dEnemyAttackLabelTimer > 0.0)
 		{
-			float fAmount = (float)Mathf.Remap(m_dEnemyAttackLabelTimer, 1.0, 0.25, 0.0, 1.0);
-			EnemyAttackLabel.Modulate = new Color(1.0f - fAmount, 1.0f - fAmount, 1.0f - fAmount, 1.0f - fAmount);
+			float fAmount = (float)Mathf.Remap(m_dEnemyAttackLabelTimer, 0.55, 0.0, 0.0, 1.0);
+			EnemyAttackLabel.Modulate = new Color(EnemyAttackLabel.Modulate.R, EnemyAttackLabel.Modulate.G, EnemyAttackLabel.Modulate.B, 1.0f - fAmount);
 
 			m_dEnemyAttackLabelTimer -= delta;
 
@@ -607,14 +691,6 @@ public partial class Minigame : Node2D
 
 	private void RandomiseAndShowKeys()
 	{
-		List<Tuple<int, Vector2>> dirs = new()
-		{
-			new(0, UpKey.Position),
-			new(1, RightKey.Position),
-			new(2, DownKey.Position),
-			new(3, LeftKey.Position)
-		};
-
 		m_defendKeys = new();
 
 		m_defendKeys.Add(new()
@@ -645,12 +721,12 @@ public partial class Minigame : Node2D
 			Dir = 1
 		});
 
-		dirs.Shuffle();
+		m_keyDirs.Shuffle();
 
-		for(int i = 0; i < dirs.Count; ++i)
+		for(int i = 0; i < m_keyDirs.Count; ++i)
 		{
-			m_defendKeys[i].Dir = dirs[i].Item1;
-			m_defendKeys[i].Spr.Position = dirs[i].Item2;
+			m_defendKeys[i].Dir = m_keyDirs[i].Item1;
+			m_defendKeys[i].Spr.Position = m_keyDirs[i].Item2;
 			m_defendKeys[i].Spr.Visible = true;
 
 			m_defendKeys[i].Spr.Modulate = new Color(1.0f, 1.0f, 1.0f, 1.0f);
