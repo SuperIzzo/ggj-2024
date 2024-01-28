@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://o4nrbuly60d1"]
+[gd_scene load_steps=10 format=3 uid="uid://o4nrbuly60d1"]
 
 [ext_resource type="Script" path="res://Elephants/Models/SlonController.cs" id="1_3wckx"]
+[ext_resource type="Script" path="res://YaniStuff/slonTrunkControler.cs" id="2_37alp"]
 [ext_resource type="Texture2D" uid="uid://bvq23youxba7d" path="res://Abby/slonAnimated_slonik_tekst.jpg" id="2_lre2d"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c5fcv"]
@@ -223,6 +224,7 @@ _data = {
 script = ExtResource("1_3wckx")
 
 [node name="SlonAnimated" type="Node3D" parent="."]
+script = ExtResource("2_37alp")
 
 [node name="Armature" type="Node3D" parent="SlonAnimated"]
 transform = Transform3D(5.74913, 0, 0, 0, 0, -5.74913, 0, 5.74913, 0, 0, 6.63061, -2.87908)
@@ -339,6 +341,9 @@ mesh = SubResource("ArrayMesh_fd0b6")
 skin = SubResource("Skin_mv3gx")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SlonAnimated"]
+process_thread_group = 1
+process_thread_group_order = 0
+process_thread_messages = 0
 libraries = {
 "": SubResource("AnimationLibrary_2hlng")
 }

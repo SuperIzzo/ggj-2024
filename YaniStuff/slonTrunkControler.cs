@@ -7,7 +7,7 @@ public partial class slonTrunkControler : Node3D
 	private int trunk2BoneIdx;
 	private int trunk3BoneIdx;
 	private int trunk4BoneIdx;
-	private double rotationSpeed = 3f;
+	private double rotationSpeed = 30f;
 	
 	public override void _Ready()
 	{
@@ -31,6 +31,8 @@ public partial class slonTrunkControler : Node3D
 	}
 	 private void RotateTrunk(int trunkBoneIdx, Vector3 rotationAxis, double delta)
 	{
+		// TODO: This is competing with animation, we need to cache trunk bones		
+		
 		// Rotate trunk bone
 		Quaternion trunkRotation = skeleton3D.GetBonePoseRotation(trunkBoneIdx);
 		trunkRotation = trunkRotation * new Quaternion(rotationAxis, (float)(rotationSpeed * delta));
@@ -39,20 +41,20 @@ public partial class slonTrunkControler : Node3D
 		
 	public override void _Process(double delta)
 	{
-		 if (Input.IsActionPressed("ui_left"))
+		 if (Input.IsActionPressed("Key_Left"))
 		 {
 			// Rotate trunks along the Z-axis when the Left arrow key is pressed
 			RotateTrunk(trunk1BoneIdx, -Vector3.Forward, delta);
 			RotateTrunk(trunk2BoneIdx, -Vector3.Forward, delta);
 		}
-		if (Input.IsActionPressed("ui_right"))
+		if (Input.IsActionPressed("Key_Right"))
 		{
 			// Rotate trunks along the Z-axis when the Right arrow key is pressed
 			RotateTrunk(trunk1BoneIdx, Vector3.Forward, delta);
 			RotateTrunk(trunk2BoneIdx, Vector3.Forward, delta);
 		}
 		
-		if (Input.IsActionPressed("ui_up"))
+		if (Input.IsActionPressed("Key_Up"))
 		{
 			// Move trunks up along the X-axis when the Up arrow key is pressed
 			RotateTrunk(trunk1BoneIdx, -Vector3.Right, delta);
@@ -60,7 +62,7 @@ public partial class slonTrunkControler : Node3D
 			RotateTrunk(trunk3BoneIdx, -Vector3.Right, delta);
 		}
 		
-		if (Input.IsActionPressed("ui_down"))
+		if (Input.IsActionPressed("Key_Down"))
 		{
 			// Move trunks down along the X-axis when the Down arrow key is pressed
 			RotateTrunk(trunk1BoneIdx, Vector3.Right, delta);
