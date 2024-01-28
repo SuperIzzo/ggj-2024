@@ -11,6 +11,12 @@ public partial class GameGlobals : Node
 	public SlonResource PlayerSlon;
 	public SlonResource EnemySlon;
 	
+	public double PlayerHP = 100;
+	public double EnemyHP = 100;
+	
+	public int Match = 0;
+	public int Set = 0;
+	
 	public override void _Ready()
 	{
 		GD.Print("Start");
@@ -18,7 +24,21 @@ public partial class GameGlobals : Node
 		random.Next();
 		random.Next();
 		random.Next();
+		PrepareNewMatch();
+	}
+	
+	public void PrepareNewMatch()
+	{
+		Match++;
 		ChooseNewSlons();
+		
+		PlayerHP = 150;
+		EnemyHP = 90 + Match*10;
+	}
+	
+	public void PrepareNewSet()
+	{
+		Set++;
 	}
 	
 	public void ChooseNewSlons()
