@@ -46,6 +46,9 @@ public partial class GameRootController : Node3D
 	double cameraTimer = 6;	
 	double postGameTimer = 5;
 	
+	Control gameOverNode;
+	AnimationPlayer gameOverAnim;
+	
 	Minigame minigame;
 	SlonStandoff standoff;
 	
@@ -71,6 +74,9 @@ public partial class GameRootController : Node3D
 		
 		healthA = this.GetChildByType<Health>("ControlA");
 		healthB = this.GetChildByType<Health>("ControlB");
+		
+		gameOverNode = this.GetChildByType<Control>("GameOver");
+		gameOverAnim = gameOverNode.GetChildByType<AnimationPlayer>();
 		
 		camera = GetParent().GetChildByType<Camera3D>();
 		
@@ -117,11 +123,11 @@ public partial class GameRootController : Node3D
 		
 		if (minigame.CurrentStage == Minigame.Stage.Done)
 		{
-			if (globals.PlayerHP == 0 && globals.EnemyHP == 0)
+			if (globals.PlayerHP <= 0 && globals.EnemyHP <= 0)
 			{
 				OnDoubleKO();
 			}
-			else if (globals.PlayerHP == 0)
+			else if (globals.PlayerHP <= 0)
 			{
 				OnPlayerDeceased();
 			}
@@ -173,17 +179,20 @@ public partial class GameRootController : Node3D
 	
 	public void OnPlayerDeceased()
 	{
-		CurrentState = State.PlayerWon;
+		CurrentState = State.EnemyWon;
+		DoGameOverAnim();
 	}
 	
 	public void OnEnemyDeceased()
 	{
-		CurrentState = State.EnemyWon;
+		CurrentState = State.PlayerWon;
+		DoGameOverAnim();
 	}
 	
 	public void OnDoubleKO()
 	{
 		CurrentState = State.DoubleKO;
+		DoGameOverAnim();
 	}
 	
 	public void OnGameTied()
@@ -201,5 +210,29 @@ public partial class GameRootController : Node3D
 	{
 		globals.PrepareNewMatch();
 		GetTree().ChangeSceneToFile("res://IzzoStuff/IntroScene/IntroScene.tscn");
+	}
+	
+	public void DoGameOverAnim()
+	{
+		TextureRect gameOverImg = null;
+		switch(CurrentState)
+		{
+			case State.PlayerWon:
+				gameOverImg = gameOverNode.GetChildByType<TextureRect>("Win");
+				break;
+			case State.EnemyWon:
+				gameOverImg = gameOverNode.GetChildByType<TextureRect>("Lose");
+				break;
+			case State.DoubleKO:
+				gameOverImg = gameOverNode.GetChildByType<TextureRect>("DoubleKO");
+				break;
+		}
+		
+		if (gameOverImg != null)
+		{
+			gameOverImg.Visible = true;
+		}
+		
+		gameOverAnim.Play("ShowAnim");
 	}
 }
