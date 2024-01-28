@@ -32,7 +32,7 @@ public partial class GameRootController : Node3D
 		
 		GameGlobals globals = GetNode<GameGlobals>("/root/GameGlobals");
 		
-		Setup(globals.PlayerSlon, globals.EnemySlon);
+		SetupRound(globals.PlayerSlon, globals.EnemySlon);
 		RunGame();
 	}
 
@@ -42,15 +42,14 @@ public partial class GameRootController : Node3D
 		{
 			camera.Position += Vector3.Left * (float)(delta * cameraSpeed);
 			
-			if (minigame.CurrentStage == Minigame.Stage.Exit
-			 || minigame.CurrentStage == Minigame.Stage.DetermineResult)
+			if (minigame.CurrentStage == Minigame.Stage.Done)
 			{
 				GameRunning = false;
 			}
 		}
 	}
 	
-	public void Setup(SlonResource SlonA, SlonResource SlonB)
+	public void SetupRound(SlonResource SlonA, SlonResource SlonB)
 	{
 		GameRunning = false;
 		standoff.SetUpStandoff(SlonA, SlonB);

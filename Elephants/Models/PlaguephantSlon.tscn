@@ -5,7 +5,7 @@
 [ext_resource type="Material" uid="uid://bdtj6emln4a7k" path="res://Abby/Shaders/Default.tres" id="2_6ma5e"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6l5cq"]
-render_priority = 0
+render_priority = 127
 next_pass = ExtResource("2_6ma5e")
 shader = ExtResource("2_4d08y")
 shader_parameter/light_color = Color(0.529412, 0.956835, 0.156315, 1)
