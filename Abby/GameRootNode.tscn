@@ -17,6 +17,7 @@ DefaultSlonB = ExtResource("3_6px62")
 [node name="2D" type="Node2D" parent="."]
 
 [node name="Minigame" parent="2D" instance=ExtResource("5_4nqxh")]
+position = Vector2(86, -28)
 autostart = false
 
 [node name="Camera2D" type="Camera2D" parent="2D"]

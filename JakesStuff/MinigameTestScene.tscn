@@ -5,6 +5,7 @@
 [node name="Base" type="Node2D"]
 
 [node name="Minigame" parent="." instance=ExtResource("2_s1ci0")]
+position = Vector2(0, -2)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(320, 240)
+position = Vector2(243, 277)

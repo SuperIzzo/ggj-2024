@@ -25,7 +25,7 @@ public partial class LocationController : Node2D
 	protected Vector2 m_vInput;
 
 	[Export]
-	protected float AbilityRadius = 30.0f;
+	public float AbilityRadius = 30.0f;
 
 	public delegate Minigame DelGetMinigame();
 	public DelGetMinigame GetMinigameDelegate;

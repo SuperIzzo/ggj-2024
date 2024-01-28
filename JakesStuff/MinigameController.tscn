@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bjag2golb3em1" path="res://Assets/EnemyShield.png" id="11_a2lgm"]
 [ext_resource type="FontFile" uid="uid://dsxvqpg0qsctk" path="res://JakesStuff/Komigo3D-Regular.ttf" id="12_vidmi"]
 
-[node name="Minigame" type="Node2D" node_paths=PackedStringArray("PlayAreaNode", "AttackLocation", "ProtectLocation", "EnemyAttackLocation", "EnemyProtectLocation", "TimeBar", "UpKey", "DownKey", "LeftKey", "RightKey", "UpArrow", "DownArrow", "LeftArrow", "RightArrow")]
+[node name="Minigame" type="Node2D" node_paths=PackedStringArray("PlayAreaNode", "AttackLocation", "ProtectLocation", "EnemyAttackLocation", "EnemyProtectLocation", "TimeBar", "UpKey", "DownKey", "LeftKey", "RightKey", "UpArrow", "DownArrow", "LeftArrow", "RightArrow", "PlayerAttackLabel", "EnemyAttackLabel")]
 script = ExtResource("1_jcakm")
 PlayAreaNode = NodePath("PlayArea")
 AttackLocation = NodePath("PlayArea/AttackLocation")
@@ -33,10 +33,12 @@ UpArrow = NodePath("PlayArea/AttackLocation/UpArrow")
 DownArrow = NodePath("PlayArea/AttackLocation/DownArrow")
 LeftArrow = NodePath("PlayArea/AttackLocation/LeftArrow")
 RightArrow = NodePath("PlayArea/AttackLocation/RightArrow")
+PlayerAttackLabel = NodePath("PlayArea/PlayerAttackStatus")
+EnemyAttackLabel = NodePath("PlayArea/EnemyAttackStatus")
 
 [node name="PlayArea" type="Polygon2D" parent="."]
 position = Vector2(440, 280)
-color = Color(1, 1, 1, 0.117647)
+color = Color(0.545098, 0.545098, 0.545098, 0.67451)
 polygon = PackedVector2Array(0, 0, 400, 0, 400, 400, 0, 400)
 metadata/_edit_lock_ = true
 
@@ -50,6 +52,7 @@ MovementStrength = 0.5
 Friction = 0.1
 MaxVelocity = Vector2(1, 1)
 AbilityRadiusColor = Color(0.85098, 0.929412, 0.74902, 0.196078)
+AbilityRadius = 0.0
 
 [node name="LeftArrow" type="Sprite2D" parent="PlayArea/AttackLocation"]
 position = Vector2(-30, 0)
@@ -110,6 +113,7 @@ script = ExtResource("3_m78mq")
 MovementStrength = 0.7
 Friction = 0.4
 AbilityRadiusColor = Color(1, 0.556863, 0.588235, 0.196078)
+AbilityRadius = 0.0
 
 [node name="EnemyDefend" type="Sprite2D" parent="PlayArea"]
 z_index = 1
@@ -129,14 +133,14 @@ polygon = PackedVector2Array(0, 410, 400, 410, 400, 440, 0, 440)
 color = Color(0.823529, 0.823529, 0.823529, 1)
 polygon = PackedVector2Array(2, 412, 398, 412, 398, 438, 2, 438)
 
-[node name="PlayerAttackStatus" type="Label" parent="."]
+[node name="PlayerAttackStatus" type="Label" parent="PlayArea"]
 visible = false
 z_index = 20
 texture_filter = 1
-offset_left = 370.0
-offset_top = 327.0
-offset_right = 1408.0
-offset_bottom = 1198.0
+offset_left = -70.0
+offset_top = 47.0
+offset_right = 968.0
+offset_bottom = 918.0
 scale = Vector2(0.08, 0.0802559)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -148,21 +152,46 @@ text = "Hit
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Polygon2D" type="Polygon2D" parent="PlayerAttackStatus"]
+[node name="Polygon2D" type="Polygon2D" parent="PlayArea/PlayerAttackStatus"]
 z_index = -1
 position = Vector2(99.5053, 0)
 scale = Vector2(0.930693, 1)
 polygon = PackedVector2Array(-25, 175, 1075, 175, 937.5, 687.5, -187.5, 687.5)
 metadata/_edit_lock_ = true
 
-[node name="EnemyAttackStatus" type="Label" parent="."]
+[node name="RoundText" type="Label" parent="PlayArea"]
+z_index = 20
+texture_filter = 1
+offset_left = 159.0
+offset_top = -81.0
+offset_right = 1197.0
+offset_bottom = 790.0
+scale = Vector2(0.08, 0.0802559)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("12_vidmi")
+theme_override_font_sizes/font_size = 512
+text = "Hit
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Polygon2D" type="Polygon2D" parent="PlayArea/RoundText"]
+z_index = -1
+position = Vector2(99.5053, 0)
+scale = Vector2(0.930693, 1)
+polygon = PackedVector2Array(-25, 175, 1075, 175, 937.5, 687.5, -187.5, 687.5)
+metadata/_edit_lock_ = true
+
+[node name="EnemyAttackStatus" type="Label" parent="PlayArea"]
 visible = false
 z_index = 20
 texture_filter = 1
-offset_left = 472.0
-offset_top = 327.0
-offset_right = 1510.0
-offset_bottom = 1198.0
+offset_left = 32.0
+offset_top = 47.0
+offset_right = 1070.0
+offset_bottom = 918.0
 scale = Vector2(0.08, 0.08)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -174,7 +203,7 @@ text = "Hit
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Polygon2D" type="Polygon2D" parent="EnemyAttackStatus"]
+[node name="Polygon2D" type="Polygon2D" parent="PlayArea/EnemyAttackStatus"]
 z_index = -1
 position = Vector2(99.5053, 0)
 scale = Vector2(0.930693, 1)

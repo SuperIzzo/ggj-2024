@@ -43,7 +43,7 @@ public partial class GameRootController : Node3D
 			camera.Position += Vector3.Left * (float)(delta * cameraSpeed);
 			
 			if (minigame.CurrentStage == Minigame.Stage.Exit
-			 || minigame.CurrentStage == Minigame.Stage.DetermineResult)
+			 || minigame.CurrentStage == Minigame.Stage.ProcessResult)
 			{
 				GameRunning = false;
 			}

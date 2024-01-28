@@ -108,20 +108,23 @@ public class EnemyController
 		ProcessChaseInput(ref m_protect, vEnemyProtect, vPlayerAttack, delta);
 	}
 
-	public void ChooseEngageDirections(Difficulty eDiff, Vector2 vPlayerAttack, Vector2 vPlayerProtect, Vector2 vEnemyAttack, Vector2 vEnemyProtect)
+	public void ChooseEngageDirections(Difficulty eDiff, LocationController PlayerAttack, LocationController EnemyAttack, LocationController PlayerProtect, LocationController EnemyProtect)
 	{
-		Vector2 vDirToBlock = vPlayerAttack - vEnemyProtect.Normalized();
-		Vector2 vDirToAttack = -(vPlayerProtect - vEnemyAttack).Normalized();
+		Vector2 vDirToBlock = (PlayerAttack.Position - EnemyProtect.Position).Normalized();
+		Vector2 vDirToAttack = -(PlayerProtect.Position - EnemyAttack.Position).Normalized();
 
 		float fChanceToTakeBest = 0.3f + (0.1f * (float)eDiff);
+		float fAttackExtraChance = Mathf.Clamp(Mathf.Remap(EnemyAttack.Position.DistanceTo(PlayerProtect.Position), PlayerProtect.AbilityRadius, PlayerProtect.AbilityRadius * 2.0f, 0.75f, 0.0f), 0.0f, 1.0f);
+		float fBlockExtraChance = Mathf.Clamp(Mathf.Remap(EnemyProtect.Position.DistanceTo(PlayerAttack.Position), EnemyProtect.AbilityRadius / 2, EnemyProtect.AbilityRadius * 1.25f, 0.0f, 0.75f), 0.0f, 1.0f);
+		
 		var random = new RandomNumberGenerator();
 		random.Randomize();
 
-		AttackEngageDirection = random.Randf() < fChanceToTakeBest
+		AttackEngageDirection = random.Randf() < fChanceToTakeBest + fAttackExtraChance
 			? GetDirectionFromVector(vDirToAttack)
 			: (int)(GD.Randi() % 4);
 
-		ProtectEngageDirection = random.Randf() < fChanceToTakeBest
+		ProtectEngageDirection = random.Randf() < fChanceToTakeBest + fBlockExtraChance
 			? GetDirectionFromVector(vDirToBlock)
 			: (int)(GD.Randi() % 4);
 	}
@@ -279,7 +282,7 @@ public class EnemyController
 		return new Vector2(px, py);
 	}
 
-	public int GetDirectionFromVector(Vector2 v)
+	public static int GetDirectionFromVector(Vector2 v)
 	{
 		if(Mathf.IsEqualApprox(1.0f, v.X))
 		{
@@ -301,7 +304,7 @@ public class EnemyController
 		return (int)(GD.Randi() % 4);
 	}
 
-	public Vector2 GetVectorFromDirection(int dir)
+	public static Vector2 GetVectorFromDirection(int dir)
 	{
 		if(dir == 0)
 		{
