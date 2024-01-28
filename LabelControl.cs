@@ -8,7 +8,7 @@ public partial class LabelControl : Control
 	private List<String> randomEvents;
 	private double timer = 0;
 	[Export]
-	double time = 3;
+	double time = 10;
 	private bool isTextClear = true;
 	
 	// Called when the node enters the scene tree for the first time.
@@ -17,22 +17,31 @@ public partial class LabelControl : Control
 		Screentext = GetNode<Label>("RandomEventGenerator");
 		randomEvents = new List<string>();
 //region Events list.
-		randomEvents.Add("You no longer have your horse");
+		randomEvents.Add("You no longer have your horse.");
 		randomEvents.Add("A mischievous monkey steals your fencing gear.");
-		randomEvents.Add("A Specific portal opens.");
+		randomEvents.Add("A specific portal opens.");
 		randomEvents.Add("Perception check failed.");
 		randomEvents.Add("Larry will remember this.");
-		randomEvents.Add("The bloody moon has risen.");
+		randomEvents.Add("The blood moon has risen.");
 		randomEvents.Add("Congratulations, it's a boy!");
-		randomEvents.Add("Double experience.");
+		randomEvents.Add("2x multiplier!");
 		randomEvents.Add("The referee has declared a penalty shot.");
-		randomEvents.Add("Touche");
+		randomEvents.Add("Touché.");
 		randomEvents.Add("Genie disappears; two wishes remaining.");
 		randomEvents.Add("You're out of ammo");
-		randomEvents.Add("Kasahune is Nearby");
+		randomEvents.Add("Kasahune is nearby");
+		randomEvents.Add("There is a war going on for your mind.");
+		randomEvents.Add("I sent you my trunk please respond.");
+		randomEvents.Add("Годо е много глупав.");
+		randomEvents.Add("Освободи ме от този плътски затвор.");
+		randomEvents.Add("No me importa un pepino.");
+		randomEvents.Add("Слон е починал.");
 //endregion
 		UpdateRandomEvent();
+		var delay = GetNode<Timer>("eventDelay");
 		
+		delay.WaitTime = 6.0f;
+		delay.Timeout += () => UpdateRandomEvent();
 	}
 	
 	public void UpdateRandomEvent()
@@ -51,8 +60,16 @@ public partial class LabelControl : Control
 		{
 			Screentext.Text = "";
 			isTextClear = true;
+			
 		}
 	}
+	
+	public void delayEvent(){
+		var delay = GetNode<Timer>("eventDelay");
+		//delay.Timeout += () => UpdateRandomEvent()
+		delay.Start();
+	}
+	
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
@@ -63,6 +80,7 @@ public partial class LabelControl : Control
 		{
 			timer = 0;
 			ClearEventText();
+			delayEvent();
 		}
 	}
 }

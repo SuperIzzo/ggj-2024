@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://fwc1vgojseh6"]
+
+[ext_resource type="Texture2D" uid="uid://jsa704s8dwnk" path="res://Abby/bloodSplosionVFX.png" id="1_vbqmk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_836gw"]
+render_priority = 2
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.698039, 0.698039, 0.698039, 1)
+albedo_texture = ExtResource("1_vbqmk")
+
+[sub_resource type="Curve" id="Curve_p1730"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_g8nnh"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_36s6j"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_0j8a3"]
+curve_x = SubResource("Curve_p1730")
+curve_y = SubResource("Curve_g8nnh")
+curve_z = SubResource("Curve_36s6j")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mbteo"]
+particle_flag_align_y = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+spread = 180.0
+flatness = 0.07
+initial_velocity_max = 22.76
+gravity = Vector3(0, -35, 0)
+scale_max = 4.0
+scale_curve = SubResource("CurveXYZTexture_0j8a3")
+hue_variation_min = -0.08
+hue_variation_max = 0.07
+anim_speed_max = 0.25
+
+[sub_resource type="QuadMesh" id="QuadMesh_rwxkh"]
+
+[node name="explosionTest" type="Node3D"]
+
+[node name="sploshun" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.32477, -0.759749, 1.98194)
+material_override = SubResource("StandardMaterial3D_836gw")
+amount = 60
+lifetime = 0.6
+speed_scale = 0.95
+explosiveness = 1.0
+randomness = 0.19
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_mbteo")
+draw_pass_1 = SubResource("QuadMesh_rwxkh")

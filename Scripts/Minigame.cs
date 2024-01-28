@@ -14,7 +14,8 @@ public partial class Minigame : Node2D
 		IntermissionSlowDown,
 		Engage,
 		ProcessResult,
-		Exit
+		Exit,
+		Done
 	}
 
 	[Export]
@@ -222,7 +223,7 @@ public partial class Minigame : Node2D
 			case Stage.LineUp:		return 4.0;
 			case Stage.Engage:		return 3.0;
 			case Stage.IntermissionSlowDown: return 1.0;
-			case Stage.ProcessResult: return 1.5;
+			case Stage.ProcessResult: return 2.0;
 			default: return 0.0;
 		}
 	}
@@ -482,7 +483,7 @@ public partial class Minigame : Node2D
 
 	private void Stage_Exit()
 	{
-		m_eStage = Stage.Idle;
+		m_eStage = Stage.Done;
 	}
 
 	private void ProcessLineUpInput(double delta)

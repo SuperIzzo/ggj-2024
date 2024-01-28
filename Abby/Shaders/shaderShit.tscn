@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://b8b6ie8n1atx6"]
+[gd_scene load_steps=35 format=3 uid="uid://b8b6ie8n1atx6"]
 
 [ext_resource type="Material" uid="uid://bdtj6emln4a7k" path="res://Abby/Shaders/Default.tres" id="1_l4fai"]
 [ext_resource type="Shader" path="res://Abby/Shaders/waveyBro.gdshader" id="2_tykh4"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://h3b7s8s6rmkr" path="res://Abby/slonAnimated.gltf" id="8_tuopj"]
 [ext_resource type="Shader" path="res://Abby/Shaders/smoke.gdshader" id="8_x5d4s"]
 [ext_resource type="PackedScene" uid="uid://gaef3j8js3hw" path="res://Abby/crowdStands/crowdStands.glb" id="9_i6bsf"]
+[ext_resource type="PackedScene" uid="uid://fwc1vgojseh6" path="res://Abby/explosion_test.tscn" id="12_1vgn2"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_m6eh6"]
 resource_name = "slon_Mesh"
@@ -205,7 +206,7 @@ shader_parameter/random_scale = 4.6
 shader_parameter/noise_scale = 0.03
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wnr6r"]
-render_priority = 0
+render_priority = 2
 next_pass = ExtResource("1_l4fai")
 shader = ExtResource("3_2t651")
 shader_parameter/fuwafuwa_speed = 1.5
@@ -216,7 +217,7 @@ shader_parameter/noise_speed = 0.2
 shader_parameter/noise_scale = 0.5
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iromv"]
-render_priority = 0
+render_priority = 2
 next_pass = ExtResource("1_l4fai")
 shader = ExtResource("4_isccd")
 shader_parameter/light_color = Color(0.298039, 0.678431, 0.313726, 1)
@@ -227,7 +228,7 @@ shader_parameter/front_marble_scale = 15.4
 shader_parameter/back_marble_scale = 12.1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g538l"]
-render_priority = 0
+render_priority = 2
 next_pass = ExtResource("1_l4fai")
 shader = ExtResource("5_xo8gg")
 shader_parameter/albedo = Color(1, 1, 1, 1)
@@ -249,7 +250,7 @@ shader_parameter/voronoi_noise = ExtResource("7_120oc")
 shader_parameter/emission_noise = ExtResource("7_120oc")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ewd5t"]
-render_priority = 0
+render_priority = 2
 next_pass = ExtResource("1_l4fai")
 shader = ExtResource("8_x5d4s")
 shader_parameter/scale = 1.0
@@ -439,6 +440,16 @@ states/trunk/position = Vector2(600, 86.6667)
 states/walkCycle/node = SubResource("AnimationNodeAnimation_c0dig")
 states/walkCycle/position = Vector2(438, 86.6667)
 transitions = ["walkCycle", "trunk", SubResource("AnimationNodeStateMachineTransition_4qey5")]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_osi3d"]
+render_priority = 2
+shader = ExtResource("3_2t651")
+shader_parameter/fuwafuwa_speed = 1.5
+shader_parameter/fuwafuwa_size = 0.05
+shader_parameter/outline_color = Color(0.45, 0.7, 1, 1)
+shader_parameter/outline_ratio = 1.0
+shader_parameter/noise_speed = 0.2
+shader_parameter/noise_scale = 0.5
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oylbo"]
 render_priority = 0
@@ -686,7 +697,7 @@ bones/14/rotation = Quaternion(-0.102063, -0.00412209, -0.028964, 0.994348)
 bones/14/scale = Vector3(1, 1, 1)
 
 [node name="3DSMesh_0" type="MeshInstance3D" parent="slonBubblephant/Armature/Skeleton3D"]
-transform = Transform3D(-0.178321, 0.983973, 0, -0.983972, -0.178322, 0, 0, 0, 1, 4.72024, 1.53579, 0)
+transform = Transform3D(-0.0160777, 0.345585, -0.93825, -0.92471, 0.351799, 0.145424, 0.380332, 0.869948, 0.31391, 4.9465, 3.17555, 0)
 extra_cull_margin = 16384.0
 visibility_range_end = 4096.0
 mesh = SubResource("ArrayMesh_m6eh6")
@@ -1170,7 +1181,7 @@ skin = SubResource("Skin_sktol")
 surface_material_override/0 = SubResource("ShaderMaterial_ewd5t")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.98023e-08, 5.4008, 12.3211)
+transform = Transform3D(0.80393, 0, 0.594725, 0, 1, 0, -0.594725, 0, 0.80393, 33.5324, 7.9099, 66.3711)
 
 [node name="PS1PostProcess" type="MeshInstance3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.98023e-08, 0, -0.306047)
@@ -1257,7 +1268,7 @@ bones/13/scale = Vector3(1, 1, 1)
 bones/14/rotation = Quaternion(-0.102063, -0.00412207, -0.028964, 0.994348)
 
 [node name="3DSMesh_0" parent="slonAnimated4/Armature/Skeleton3D" index="0"]
-surface_material_override/0 = ExtResource("1_l4fai")
+surface_material_override/0 = SubResource("ShaderMaterial_osi3d")
 
 [node name="slonAnimated5" parent="." instance=ExtResource("8_tuopj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0835, 0, 38.4388)
@@ -1288,6 +1299,9 @@ bones/14/rotation = Quaternion(-0.102063, -0.00412207, -0.028964, 0.994348)
 
 [node name="3DSMesh_0" parent="slonAnimated5/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_oylbo")
+
+[node name="explosionTest" parent="." instance=ExtResource("12_1vgn2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.3631, 5.44351, 39.2638)
 
 [editable path="slonAnimated3"]
 [editable path="slonAnimated4"]
