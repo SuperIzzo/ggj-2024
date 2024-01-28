@@ -50,7 +50,7 @@ anim_speed_max = 0.25
 [node name="explosionTest" type="Node3D"]
 
 [node name="sploshun" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.32477, -0.759749, 1.98194)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.458, 0)
 material_override = SubResource("StandardMaterial3D_836gw")
 amount = 60
 lifetime = 0.6

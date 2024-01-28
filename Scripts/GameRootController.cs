@@ -33,6 +33,9 @@ public partial class GameRootController : Node3D
 	[Export]
 	public AudioStreamPlayer2D Music_Disco;
 	
+	[Export]
+	public PackedScene deathVFX;
+	
 	GameGlobals globals;
 	
 	Label labelA;
@@ -217,17 +220,36 @@ public partial class GameRootController : Node3D
 		Sound_KO.Play();
 		
 		TextureRect gameOverImg = null;
+		bool playerDead = false;
+		bool enemyDead = false;
+		
 		switch(CurrentState)
 		{
 			case State.PlayerWon:
 				gameOverImg = gameOverNode.GetChildByType<TextureRect>("Win");
+				enemyDead = true;
 				break;
 			case State.EnemyWon:
 				gameOverImg = gameOverNode.GetChildByType<TextureRect>("Lose");
+				playerDead = true;
 				break;
 			case State.DoubleKO:
 				gameOverImg = gameOverNode.GetChildByType<TextureRect>("DoubleKO");
+				playerDead = true;
+				enemyDead = true;
 				break;
+		}
+		
+		if (playerDead)
+		{
+			var vfx = deathVFX.Instantiate();
+			standoff.SlonModelA.AddChild(vfx);
+		}
+		
+		if (enemyDead)
+		{
+			var vfx = deathVFX.Instantiate();
+			standoff.SlonModelB.AddChild(vfx);
 		}
 		
 		if (gameOverImg != null)

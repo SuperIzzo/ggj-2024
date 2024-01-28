@@ -18,8 +18,8 @@ public partial class SlonStandoff : Node3D
 	Quaternion SlonARotEnd;
 	Quaternion SlonBRotEnd;
 	
-	SlonController SlonModelA;
-	SlonController SlonModelB;
+	public SlonController SlonModelA;
+	public SlonController SlonModelB;
 	
 	bool AreSlonsRunning = false;
 	double RunDuration = 10;
