@@ -32,7 +32,7 @@ public partial class GameRootController : Node3D
 		
 		GameGlobals globals = GetNode<GameGlobals>("/root/GameGlobals");
 		
-		Setup(globals.PlayerSlon, globals.EnemySlon);
+		SetupRound(globals.PlayerSlon, globals.EnemySlon);
 		RunGame();
 	}
 
@@ -50,7 +50,7 @@ public partial class GameRootController : Node3D
 		}
 	}
 	
-	public void Setup(SlonResource SlonA, SlonResource SlonB)
+	public void SetupRound(SlonResource SlonA, SlonResource SlonB)
 	{
 		GameRunning = false;
 		standoff.SetUpStandoff(SlonA, SlonB);
