@@ -8,11 +8,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.135, 0, 0.128)
 script = ExtResource("1_nprel")
 
 [node name="SlonA" type="Node3D" parent="."]
-transform = Transform3D(-0.00911049, 0, -0.999959, 0, 1, 0, 0.999959, 0, -0.00911049, 20, 0, -5)
+transform = Transform3D(-0.0348995, 0, -0.999391, 0, 1, 0, 0.999391, 0, -0.0348995, 20, 0, -5)
 
 [node name="slonAnimated" parent="SlonA" instance=ExtResource("1_yhr4d")]
+
+[node name="CameraSlot" type="Node3D" parent="SlonA"]
+transform = Transform3D(-1, 0, -8.56817e-08, 0, 1, 0, 8.56817e-08, 0, -1, -0.601771, 12.1562, -17.2324)
 
 [node name="SlonB" type="Node3D" parent="."]
 transform = Transform3D(-0.05793, 0, 0.998321, 0, 1, 0, -0.998321, 0, -0.05793, -20, 0, 5)
 
 [node name="slonAnimated2" parent="SlonB" instance=ExtResource("1_yhr4d")]
+
+[node name="SlonATarget" type="Node3D" parent="."]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 5, 0, -5)
+
+[node name="SlonBTarget" type="Node3D" parent="."]
+transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, -5, 0, 5)

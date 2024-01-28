@@ -4,7 +4,7 @@
 [ext_resource type="Shader" path="res://Abby/Shaders/bubblephant.gdshader" id="2_hvuwg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jvl8k"]
-render_priority = 0
+render_priority = 127
 shader = ExtResource("2_hvuwg")
 shader_parameter/fuwafuwa_speed = 1.5
 shader_parameter/fuwafuwa_size = 0.05

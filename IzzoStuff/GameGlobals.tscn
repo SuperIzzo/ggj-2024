@@ -1,0 +1,14 @@
+[gd_scene load_steps=9 format=3 uid="uid://bloqi0sn6dbk1"]
+
+[ext_resource type="Script" path="res://Scripts/GameGlobals.cs" id="1_2wlli"]
+[ext_resource type="Resource" uid="uid://cbqwr05a1vlkp" path="res://Elephants/Resources/AcidSlon.tres" id="2_tfwb6"]
+[ext_resource type="Resource" uid="uid://chyxxqemtjevj" path="res://Elephants/Resources/BubbleSlon.tres" id="3_5xpp4"]
+[ext_resource type="Resource" uid="uid://bca1npr4dgng2" path="res://Elephants/Resources/DiscoSlon.tres" id="4_cvj60"]
+[ext_resource type="Resource" uid="uid://c12xuf43l5hat" path="res://Elephants/Resources/IceSlon.tres" id="5_qptjd"]
+[ext_resource type="Resource" uid="uid://bia5lyle1hkq" path="res://Elephants/Resources/NormalSlon.tres" id="6_86u3n"]
+[ext_resource type="Resource" uid="uid://bsgu6h4ymm7l4" path="res://Elephants/Resources/PlaguephantSlon.tres" id="7_ei6kt"]
+[ext_resource type="Resource" uid="uid://c22b8pcfg4cx2" path="res://Elephants/Resources/SmokeSlon.tres" id="8_nocwb"]
+
+[node name="GameGlobals" type="Node"]
+script = ExtResource("1_2wlli")
+AvailableSlons = Array[Resource]([ExtResource("2_tfwb6"), ExtResource("3_5xpp4"), ExtResource("4_cvj60"), ExtResource("5_qptjd"), ExtResource("6_86u3n"), ExtResource("7_ei6kt"), ExtResource("8_nocwb")])

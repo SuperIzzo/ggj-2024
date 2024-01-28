@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://v2ssxct725w1"]
+
+[ext_resource type="PackedScene" uid="uid://d4coe2dnmrfer" path="res://Abby/slon_standoff.tscn" id="1_3h00j"]
+[ext_resource type="Script" path="res://Scripts/GameRootController.cs" id="1_b45bi"]
+[ext_resource type="Resource" uid="uid://cbqwr05a1vlkp" path="res://Elephants/Resources/AcidSlon.tres" id="2_i8lhx"]
+[ext_resource type="Resource" uid="uid://chyxxqemtjevj" path="res://Elephants/Resources/BubbleSlon.tres" id="3_6px62"]
+[ext_resource type="PackedScene" uid="uid://8e7nvk6clrwg" path="res://JakesStuff/MinigameController.tscn" id="5_4nqxh"]
+[ext_resource type="PackedScene" uid="uid://dp2ox46we24ah" path="res://YaniStuff/HealthBar.tscn" id="6_e1vo1"]
+
+[node name="Game" type="Node3D"]
+script = ExtResource("1_b45bi")
+DefaultSlonA = ExtResource("2_i8lhx")
+DefaultSlonB = ExtResource("3_6px62")
+
+[node name="SlonStandoff" parent="." instance=ExtResource("1_3h00j")]
+
+[node name="2D" type="Node2D" parent="."]
+
+[node name="Minigame" parent="2D" instance=ExtResource("5_4nqxh")]
+autostart = false
+
+[node name="Camera2D" type="Camera2D" parent="2D"]
+position = Vector2(320, 240)
+
+[node name="ControlA" parent="2D" instance=ExtResource("6_e1vo1")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 620.0
+offset_top = -172.0
+offset_right = 1129.0
+offset_bottom = -139.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="ControlB" parent="2D" instance=ExtResource("6_e1vo1")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -256.0
+offset_top = -178.0
+offset_right = 253.0
+offset_bottom = -145.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="LabelA" type="Label" parent="2D"]
+offset_left = 727.0
+offset_top = -204.0
+offset_right = 896.0
+offset_bottom = -162.0
+theme_override_font_sizes/font_size = 30
+text = "Acid McGee"
+
+[node name="LabelB" type="Label" parent="2D"]
+offset_left = -164.0
+offset_top = -214.0
+offset_right = -124.0
+offset_bottom = -191.0
+theme_override_font_sizes/font_size = 27
+text = "Slon"
