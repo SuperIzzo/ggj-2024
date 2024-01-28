@@ -60,6 +60,9 @@ public partial class Minigame : Node2D
 	Label EnemyAttackLabel;
 
 	[Export]
+	Label RoundText;
+
+	[Export]
 	int SpawnPaddingX = 50;
 
 	[Export]
@@ -294,6 +297,8 @@ public partial class Minigame : Node2D
 		m_fTimeMaxWidth = TimeBar.Polygon[1].X;
 
 		m_iNumTimesEngaged = 0;
+
+		RoundText.Visible = false;
 	}
 
 	private void Stage_LineUp(double delta)
@@ -343,6 +348,9 @@ public partial class Minigame : Node2D
 		m_iChosenAttackInput = -1;
 
 		++m_iNumTimesEngaged;
+
+		RoundText.Visible = true;
+		RoundText.Text = $"Round {m_iNumTimesEngaged}!";
 
 		m_dEnemyHintTimer = 0.0;
 
@@ -398,16 +406,6 @@ public partial class Minigame : Node2D
 			c.Position += vDir * 20.0f;
 		}
 
-		// TODO
-		/*
-		phase 2: Instantly move in direction player and enemy want to go
-		phase 2: Check overlaps of shields and sword to determine if player/enemy got hit
-		phase 2: Call to show hit/block text.
-		phase 2: Repeat Engage phase 3 times
-		Exit the minigame, launches new minigame next time charge happens
-		
-		*/
-
 		if(!m_bResultProcessed)
 		{
 			m_bResultProcessed = true;
@@ -424,7 +422,7 @@ public partial class Minigame : Node2D
 			ShowEnemyAttackLabel(bEnemyHitPlayer);
 
 			GameGlobals globals = GetNode<GameGlobals>("/root/GameGlobals");
-			
+
 
 		}
 
@@ -547,7 +545,8 @@ public partial class Minigame : Node2D
 
 	private void ProcessTimer()
 	{
-		float fPercentile = (float)Mathf.Clamp(m_dStageTimeLeft / GetStageTimer(Stage.LineUp), 0.0, 1.0);
+		Stage toUse = m_eStage == Stage.LineUp ? Stage.LineUp : Stage.Engage;
+		float fPercentile = (float)Mathf.Clamp(m_dStageTimeLeft / GetStageTimer( Stage.LineUp), 0.0, 1.0);
 
 		var polygons = TimeBar.Polygon;
 		polygons[1] = new Vector2(m_fTimeMaxWidth * fPercentile, polygons[1].Y);

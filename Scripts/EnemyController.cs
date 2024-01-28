@@ -110,8 +110,8 @@ public class EnemyController
 
 	public void ChooseEngageDirections(Difficulty eDiff, LocationController PlayerAttack, LocationController EnemyAttack, LocationController PlayerProtect, LocationController EnemyProtect)
 	{
-		Vector2 vDirToBlock = (PlayerAttack.Position - EnemyProtect.Position).Normalized();
-		Vector2 vDirToAttack = -(PlayerProtect.Position - EnemyAttack.Position).Normalized();
+		Vector2 vDirToBlock = (PlayerAttack.Position - EnemyProtect.Position).Normalized().Round();
+		Vector2 vDirToAttack = -(PlayerProtect.Position - EnemyAttack.Position).Normalized().Round();
 
 		float fChanceToTakeBest = 0.3f + (0.1f * (float)eDiff);
 		float fAttackExtraChance = Mathf.Clamp(Mathf.Remap(EnemyAttack.Position.DistanceTo(PlayerProtect.Position), PlayerProtect.AbilityRadius, PlayerProtect.AbilityRadius * 2.0f, 0.75f, 0.0f), 0.0f, 1.0f);
