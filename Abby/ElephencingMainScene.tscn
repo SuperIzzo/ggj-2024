@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://dfwrfjwmbtjf"]
+[gd_scene load_steps=48 format=3 uid="uid://dfwrfjwmbtjf"]
 
 [ext_resource type="PackedScene" uid="uid://gaef3j8js3hw" path="res://Abby/crowdStands/crowdStands.glb" id="2_3gdxp"]
 [ext_resource type="Shader" path="res://Abby/Shaders/PS1.gdshader" id="3_ptv5m"]
@@ -23,6 +23,8 @@
 [ext_resource type="AudioStream" uid="uid://dws2n7s5ihn1j" path="res://Sfx/Elephant.wav" id="21_x4xr1"]
 [ext_resource type="AudioStream" uid="uid://bautknldjlvi0" path="res://Sfx/Swoosh3.mp3" id="22_1o6g1"]
 [ext_resource type="AudioStream" uid="uid://cqpd4i8l7gc7n" path="res://Sfx/KO.mp3" id="23_7jw3s"]
+[ext_resource type="AudioStream" uid="uid://bkgimjj7pmw7h" path="res://Sfx/PC5DemoDisc.wav" id="24_07hxm"]
+[ext_resource type="AudioStream" uid="uid://degfwladdr5s7" path="res://Sfx/calpis.mp3" id="25_g126q"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qranb"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -3305,13 +3307,15 @@ transform = Transform3D(0.97973, 0, 0.200326, 0, 1, 0, -0.200326, 0, 0.97973, -8
 mesh = SubResource("ArrayMesh_5apkx")
 skeleton = NodePath("")
 
-[node name="Game" parent="." node_paths=PackedStringArray("Sound_Hit", "Sound_Block", "Sound_Walk", "Sound_Hurt", "Sound_TrunkMove", "Sound_KO") instance=ExtResource("17_h2os2")]
+[node name="Game" parent="." node_paths=PackedStringArray("Sound_Hit", "Sound_Block", "Sound_Walk", "Sound_Hurt", "Sound_TrunkMove", "Sound_KO", "Music_Normal", "Music_Disco") instance=ExtResource("17_h2os2")]
 Sound_Hit = NodePath("../Sound_Hit")
 Sound_Block = NodePath("../Sound_Block")
 Sound_Walk = NodePath("../Sound_Walk")
 Sound_Hurt = NodePath("../Sound_Hurt")
 Sound_TrunkMove = NodePath("../Sound_TrunkMove")
 Sound_KO = NodePath("../Sound_KO")
+Music_Normal = NodePath("../Music_Normal")
+Music_Disco = NodePath("../Music_Disco")
 
 [node name="Sound_Hit" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("18_5jy7b")
@@ -3333,6 +3337,12 @@ stream = ExtResource("22_1o6g1")
 
 [node name="Sound_KO" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("23_7jw3s")
+
+[node name="Music_Normal" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("24_07hxm")
+
+[node name="Music_Disco" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("25_g126q")
 
 [editable path="terrain4"]
 [editable path="crowdStandsInner/crowdStands2"]

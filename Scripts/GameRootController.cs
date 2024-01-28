@@ -26,6 +26,12 @@ public partial class GameRootController : Node3D
 
 	[Export]
 	public AudioStreamPlayer2D Sound_KO;
+
+	[Export]
+	public AudioStreamPlayer2D Music_Normal;
+
+	[Export]
+	public AudioStreamPlayer2D Music_Disco;
 	
 	GameGlobals globals;
 	

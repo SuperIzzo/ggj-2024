@@ -267,6 +267,18 @@ public partial class Minigame : Node2D
 
 	private void Stage_Init()
 	{
+		GameGlobals globals = GetNode<GameGlobals>("/root/GameGlobals");
+		if(globals.EnemySlon.Name == "Quixotic" || globals.EnemySlon.Name == "Acid McGee")
+		{
+			globals.GameRef.Music_Normal.Stop();
+			globals.GameRef.Music_Disco.Play();
+		}
+		else
+		{
+			globals.GameRef.Music_Normal.Play();
+			globals.GameRef.Music_Disco.Stop();
+		}
+
 		Vector2 GetRandomSpawnPos()
 		{
 			return new Vector2(
@@ -285,12 +297,10 @@ public partial class Minigame : Node2D
 		ProtectLocation.Position = GetRandomSpawnPos();
 		EnemyAttackLocation.Position = GetRandomSpawnPos();
 		EnemyProtectLocation.Position = GetRandomSpawnPos();
-
 		
 		// Capture the mouse so that it's invisible and we can get the relative movement for the frame
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 		
-		GameGlobals globals = GetNode<GameGlobals>("/root/GameGlobals");
 		m_eCurrentDifficulty = (EnemyController.Difficulty)globals.Match;
 
 		if((int)m_eCurrentDifficulty < 1 || (int)m_eCurrentDifficulty > 6)
@@ -430,7 +440,9 @@ public partial class Minigame : Node2D
 		void MoveInDirection(LocationController c, int dir)
 		{
 			Vector2 vDir = EnemyController.GetVectorFromDirection(dir);
-			c.Position += vDir * 20.0f;
+			c.Position += vDir * 40.0f;
+
+			c.Position = c.Position.Clamp(new Vector2(0,0), m_vAreaSize);
 		}
 
 		if(!m_bResultProcessed)
