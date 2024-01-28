@@ -223,7 +223,7 @@ public partial class Minigame : Node2D
 			case Stage.LineUp:		return 4.0;
 			case Stage.Engage:		return 3.0;
 			case Stage.IntermissionSlowDown: return 1.0;
-			case Stage.ProcessResult: return 1.5;
+			case Stage.ProcessResult: return 2.0;
 			default: return 0.0;
 		}
 	}
