@@ -10,7 +10,22 @@ public partial class GameRootController : Node3D
 	SlonResource DefaultSlonB;
 
 	[Export]
-	AudioStreamPlayer2D Sound_Hit;
+	public AudioStreamPlayer2D Sound_Hit;
+
+	[Export]
+	public AudioStreamPlayer2D Sound_Block;
+
+	[Export]
+	public AudioStreamPlayer2D Sound_Walk;
+
+	[Export]
+	public AudioStreamPlayer2D Sound_Hurt;
+
+	[Export]
+	public AudioStreamPlayer2D Sound_TrunkMove;
+
+	[Export]
+	public AudioStreamPlayer2D Sound_KO;
 	
 	GameGlobals globals;
 	

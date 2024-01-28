@@ -216,6 +216,24 @@ public partial class Minigame : Node2D
 		ProcessAttackLabels(delta);
 	}
 
+	private void PlayHitSound()
+	{
+		GameGlobals globals = GetNode<GameGlobals>("/root/GameGlobals");
+		globals.GameRef.Sound_Hit.Play();
+	}
+
+	private void PlayBlockSound()
+	{
+		GameGlobals globals = GetNode<GameGlobals>("/root/GameGlobals");
+		globals.GameRef.Sound_Block.Play();
+	}
+
+	private void PlayHurtSound()
+	{
+		GameGlobals globals = GetNode<GameGlobals>("/root/GameGlobals");
+		globals.GameRef.Sound_Hurt.Play();
+	}
+
 	private double GetStageTimer(Stage eStage)
 	{
 		switch(m_eStage)
@@ -434,12 +452,18 @@ public partial class Minigame : Node2D
 
 			if(bPlayerHitEnemy)
 			{
+				PlayHitSound();
 				--globals.EnemyHP;
 			}
 
 			if(bEnemyHitPlayer)
 			{
+				PlayHurtSound();
 				--globals.PlayerHP;
+			}
+			else
+			{
+				PlayBlockSound();
 			}
 		}
 

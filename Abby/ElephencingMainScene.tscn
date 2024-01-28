@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://dfwrfjwmbtjf"]
+[gd_scene load_steps=46 format=3 uid="uid://dfwrfjwmbtjf"]
 
 [ext_resource type="PackedScene" uid="uid://gaef3j8js3hw" path="res://Abby/crowdStands/crowdStands.glb" id="2_3gdxp"]
 [ext_resource type="Shader" path="res://Abby/Shaders/PS1.gdshader" id="3_ptv5m"]
@@ -18,6 +18,11 @@
 [ext_resource type="PackedScene" uid="uid://dr1dhyi4iapi" path="res://Abby/abbyMonke.gltf" id="17_j2m7i"]
 [ext_resource type="AudioStream" uid="uid://bto115latyqc8" path="res://Sfx/Hit.wav" id="18_5jy7b"]
 [ext_resource type="Texture2D" uid="uid://dvcakvs5kblir" path="res://Abby/abbyMonke_abby.png" id="18_toc3m"]
+[ext_resource type="AudioStream" uid="uid://b2my6pbb2iqa0" path="res://Sfx/Block.wav" id="19_5f5cg"]
+[ext_resource type="AudioStream" uid="uid://d2h18jvmf88yk" path="res://Sfx/CrunchyWalk.mp3" id="20_xbd6e"]
+[ext_resource type="AudioStream" uid="uid://dws2n7s5ihn1j" path="res://Sfx/Elephant.wav" id="21_x4xr1"]
+[ext_resource type="AudioStream" uid="uid://bautknldjlvi0" path="res://Sfx/Swoosh3.mp3" id="22_1o6g1"]
+[ext_resource type="AudioStream" uid="uid://cqpd4i8l7gc7n" path="res://Sfx/KO.mp3" id="23_7jw3s"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qranb"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -3300,10 +3305,34 @@ transform = Transform3D(0.97973, 0, 0.200326, 0, 1, 0, -0.200326, 0, 0.97973, -8
 mesh = SubResource("ArrayMesh_5apkx")
 skeleton = NodePath("")
 
-[node name="Game" parent="." instance=ExtResource("17_h2os2")]
+[node name="Game" parent="." node_paths=PackedStringArray("Sound_Hit", "Sound_Block", "Sound_Walk", "Sound_Hurt", "Sound_TrunkMove", "Sound_KO") instance=ExtResource("17_h2os2")]
+Sound_Hit = NodePath("../Sound_Hit")
+Sound_Block = NodePath("../Sound_Block")
+Sound_Walk = NodePath("../Sound_Walk")
+Sound_Hurt = NodePath("../Sound_Hurt")
+Sound_TrunkMove = NodePath("../Sound_TrunkMove")
+Sound_KO = NodePath("../Sound_KO")
 
 [node name="Sound_Hit" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("18_5jy7b")
+
+[node name="Sound_Block" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("19_5f5cg")
+
+[node name="Sound_Walk" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("20_xbd6e")
+pitch_scale = 1.76
+autoplay = true
+
+[node name="Sound_Hurt" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("21_x4xr1")
+
+[node name="Sound_TrunkMove" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, 2)
+stream = ExtResource("22_1o6g1")
+
+[node name="Sound_KO" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("23_7jw3s")
 
 [editable path="terrain4"]
 [editable path="crowdStandsInner/crowdStands2"]
