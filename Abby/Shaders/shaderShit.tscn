@@ -234,6 +234,9 @@ shader = ExtResource("5_xo8gg")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/wire_width = 5.0
 shader_parameter/wire_smoothness = 0.01
+shader_parameter/amp = Vector2(2, 0.1)
+shader_parameter/freq = 3.0
+shader_parameter/worldTime = Vector2(3, 2.5)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b3x6y"]
 render_priority = 1
