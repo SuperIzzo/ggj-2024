@@ -9,8 +9,13 @@ public partial class GameRootController : Node3D
 	[Export]
 	SlonResource DefaultSlonB;
 	
+	GameGlobals globals;
+	
 	Label labelA;
 	Label labelB;
+	
+	Health healthA;
+	Health healthB;
 	
 	Camera3D camera;
 	double cameraSpeed = 2.5;
@@ -28,9 +33,17 @@ public partial class GameRootController : Node3D
 		labelA = this.GetChildByType<Label>("LabelA");
 		labelB = this.GetChildByType<Label>("LabelB");
 		
+		healthA = this.GetChildByType<Health>("ControlA");
+		healthB = this.GetChildByType<Health>("ControlB");
+		
 		camera = GetParent().GetChildByType<Camera3D>();
 		
-		GameGlobals globals = GetNode<GameGlobals>("/root/GameGlobals");
+		globals = GetNode<GameGlobals>("/root/GameGlobals");
+		healthA.MaxHp = globals.PlayerMaxHP;
+		healthB.MaxHp = globals.EnemyMaxHP;
+		
+		healthA.CurrentHp = globals.PlayerHP;
+		healthB.CurrentHp = globals.EnemyHP;
 		
 		SetupRound(globals.PlayerSlon, globals.EnemySlon);
 		RunGame();
@@ -48,6 +61,9 @@ public partial class GameRootController : Node3D
 				GameRunning = false;
 			}
 		}
+		
+		healthA.CurrentHp = globals.PlayerHP;
+		healthB.CurrentHp = globals.EnemyHP;
 	}
 	
 	public void SetupRound(SlonResource SlonA, SlonResource SlonB)
