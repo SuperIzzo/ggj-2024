@@ -216,6 +216,24 @@ public partial class Minigame : Node2D
 		ProcessAttackLabels(delta);
 	}
 
+	private void PlayHitSound()
+	{
+		GameGlobals globals = GetNode<GameGlobals>("/root/GameGlobals");
+		globals.GameRef.Sound_Hit.Play();
+	}
+
+	private void PlayBlockSound()
+	{
+		GameGlobals globals = GetNode<GameGlobals>("/root/GameGlobals");
+		globals.GameRef.Sound_Block.Play();
+	}
+
+	private void PlayHurtSound()
+	{
+		GameGlobals globals = GetNode<GameGlobals>("/root/GameGlobals");
+		globals.GameRef.Sound_Hurt.Play();
+	}
+
 	private double GetStageTimer(Stage eStage)
 	{
 		switch(m_eStage)
@@ -223,7 +241,7 @@ public partial class Minigame : Node2D
 			case Stage.LineUp:		return 4.0;
 			case Stage.Engage:		return 3.0;
 			case Stage.IntermissionSlowDown: return 1.0;
-			case Stage.ProcessResult: return 2.0;
+			case Stage.ProcessResult: return 1.5;
 			default: return 0.0;
 		}
 	}
@@ -249,6 +267,18 @@ public partial class Minigame : Node2D
 
 	private void Stage_Init()
 	{
+		GameGlobals globals = GetNode<GameGlobals>("/root/GameGlobals");
+		if(globals.EnemySlon.Name == "Quixotic" || globals.EnemySlon.Name == "Acid McGee")
+		{
+			globals.GameRef.Music_Normal.Stop();
+			globals.GameRef.Music_Disco.Play();
+		}
+		else
+		{
+			globals.GameRef.Music_Normal.Play();
+			globals.GameRef.Music_Disco.Stop();
+		}
+
 		Vector2 GetRandomSpawnPos()
 		{
 			return new Vector2(
@@ -267,12 +297,10 @@ public partial class Minigame : Node2D
 		ProtectLocation.Position = GetRandomSpawnPos();
 		EnemyAttackLocation.Position = GetRandomSpawnPos();
 		EnemyProtectLocation.Position = GetRandomSpawnPos();
-
 		
 		// Capture the mouse so that it's invisible and we can get the relative movement for the frame
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 		
-		GameGlobals globals = GetNode<GameGlobals>("/root/GameGlobals");
 		m_eCurrentDifficulty = (EnemyController.Difficulty)globals.Match;
 
 		if((int)m_eCurrentDifficulty < 1 || (int)m_eCurrentDifficulty > 6)
@@ -389,7 +417,7 @@ public partial class Minigame : Node2D
 		ProcessEngageInput();
 		ProcessEnemyHinting(delta);
 
-		AttackLocation.Position = m_vLockedInAttackPosition + m_vRelativeMouseInputForEngage;
+		AttackLocation.Position = m_vLockedInAttackPosition + (m_vRelativeMouseInputForEngage.Round() * 3.0f);
 
 		if(m_dStageTimeLeft < 0.0)
 		{
@@ -412,7 +440,9 @@ public partial class Minigame : Node2D
 		void MoveInDirection(LocationController c, int dir)
 		{
 			Vector2 vDir = EnemyController.GetVectorFromDirection(dir);
-			c.Position += vDir * 20.0f;
+			c.Position += vDir * 40.0f;
+
+			c.Position = c.Position.Clamp(new Vector2(0,0), m_vAreaSize);
 		}
 
 		if(!m_bResultProcessed)
@@ -434,12 +464,18 @@ public partial class Minigame : Node2D
 
 			if(bPlayerHitEnemy)
 			{
+				PlayHitSound();
 				--globals.EnemyHP;
 			}
 
 			if(bEnemyHitPlayer)
 			{
+				PlayHurtSound();
 				--globals.PlayerHP;
+			}
+			else
+			{
+				PlayBlockSound();
 			}
 		}
 

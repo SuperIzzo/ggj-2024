@@ -8,6 +8,30 @@ public partial class GameRootController : Node3D
 	
 	[Export]
 	SlonResource DefaultSlonB;
+
+	[Export]
+	public AudioStreamPlayer2D Sound_Hit;
+
+	[Export]
+	public AudioStreamPlayer2D Sound_Block;
+
+	[Export]
+	public AudioStreamPlayer2D Sound_Walk;
+
+	[Export]
+	public AudioStreamPlayer2D Sound_Hurt;
+
+	[Export]
+	public AudioStreamPlayer2D Sound_TrunkMove;
+
+	[Export]
+	public AudioStreamPlayer2D Sound_KO;
+
+	[Export]
+	public AudioStreamPlayer2D Music_Normal;
+
+	[Export]
+	public AudioStreamPlayer2D Music_Disco;
 	
 	GameGlobals globals;
 	
@@ -57,6 +81,8 @@ public partial class GameRootController : Node3D
 		healthA.CurrentHp = globals.PlayerHP;
 		healthB.CurrentHp = globals.EnemyHP;
 		
+		globals.GameRef = this;
+
 		SetupRound(globals.PlayerSlon, globals.EnemySlon);
 		RunGame();
 	}

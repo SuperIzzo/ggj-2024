@@ -8,6 +8,7 @@ public partial class slonTrunkControler : Node3D
 	private int trunk3BoneIdx;
 	private int trunk4BoneIdx;
 	private double rotationSpeed = 30f;
+	private double swooshTimer;
 	
 	public override void _Ready()
 	{
@@ -28,8 +29,11 @@ public partial class slonTrunkControler : Node3D
 		{
 			GD.Print("Trunk found");
 		}
+
+		swooshTimer = 0.0;
 	}
-	 private void RotateTrunk(int trunkBoneIdx, Vector3 rotationAxis, double delta)
+	
+	private void RotateTrunk(int trunkBoneIdx, Vector3 rotationAxis, double delta)
 	{
 		// TODO: This is competing with animation, we need to cache trunk bones		
 		
@@ -41,17 +45,21 @@ public partial class slonTrunkControler : Node3D
 		
 	public override void _Process(double delta)
 	{
+		bool bKeyPressed = false;
+
 		 if (Input.IsActionPressed("Key_Left"))
 		 {
 			// Rotate trunks along the Z-axis when the Left arrow key is pressed
 			RotateTrunk(trunk1BoneIdx, -Vector3.Forward, delta);
 			RotateTrunk(trunk2BoneIdx, -Vector3.Forward, delta);
+			bKeyPressed = true;
 		}
 		if (Input.IsActionPressed("Key_Right"))
 		{
 			// Rotate trunks along the Z-axis when the Right arrow key is pressed
 			RotateTrunk(trunk1BoneIdx, Vector3.Forward, delta);
 			RotateTrunk(trunk2BoneIdx, Vector3.Forward, delta);
+			bKeyPressed = true;
 		}
 		
 		if (Input.IsActionPressed("Key_Up"))
@@ -60,6 +68,7 @@ public partial class slonTrunkControler : Node3D
 			RotateTrunk(trunk1BoneIdx, -Vector3.Right, delta);
 			RotateTrunk(trunk2BoneIdx, -Vector3.Right, delta);
 			RotateTrunk(trunk3BoneIdx, -Vector3.Right, delta);
+			bKeyPressed = true;
 		}
 		
 		if (Input.IsActionPressed("Key_Down"))
@@ -68,6 +77,24 @@ public partial class slonTrunkControler : Node3D
 			RotateTrunk(trunk1BoneIdx, Vector3.Right, delta);
 			RotateTrunk(trunk2BoneIdx, Vector3.Right, delta);
 			RotateTrunk(trunk3BoneIdx, Vector3.Right, delta);
+			bKeyPressed = true;
+		}
+
+		if(bKeyPressed)
+		{
+			if(swooshTimer <= 0.0)
+			{
+				GameGlobals globals = GetNode<GameGlobals>("/root/GameGlobals");
+				globals.GameRef.Sound_TrunkMove.Play();
+
+				swooshTimer = 1.5;
+			}
+
+			swooshTimer -= delta;
+		}
+		else
+		{
+			swooshTimer = 0.0;
 		}
 	}
 }

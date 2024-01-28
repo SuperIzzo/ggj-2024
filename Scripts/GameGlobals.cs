@@ -10,6 +10,8 @@ public partial class GameGlobals : Node
 	
 	public SlonResource PlayerSlon;
 	public SlonResource EnemySlon;
+
+	public GameRootController GameRef;
 	
 	public int PlayerMaxHP = 3;
 	public int EnemyMaxHP = 3;
