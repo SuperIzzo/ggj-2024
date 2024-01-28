@@ -9,6 +9,9 @@ public partial class GameRootController : Node3D
 	[Export]
 	SlonResource DefaultSlonB;
 	
+	Label labelA;
+	Label labelB;
+	
 	Camera3D camera;
 	double cameraSpeed = 2.5;
 	
@@ -22,9 +25,14 @@ public partial class GameRootController : Node3D
 		standoff = this.GetChildByType<SlonStandoff>();
 		minigame = this.GetChildByType<Minigame>();
 		
+		labelA = this.GetChildByType<Label>("LabelA");
+		labelB = this.GetChildByType<Label>("LabelB");
+		
 		camera = GetParent().GetChildByType<Camera3D>();
 		
-		Setup(DefaultSlonA, DefaultSlonB);
+		GameGlobals globals = GetNode<GameGlobals>("/root/GameGlobals");
+		
+		Setup(globals.PlayerSlon, globals.EnemySlon);
 		RunGame();
 	}
 
@@ -47,6 +55,9 @@ public partial class GameRootController : Node3D
 		GameRunning = false;
 		standoff.SetUpStandoff(SlonA, SlonB);
 		(minigame.GetParent() as Node2D).Visible = false;
+		
+		labelA.Text = SlonA.Name;
+		labelB.Text = SlonB.Name;
 	}
 	
 	public void RunGame()
