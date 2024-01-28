@@ -298,7 +298,8 @@ public partial class Minigame : Node2D
 
 		m_iNumTimesEngaged = 0;
 
-		RoundText.Visible = false;
+		RoundText.Visible = true;
+		RoundText.Text = "Line em up!";
 	}
 
 	private void Stage_LineUp(double delta)
@@ -350,7 +351,7 @@ public partial class Minigame : Node2D
 		++m_iNumTimesEngaged;
 
 		RoundText.Visible = true;
-		RoundText.Text = $"Round {m_iNumTimesEngaged}!";
+		RoundText.Text = $"Bout {m_iNumTimesEngaged}!";
 
 		m_dEnemyHintTimer = 0.0;
 
