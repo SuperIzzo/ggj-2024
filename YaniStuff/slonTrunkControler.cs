@@ -85,7 +85,10 @@ public partial class slonTrunkControler : Node3D
 			if(swooshTimer <= 0.0)
 			{
 				GameGlobals globals = GetNode<GameGlobals>("/root/GameGlobals");
-				globals.GameRef.Sound_TrunkMove.Play();
+				if (globals.GameRef != null)
+				{
+					globals.GameRef.Sound_TrunkMove.Play();
+				}
 
 				swooshTimer = 1.5;
 			}

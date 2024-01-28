@@ -214,6 +214,8 @@ public partial class GameRootController : Node3D
 	
 	public void DoGameOverAnim()
 	{
+		Sound_KO.Play();
+		
 		TextureRect gameOverImg = null;
 		switch(CurrentState)
 		{
