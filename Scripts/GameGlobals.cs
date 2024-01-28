@@ -15,6 +15,9 @@ public partial class GameGlobals : Node
 	{
 		GD.Print("Start");
 		
+		random.Next();
+		random.Next();
+		random.Next();
 		ChooseNewSlons();
 	}
 	
