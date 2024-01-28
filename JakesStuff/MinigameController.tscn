@@ -49,7 +49,7 @@ texture_filter = 1
 position = Vector2(-25, 0)
 texture = ExtResource("2_oelte")
 script = ExtResource("3_m78mq")
-MovementStrength = 0.5
+MovementStrength = 0.45
 Friction = 0.1
 MaxVelocity = Vector2(1, 1)
 AbilityRadiusColor = Color(0.85098, 0.929412, 0.74902, 0.196078)
@@ -78,7 +78,7 @@ texture = ExtResource("7_4dslg")
 [node name="ProtectLocation" type="Sprite2D" parent="PlayArea"]
 z_index = 3
 texture_filter = 1
-position = Vector2(-25, 83)
+position = Vector2(-25, 84)
 texture = ExtResource("4_n5mht")
 script = ExtResource("5_tf3pd")
 Mass = 1.0

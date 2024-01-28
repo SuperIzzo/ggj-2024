@@ -252,11 +252,11 @@ public partial class Minigame : Node2D
 		{
 			if(m_eStage == Stage.LineUp)
 			{
-				AttackLocation.AddInput(eventMouseMotion.Relative);
+				//AttackLocation.AddInput(eventMouseMotion.Relative);
 			}
 			else if(m_eStage == Stage.Engage)
 			{
-				m_vRelativeMouseInputForEngage = eventMouseMotion.Relative * 0.025f;
+				//m_vRelativeMouseInputForEngage = eventMouseMotion.Relative * 0.025f;
 			}
 		}
 		else if (@event is InputEventMouseButton eventMouseButton)
@@ -418,7 +418,7 @@ public partial class Minigame : Node2D
 		ProcessEngageInput();
 		ProcessEnemyHinting(delta);
 
-		AttackLocation.Position = m_vLockedInAttackPosition + (m_vRelativeMouseInputForEngage.Round() * 3.0f);
+		//AttackLocation.Position = m_vLockedInAttackPosition + (m_vRelativeMouseInputForEngage.Round() * 3.0f);
 
 		if(m_dStageTimeLeft < 0.0)
 		{
@@ -526,9 +526,12 @@ public partial class Minigame : Node2D
 	private void ProcessLineUpInput(double delta)
 	{
 		Vector2 vInput = new();
+		Vector2 vAttackInput = new();
 
 		// Add to the janky ps1 demo vibe, make the user keep pressing inputs
 		float fDirAmount = 1.0f;
+		float fAttackDirAmount = 15.0f;
+
 		if(Input.IsActionJustPressed("Key_Left"))
 		{
 			vInput.X = -fDirAmount;
@@ -547,7 +550,26 @@ public partial class Minigame : Node2D
 			vInput.Y = fDirAmount;
 		}
 
+		if(Input.IsActionJustPressed("Arrow_Left"))
+		{
+			vAttackInput.X = -fAttackDirAmount;
+		}
+		else if(Input.IsActionJustPressed("Arrow_Right"))
+		{
+			vAttackInput.X = fAttackDirAmount;
+		}
+
+		if(Input.IsActionJustPressed("Arrow_Up"))
+		{
+			vAttackInput.Y = -fAttackDirAmount;
+		}
+		else if(Input.IsActionJustPressed("Arrow_Down"))
+		{
+			vAttackInput.Y = fAttackDirAmount;
+		}
+
 		ProtectLocation.AddInput(vInput);
+		AttackLocation.AddInputArrows(vAttackInput);
 
 		m_enemy.Process(AttackLocation.Position, ProtectLocation.Position, 
 			EnemyAttackLocation.Position, EnemyProtectLocation.Position, delta);
@@ -573,21 +595,21 @@ public partial class Minigame : Node2D
 
 		if(m_iChosenAttackInput == -1)
 		{
-			if(m_vRelativeMouseInputForEngage.X > 0.5f)
-			{
-				m_iChosenAttackInput = 1;
-			}
-			else if(m_vRelativeMouseInputForEngage.X < -0.5f)
+			if(Input.IsActionJustPressed("Arrow_Left"))
 			{
 				m_iChosenAttackInput = 3;
 			}
-			else if(m_vRelativeMouseInputForEngage.Y > 0.5f)
+			else if(Input.IsActionJustPressed("Arrow_Right"))
 			{
-				m_iChosenAttackInput = 2;
+				m_iChosenAttackInput = 1;
 			}
-			else if(m_vRelativeMouseInputForEngage.Y < -0.5f)
+			else if(Input.IsActionJustPressed("Arrow_Up"))
 			{
 				m_iChosenAttackInput = 0;
+			}
+			else if(Input.IsActionJustPressed("Arrow_Down"))
+			{
+				m_iChosenAttackInput = 2;
 			}
 
 			if(m_iChosenAttackInput != -1)

@@ -30,6 +30,11 @@ public partial class AttackController : LocationController
 		m_vMouseRelative = vNorm * MovementStrength * fStrength;
 	}
 
+	public void AddInputArrows(Vector2 vInput)
+	{
+		m_vMouseRelative = vInput * MovementStrength;
+	}
+
 	private void StageLineUp(Minigame.Stage eStage, double dTimeLeft)
 	{
 		ApplyForce(m_vMouseRelative);
