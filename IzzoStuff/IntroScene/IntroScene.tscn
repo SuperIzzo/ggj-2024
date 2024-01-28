@@ -1,8 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://b82b3ubd8arb0"]
+[gd_scene load_steps=21 format=3 uid="uid://b82b3ubd8arb0"]
 
 [ext_resource type="Script" path="res://IzzoStuff/IntroScene/IntroScene.cs" id="1_1ultp"]
 [ext_resource type="Shader" path="res://Abby/Shaders/PS1.gdshader" id="1_gobki"]
 [ext_resource type="Script" path="res://IzzoStuff/IntroScene/Intro.cs" id="2_jj3r1"]
+[ext_resource type="FontFile" uid="uid://de2yug6ammn7d" path="res://Assets/Retro Gaming.ttf" id="4_lexl7"]
+[ext_resource type="PackedScene" uid="uid://dr1dhyi4iapi" path="res://Abby/abbyMonke.gltf" id="5_oliif"]
+[ext_resource type="Material" uid="uid://cuolj83o6mmm3" path="res://Abby/Shaders/monke.tres" id="7_kddx1"]
+[ext_resource type="Texture2D" uid="uid://dvcakvs5kblir" path="res://Abby/abbyMonke_abby.png" id="8_w6jn0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_46gea"]
 sky_top_color = Color(0.67451, 0.360784, 0.227451, 1)
@@ -24,6 +28,9 @@ sky_rotation = Vector3(0.139626, 0, 0)
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.65
+volumetric_fog_density = 0.7035
+volumetric_fog_detail_spread = 1.8025
+volumetric_fog_sky_affect = 0.304
 
 [sub_resource type="QuadMesh" id="QuadMesh_iidmb"]
 flip_faces = true
@@ -34,12 +41,12 @@ render_priority = 0
 shader = ExtResource("1_gobki")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ajdo6"]
-albedo_color = Color(0.654902, 0.415686, 1, 1)
+albedo_color = Color(0.0588235, 0.580392, 1, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_va30y"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_meskw"]
-albedo_color = Color(1, 0.321569, 1, 1)
+albedo_color = Color(0.921569, 0, 0.290196, 1)
 
 [sub_resource type="Animation" id="Animation_i3vcl"]
 resource_name = "IntroAnim"
@@ -94,6 +101,9 @@ _data = {
 "RESET": SubResource("Animation_dcex5")
 }
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fl2me"]
+albedo_texture = ExtResource("8_w6jn0")
+
 [node name="IntroScene" type="Node3D"]
 script = ExtResource("1_1ultp")
 
@@ -134,19 +144,29 @@ mesh = SubResource("PlaneMesh_va30y")
 skeleton = NodePath("../Title")
 
 [node name="Title" type="Label3D" parent="IntroA/IntroPane"]
-transform = Transform3D(0.54951, -0.0539162, -0.833747, 0.103208, 0.994653, 0.00370126, 0.82909, -0.0880832, 0.552136, 2.50926, 0.0381017, -7.071)
+transform = Transform3D(0.54951, -0.0539162, -0.833747, 0.103208, 0.994653, 0.00370126, 0.82909, -0.0880832, 0.552136, 2.50926, 0.307126, -7.071)
 sorting_offset = 100.0
+modulate = Color(1, 0, 1, 1)
+outline_modulate = Color(0.120454, 3.85046e-07, 0.642053, 1)
 text = "Slon is here!"
+font = ExtResource("4_lexl7")
 outline_size = 16
+vertical_alignment = 0
 uppercase = true
+autowrap_mode = 3
 
 [node name="Subtitle" type="Label3D" parent="IntroA/IntroPane"]
-transform = Transform3D(0.54951, -0.0539162, -0.833747, 0.103208, 0.994653, 0.00370126, 0.82909, -0.0880832, 0.552136, 2.51923, -0.14587, -7.05471)
+transform = Transform3D(0.524773, 0.463363, -0.71408, -0.192941, 0.88178, 0.430393, 0.82909, -0.0880834, 0.552136, 2.60725, -0.0776656, -7.05472)
 sorting_offset = 100.0
-modulate = Color(0.0862745, 0.0862745, 0.0862745, 1)
+modulate = Color(0.0862745, 1, 0.0862745, 1)
 text = "And they're queer"
+font = ExtResource("4_lexl7")
 font_size = 28
 outline_size = 16
+vertical_alignment = 0
+uppercase = true
+autowrap_mode = 3
+width = 200.0
 
 [node name="Character" type="Node3D" parent="IntroA"]
 transform = Transform3D(-0.236838, 0, 0.971547, 0, 1, 0, -0.971547, 0, -0.236838, 0, 0, 0)
@@ -162,7 +182,7 @@ transform = Transform3D(0.565313, 0, -0.824877, 0, 1, 0, 0.824877, 0, 0.565313, 
 script = ExtResource("2_jj3r1")
 
 [node name="IntroPane" type="Node3D" parent="IntroB"]
-transform = Transform3D(0.565312, 0, 0.824875, 0, 1, 0, -0.824875, 0, 0.565312, 2.934, 4.199, 3.067)
+transform = Transform3D(0.565312, 0, 0.824875, 0, 1, 0, -0.824875, 0, 0.565312, 18.348, 4.199, 9.336)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="IntroB/IntroPane"]
 transform = Transform3D(0.702607, 0.664775, -0.253808, -0.620833, 0.398388, -0.67517, -0.347721, 0.631951, 0.692624, -0.483146, 0.016823, 0.00290549)
@@ -177,19 +197,28 @@ mesh = SubResource("PlaneMesh_va30y")
 skeleton = NodePath("../Title")
 
 [node name="Title" type="Label3D" parent="IntroB/IntroPane"]
-transform = Transform3D(0.696788, -0.0263244, 0.716795, 0.0163362, 0.999649, 0.0208321, -0.717093, -0.00280583, 0.696974, 0.204144, 0.092854, -0.460995)
+transform = Transform3D(0.688138, 0.155926, 0.708629, -0.110665, 0.987764, -0.109882, -0.717093, -0.00280589, 0.696974, 0.204144, 0.442504, -0.460995)
 sorting_offset = 100.0
 text = "Slon is here!"
+font = ExtResource("4_lexl7")
 outline_size = 16
+vertical_alignment = 0
 uppercase = true
+autowrap_mode = 3
 
 [node name="Subtitle" type="Label3D" parent="IntroB/IntroPane"]
-transform = Transform3D(0.574546, -0.242332, 0.781776, 0.0299753, 0.960753, 0.275782, -0.817925, -0.135015, 0.55926, 0.209042, -0.0920416, -0.460995)
+transform = Transform3D(0.487466, -0.678941, 0.549015, 0.30558, 0.721672, 0.621137, -0.817925, -0.135015, 0.55926, 0.209042, -0.0601975, -0.460995)
 sorting_offset = 100.0
-modulate = Color(0.0862745, 0.0862745, 0.0862745, 1)
-text = "And they're queer"
+modulate = Color(1, 0.717647, 0, 1)
+outline_modulate = Color(0.588235, 0.172549, 0, 1)
+text = "And they're queer!"
+font = ExtResource("4_lexl7")
 font_size = 28
 outline_size = 16
+vertical_alignment = 0
+uppercase = true
+autowrap_mode = 3
+width = 200.0
 
 [node name="Character" type="Node3D" parent="IntroB"]
 transform = Transform3D(0.995194, 0, 0.0979128, 0, 1, 0, -0.0979128, 0, 0.995194, 0, 0, 0)
@@ -199,3 +228,13 @@ libraries = {
 "": SubResource("AnimationLibrary_jbbnl")
 }
 autoplay = "IntroAnim_B"
+
+[node name="abbyMonke" parent="." instance=ExtResource("5_oliif")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.52032, 0, -28.494)
+
+[node name="Suzanne" parent="abbyMonke" index="0"]
+transform = Transform3D(2000, 0, 0, 0, 2000, 0, 0, 0, 1000, 119.681, 1408.06, -4527.19)
+material_override = ExtResource("7_kddx1")
+surface_material_override/0 = SubResource("StandardMaterial3D_fl2me")
+
+[editable path="abbyMonke"]
